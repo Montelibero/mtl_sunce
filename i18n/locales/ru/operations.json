@@ -1,114 +1,114 @@
 {
   "account-merge": {
     "summary": {
-      "account": "Account",
-      "merge-into": "Merge into"
+      "account": "Учетная запись",
+      "merge-into": "Слияние в"
     },
-    "title": "Merge Account"
+    "title": "Слияние учетных записей"
   },
   "change-trust": {
     "summary": {
-      "asset": "Asset",
-      "issued-by": "Issued by",
+      "asset": "Актив",
+      "issued-by": "Выпущено",
       "limit": {
-        "label": "Limit",
+        "label": "Лимит",
         "value": {
-          "unlimited": "Unlimited",
-          "limited-to": "Limited to {{limit}} {{code}}"
+          "unlimited": "Неограниченно",
+          "limited-to": "Ограничено до {{limit}} {{code}}"
         }
       }
     },
     "title": {
-      "add-asset": "Add asset",
-      "remove-asset": "Remove asset"
+      "add-asset": "Добавить актив",
+      "remove-asset": "Удалить актив"
     }
   },
   "create-account": {
     "summary": {
-      "account": "Account to create",
-      "funding-account": "Funding account",
-      "funding-amount": "Funding amount"
+      "account": "Создать учетную запись",
+      "funding-account": "Финансирующий аккаунт",
+      "funding-amount": "Сумма финансирования"
     },
-    "title": "Create account"
+    "title": "Создание учетной записи"
   },
   "manage-buy-offer": {
     "title": {
-      "create": "Create buy order",
-      "delete": "Buy order",
-      "update": "Update buy order"
+      "create": "Создать ордер на покупку",
+      "delete": "Ордер на покупку",
+      "update": "Обновить ордер на покупку"
     }
   },
   "manage-data": {
-    "title": "Set account data"
+    "title": "Установить данные учетной записи"
   },
   "manage-offer": {
     "summary": {
-      "buy": "Buy",
-      "sell": "Sell"
+      "buy": "Купить",
+      "sell": "Продать"
     }
   },
   "manage-sell-offer": {
     "title": {
-      "create": "Create sell order",
-      "delete": "Sell order",
-      "update": "Update sell order"
+      "create": "Создать ордер на продажу",
+      "delete": "Ордер на продажу",
+      "update": "Обновить ордер на продажу"
     }
   },
   "offer-details": {
-    "string": "Buy {{price}} {{buyingCode}} for {{amount}} {{sellingCode}}"
+    "string": "Купить {{price}} {{buyingCode}} за {{amount}} {{sellingCode}}"
   },
   "payment": {
     "summary": {
-      "amount": "Amount",
-      "destination": "Destination",
-      "source": "Source"
+      "amount": "Сумма",
+      "destination": "Получатель",
+      "source": "Источник"
     },
-    "title": "Payment"
+    "title": "Платеж"
   },
   "set-options": {
     "add-signer": {
       "summary": {
-        "account": "Account to add signer to",
-        "key-weight": "Key weight",
-        "new-signer": "New signer"
+        "account": "Учетная запись для добавления подписанта",
+        "key-weight": "Вес ключа",
+        "new-signer": "Новый подписант"
       },
-      "title": "Add signer"
+      "title": "Добавить подписанта"
     },
     "change-signature-setup": {
       "summary": {
         "key-thresholds": {
-          "label": "New key thresholds",
+          "label": "Новые пороговые значения ключа",
           "value": {
-            "low": "Low threshold:    {{threshold}}",
-            "medium": "Medium threshold: {{threshold}}",
-            "high": "High threshold:   {{threshold}}"
+            "low": "Низкий порог:    {{threshold}}",
+            "medium": "Средний порог: {{threshold}}",
+            "high": "Высокий порог:   {{threshold}}"
           }
         },
-        "required-signatures": "New key weight threshold"
+        "required-signatures": "Новый порог веса ключа"
       },
-      "title": "Change signature setup"
+      "title": "Изменение настроек подписи"
     },
     "remove-signer": {
       "summary": {
-        "account": "Account to remove signer from",
-        "signer": "Signer"
+        "account": "Учетная запись для удаления подписанта",
+        "signer": "Подписант"
       },
-      "title": "Remove signer"
+      "title": "Удалить подписанта"
     },
     "set-account-options": {
-      "title": "Set account options"
+      "title": "Настройка параметров учетной записи"
     },
     "set-home-domain": {
-      "title": "Set home domain"
+      "title": "Установить домашний домен"
     },
     "set-inflation-destination": {
       "summary": {
-        "new-destination": "New destination"
+        "new-destination": "Новое направление"
       },
-      "title": "Set inflation destination"
+      "title": "Установить направление инфляции"
     },
     "set-master-key-weight": {
-      "title": "Set master key weight"
+      "title": "Установить вес основного ключа"
     }
   }
 }

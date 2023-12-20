@@ -3,18 +3,18 @@
     "biometric-lock": {
       "text": {
         "primary": {
-          "default": "Fingerprint lock",
-          "ios": "Face ID / Touch ID"
+          "default": "Блокировка по отпечатку пальца",
+          "ios": "Face ID / Сенсорный ID"
         },
         "secondary": {
-          "disabled": "Biometric authentication is disabled",
-          "enabled": "Biometric authentication is enabled",
-          "not-enrolled": "Configure biometric authentication in your operating system settings"
+          "disabled": "Биометрическая аутентификация отключена",
+          "enabled": "Биометрическая аутентификация включена",
+          "not-enrolled": "Настройте биометрическую аутентификацию в настройках операционной системы"
         }
       },
       "prompt": {
-        "enable": "Unlock your device once to enable the feature.",
-        "disable": "Unlock your device to disable the auto-lock."
+        "enable": "Разблокируйте устройство один раз, чтобы включить функцию.",
+        "disable": "Разблокируйте устройство, чтобы отключить автоблокировку."
       }
     },
     "language": {
@@ -57,23 +57,23 @@
     "title": "Настройки",
     "trusted-services": {
       "text": {
-        "primary": "Manage Trusted Services",
-        "secondary": "Remove Trusted Services"
+        "primary": "Управление доверенными сервисами",
+        "secondary": "Удаление доверенных сервисов"
       }
     }
   },
   "trusted-services": {
-    "info": "Trusted Services are web services that are allowed to interact with Solar wallet by requesting account data or proposing transactions. You can add a new service once it tries to interact with Solar.",
+    "info": "Доверенные сервисы - это веб-сервисы, которым разрешено взаимодействовать с кошельком Solar, запрашивая данные аккаунта или предлагая транзакции. Вы можете добавить новый сервис, как только он попытается взаимодействовать с Solar.",
     "service-selection": {
       "action": {
-        "cancel": "Cancel",
-        "confirm": "Confirm"
+        "cancel": "Отмена",
+        "confirm": "Подтвердить"
       },
       "confirm": {
-        "title": "Confirm removal",
-        "text": "The service will be removed from your trust list. Are you sure?"
+        "title": "Подтвердите удаление",
+        "text": "Сервис будет удален из вашего списка доверенных. Вы уверены?"
       },
-      "no-services": "No trusted services"
+      "no-services": "Нет доверенных сервисов"
     }
   }
 }

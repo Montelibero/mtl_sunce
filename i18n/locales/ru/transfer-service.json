@@ -1,71 +1,71 @@
 {
   "authentication": {
     "sidebar": {
-      "headline": "Authentication",
+      "headline": "Аутентификация",
       "info": {
-        "1": "The asset issuer requires you to log in to their service using your account.",
-        "2": "An authentication transaction will be signed to prove ownership of that account."
+        "1": "Эмитент активов требует, чтобы вы вошли в свою учетную запись на его сервисе.",
+        "2": "Для подтверждения владения этой учетной записью будет подписана транзакция аутентификации."
       }
     }
   },
   "deposit-success": {
     "action": {
-      "close": "Close"
+      "close": "Закрыть"
     },
     "body": {
       "deposit-pending": "Deposit pending",
       "info": {
-        "1": "{{domain}} is waiting for your deposit.",
-        "2": "The funds will be credited to your Stellar account when the deposit is credited to the asset issuer."
+        "1": "{{domain}} ждет ваш депозит.",
+        "2": "Средства будут зачислены на ваш счет Stellar, когда депозит будет зачислен эмитентом активов."
       }
     },
     "sidebar": {
-      "headline": "Done",
-      "info": "Your deposit has been accepted and will be processed by the asset issuer when your payment arrives."
+      "headline": "Готово",
+      "info": "Ваш депозит принят и будет обработан эмитентом активов, когда ваш платеж поступит."
     }
   },
   "form-builder": {
     "placeholder": {
-      "optional": "(Optional) {{name}}"
+      "optional": "(Опционально) {{name}}"
     }
   },
   "initial": {
     "action": {
-      "proceed": "Proceed"
+      "proceed": "Обработано"
     },
     "body": {
       "asset-selector": {
         "label": {
-          "deposit": "Asset",
-          "short": "Asset",
-          "withdrawal": "Asset to withdraw"
+          "deposit": "Актив",
+          "short": "Актив",
+          "withdrawal": "Актив для вывода"
         },
-        "no-assets": "No withdrawable assets"
+        "no-assets": "Нет активов для вывода"
       },
       "method-selector": {
         "info-item": {
-          "asset": "Please select a type",
-          "no-asset": "Select an asset first"
+          "asset": "Пожалуйста, выберите тип",
+          "no-asset": "Сначала выберите актив"
         },
         "label": {
-          "deposit": "Type of deposit",
-          "withdrawal": "Type of withdrawal"
+          "deposit": "Тип депозита",
+          "withdrawal": "Тип вывода"
         }
       }
     },
     "sidebar": {
       "deposit": {
-        "headline": "Fund your account",
+        "headline": "Пополните свой счет",
         "info": {
-          "1": "Purchase Stellar lumens (XLM) or deposit assets to fund your account. Send USD from your bank account, ETH from your Ethereum wallet, etc.",
-          "2": "Solar acts as a client to the service offered by the asset issuer only."
+          "1": "Приобретите люмены Stellar (XLM) или внесите активы для пополнения своего счета. Отправьте USD со своего банковского счета, ETH из своего кошелька Ethereum и т. д.",
+          "2": "Solar выступает в качестве клиента сервиса, предлагаемого эмитентом активов."
         }
       },
       "withdrawal": {
-        "headline": "What to withdraw",
+        "headline": "Что вывести",
         "info": {
-          "1": "Withdraw assets in your account, like USD to your bank account or ETH to your Ethereum wallet.",
-          "2": "Solar acts as a client to the service offered by the asset issuer only."
+          "1": "Выведите активы со своего счета, например, USD на свой банковский счет или ETH в свой кошелек Ethereum.",
+          "2": "Solar выступает в качестве клиента сервиса, предлагаемого эмитентом активов."
         }
       }
     }
@@ -73,94 +73,94 @@
   "kyc-denied": {
     "sidebar": {
       "headline": "Know Your Customer",
-      "info": "You have been rejected – the service is disabled for you. Please contact the asset issuer."
+      "info": "Вам отказано – сервис отключен для вас. Пожалуйста, свяжитесь с эмитентом активов."
     }
   },
   "kyc-pending": {
     "action": {
-      "continue": "Continue",
-      "open-again": "Open again"
+      "continue": "Продолжить",
+      "open-again": "Открыть снова"
     },
     "body": {
-      "additional-info-needed": "Additional information needed"
+      "additional-info-needed": "Требуется дополнительная информация"
     },
     "sidebar": {
       "headline": "Know Your Customer",
       "info": {
-        "1": "The service will only work if you provide personal information about you.",
-        "2": "This usually happens for legal reasons."
+        "1": "Сервис будет работать только если вы предоставите личную информацию о себе.",
+        "2": "Это обычно происходит по юридическим причинам."
       }
     }
   },
   "no-withdrawable-assets": {
     "action": {
-      "add-asset": "Add asset"
+      "add-asset": "Добавить актив"
     },
     "body": {
-      "no-withdrawable-assets": "This account holds no withdrawable assets."
+      "no-withdrawable-assets": "На этом счете нет активов для вывода."
     }
   },
   "purchase-lumens": {
     "sidebar": {
-      "headline": "Buy Stellar lumens",
+      "headline": "Купить Stellar люмены",
       "info": {
-        "1": "We offer options to buy lumens that do not involve a Stellar asset issuer.",
-        "2": " Stellar lumens (XLM) are the native tokens on the Stellar network. They are used to pay transaction fees, among other things."
+        "1": "Мы предлагаем варианты покупки люменов, которые не включают эмитента активов.",
+        "2": "Stellar люмены (XLM) - это внутренние токены на сети Stellar. Они используются для оплаты комиссий за транзакции, среди прочего."
       }
     }
   },
   "title": {
-    "deposit": "Add funds",
-    "withdrawal": "Withdraw funds"
+    "deposit": "Пополнить счет",
+    "withdrawal": "Вывести средства"
   },
   "transaction-details": {
     "action": {
-      "done": "Done",
-      "withdraw": "Withdraw"
+      "done": "Готово",
+      "withdraw": "Вывести"
     },
     "body": {
       "amount": {
         "error": {
-          "amount-greater-than-balance": "Specified amount greater than balance"
+          "amount-greater-than-balance": "Указанная сумма больше баланса"
         },
         "label": {
-          "deposit": "Amount to deposit",
-          "withdrawal": "Amount to withdraw"
+          "deposit": "Сумма для депозита",
+          "withdrawal": "Сумма для вывода"
         }
       },
       "amount-to-receive": {
-        "label": "Amount to receive"
+        "label": "Сумма к получению"
       },
       "deposit-instructions": {
-        "label": "Deposit instructions"
+        "label": "Инструкции по депозиту"
       },
       "eta": {
-        "label": "ETA",
-        "not-available": "N/A"
+        "label": "Время до завершения",
+        "not-available": "Н/Д"
       },
       "fees": {
-        "label": "Fees",
+        "label": "Комиссии",
         "value": {
-          "unknown": "unknown"
+          "unknown": "неизвестно"
         }
       },
       "information": {
-        "label": "Information"
+        "label": "Информация"
       }
     },
     "sidebar": {
       "deposit": {
-        "headline": "Deposit summary",
+        "headline": "Сводка по депозиту",
         "info": {
-          "1": "Make sure that you send the funds to the right destination.",
-          "2": "The asset issuer will credit the tokens once your deposit is credited."
+          "1": "Убедитесь, что вы отправляете средства в правильное место.",
+          "2": "Эмитент активов зачислит токены, как только ваш депозит будет зачислен."
         }
       },
       "withdrawal": {
-        "headline": "Almost done",
+        "headline": "Почти готово",
         "info": {
-          "1": "Check the form and provide an amount to withdraw if necessary.",
-          "2": "The withdrawal is almost ready."
+          "1": "Проверьте форму и, при необходимости, укажите сумму для вывода.",
+          "2": "Вывод почти готов."
         }
       }
     }
@@ -168,27 +168,27 @@
   "transaction-status": {
     "error": {
       "rejected": {
-        "deposit": "Deposit rejected",
-        "withdrawal": "Withdrawal rejected"
+        "deposit": "Депозит отклонен",
+        "withdrawal": "Вывод отклонен"
       },
-      "contact": "Please contact {{domain}}."
+      "contact": "Пожалуйста, свяжитесь с {{domain}}."
     },
     "incomplete": {
       "already-redirected": {
         "info": {
-          "1": "{{domain}} is checking your personal information. Please try again later.",
-          "2": "Estimated time to completion: {{eta}}"
+          "1": "{{domain}} проверяет вашу личную информацию. Пожалуйста, попробуйте позже.",
+          "2": "Предполагаемое время завершения: {{eta}}"
         }
       },
       "not-redirected": {
-        "info": "{{domain}} requires you to provide additional information."
+        "info": "{{domain}} требует, чтобы вы предоставили дополнительную информацию."
       }
     },
     "more-info-url": {
-      "info": "For more information, visit"
+      "info": "Для получения дополнительной информации посетите"
     },
     "pending-user-transfer-start": {
-      "info": "{{domain}} requires further information from you."
+      "info": "{{domain}} требует дополнительной информации от вас."
     }
   },
   "withdrawal-success": {
@@ -196,55 +196,55 @@
       "close": "Close"
     },
     "body": {
-      "withdrawal-in-progress": "Withdrawal in progress",
+      "withdrawal-in-progress": "Вывод в процессе",
       "info": {
-        "1": "{{domain}} is conducting the withdrawal.",
-        "2": "The funds have been deducted from your Stellar account and should be credited to the withdrawal destination shortly."
+        "1": "{{domain}} проводит вывод.",
+        "2": "Средства были списаны с вашего счета Stellar и должны быть зачислены на место вывода в ближайшее время."
       }
     },
     "sidebar": {
-      "headline": "Done",
-      "info": "Your withdrawal has been accepted and will be processed by the asset issuer."
+      "headline": "Готово",
+      "info": "Ваш вывод принят и будет обработан эмитентом активов."
     }
   },
   "transfer-details": {
     "action": {
-      "proceed": "Proceed"
+      "proceed": "Продолжить"
     },
     "body": {
       "destination": {
-        "name": "Destination account"
+        "name": "Счет назначения"
       },
       "dest_extra": {
-        "name": "Extra destination data (no description)"
+        "name": "Дополнительные данные назначения (без описания)"
       },
       "min-max-amount": {
-        "label": "Amount",
-        "max-amount": "Max. {{amount}} {{assetCode}}",
-        "min-amount": "Min. {{amount}} {{assetCode}}",
-        "not-enough-funds": "You do not have enough funds."
+        "label": "Сумма",
+        "max-amount": "Макс. {{amount}} {{assetCode}}",
+        "min-amount": "Мин. {{amount}} {{assetCode}}",
+        "not-enough-funds": "У вас недостаточно средств."
       },
       "fee": {
-        "helper-text": "As charged by {{domain}}",
+        "helper-text": "Как взимается {{domain}}",
         "label": {
-          "deposit": "Deposit fee",
-          "withdrawal": "Withdrawal fee"
+          "deposit": "Комиссия за депозит",
+          "withdrawal": "Комиссия за вывод"
         }
       }
     },
     "sidebar": {
       "deposit": {
-        "headline": "Deposit details",
+        "headline": "Детали депозита",
         "info": {
-          "1": "Further details about your intended deposit.",
-          "2": "Depending on what the asset issuer requests you may have to enter additional information here."
+          "1": "Дополнительные сведения о вашем намеченном депозите.",
+          "2": "В зависимости от того, что требует эмитент активов, вам может потребоваться ввести здесь дополнительную информацию."
         }
       },
       "withdrawal": {
-        "headline": "Withdrawal details",
+        "headline": "Детали вывода",
         "info": {
-          "1": "Further details about your intended deposit.",
-          "2": "Depending on what the asset issuer requests you may have to enter additional information here."
+          "1": "Дополнительные сведения о вашем намеченном депозите.",
+          "2": "В зависимости от того, что требует эмитент активов, вам может потребоваться ввести здесь дополнительную информацию."
         }
       }
     }

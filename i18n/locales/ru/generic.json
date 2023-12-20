@@ -8,95 +8,95 @@
     }
   },
   "error": {
-    "asset-not-depositable-error": "Asset {{asset}} seems to not be depositable via {{domain}}",
-    "asset-not-withdrawable-error": "Asset {{asset}} seems to not be withdrawable via {{domain}}",
+    "asset-not-depositable-error": "Актив {{asset}} кажется недоступным для депозита через {{domain}}",
+    "asset-not-withdrawable-error": "Актив {{asset}} кажется недоступным для вывода через {{domain}}",
     "boundary": {
-      "header": "Oops, something went wrong...",
-      "contact-us": "Contact us via"
+      "header": "Упс, что-то пошло не так...",
+      "contact-us": "Свяжитесь с нами через"
     },
-    "bad-response-error": "Bad response ({{status}}) from {{server}} server",
-    "bad-transaction-error": "Bad transaction given. Expected a Transaction or TransactionRecord, but got: {{transaction}}",
-    "bio-auth-test-canceled": "Biometric authentication canceled",
-    "cosigner-lacking-key": "Cannot add key pair as co-signer of an account, since no public key for the account to co-sign has been provided",
-    "expected-json-response-error": "Expected {{url}} to return a JSON response. Content type was {{contentType}} instead.",
-    "existing-account-error": "An account with that name does already exist.",
-    "fetch-account-data-error": "Cannot fetch account data of {{account}} from {{horizon}}",
-    "fetch-signature-requests-error": "Fetching signature requests failed: {{response}} \nService: {{service}}",
-    "fetch-web-auth-challenge-error": "Cannot fetch web auth challenge",
-    "http-request-error": "HTTP fetch failed: {{response}} \nService: {{service}}",
-    "invariant-violation-error": "Invariant violation: {{message}}",
-    "low-reserve-order-error": "Cannot place order because spendable XLM balance is too low.",
-    "memo-already-specified-error": "Cannot set a custom memo. Federation record of {{destination}} already specifies memo.",
-    "missing-info-error": "Cannot create transaction, because {{transferServer}} did not send all required information.",
-    "multi-sig-config-threshold-lock": "Signature threshold too high. You would lock your account.",
-    "multi-sig-config-threshold-too-low": "Signature threshold too low.",
-    "multi-sig-event-stream-double-errored-error": "Multi-signature update event stream double-errored: {{url}}",
-    "multi-sig-service-not-locatable": "Multi-signature service cannot be located: {{domain}}",
-    "no-callback-url-error": "Cannot submit back to multi-signature service. Signature request has no callback URL set.",
-    "non-existent-destination-error": "Cannot pay in {{assetCode}}, since the destination account does not exist yet. Account creations always need to be done via XLM.",
-    "only-interactive-kyc-supported-error": "Only interactive KYCs are supported.",
-    "password-required-error": "Account {{accountName}} is password-protected, but no password was passed.",
-    "promise-timeout-error": "Promise timed out after {{timeout}}ms",
-    "request-failed-error": "Request to {{target}} failed with status {{status}}: {{message}}",
-    "stellar-address-not-found-error": "Stellar address not found: {{address}}",
-    "stellar-address-request-failed-error": "Stellar address resolution of {{address}} failed.",
-    "submission-failed-error": "Submitting transaction to {{endpoint}} failed with status {{status}}: {{message}}",
-    "testnet-endpoint-not-available-error": "{{service}} does not provide a testnet endpoint.",
-    "timeout-error": "Request timed out",
-    "unexpected-action-error": "Unexpected action: {{action}}",
-    "unexpected-state-error": "Encountered unexpected state: {{state}}",
-    "unexpected-response-type-error": "Unexpected response type: {{type}} / ${dataType}",
-    "unknown-error": "An unknown error occured.",
-    "update-already-running-error": "Update is already running!",
-    "wrong-password-error": "Wrong password.",
-    "wrong-request-start-error": "Expected request to start with 'web+stellar:'",
+    "bad-response-error": "Плохой ответ ({{status}}) от сервера {{server}}",
+    "bad-transaction-error": "Получена неверная транзакция. Ожидалась транзакция или запись транзакции, но получено: {{transaction}}",
+    "bio-auth-test-canceled": "Отменена биометрическая аутентификация",
+    "cosigner-lacking-key": "Невозможно добавить пару ключей в качестве со-подписанта учетной записи, поскольку для учетной записи, которую нужно со-подписать, не предоставлен общедоступный ключ",
+    "expected-json-response-error": "Ожидался ответ в формате JSON от {{url}}. Вместо этого был получен тип содержимого {{contentType}}.",
+    "existing-account-error": "Учетная запись с таким именем уже существует.",
+    "fetch-account-data-error": "Невозможно получить данные учетной записи {{account}} с {{horizon}}",
+    "fetch-signature-requests-error": "Сбой при получении запросов на подпись: {{response}} \nСервис: {{service}}",
+    "fetch-web-auth-challenge-error": "Невозможно получить вызов веб-аутентификации",
+    "http-request-error": "Сбой HTTP-запроса: {{response}} \nСервис: {{service}}",
+    "invariant-violation-error": "Нарушение инварианта: {{message}}",
+    "low-reserve-order-error": "Невозможно разместить заказ, поскольку доступный баланс XLM слишком низок.",
+    "memo-already-specified-error": "Невозможно установить пользовательское примечание. Запись федерации для {{destination}} уже содержит примечание.",
+    "missing-info-error": "Невозможно создать транзакцию, поскольку {{transferServer}} не отправил всю необходимую информацию.",
+    "multi-sig-config-threshold-lock": "Слишком высокий порог подписи. Вы заблокируете свою учетную запись.",
+    "multi-sig-config-threshold-too-low": "Слишком низкий порог подписи.",
+    "multi-sig-event-stream-double-errored-error": "Поток событий обновления мультиподписи дважды завершился с ошибкой: {{url}}",
+    "multi-sig-service-not-locatable": "Сервис мультиподписи не может быть найден: {{domain}}",
+    "no-callback-url-error": "Невозможно отправить обратно на сервис мультиподписи. Запрос на подпись не имеет установленного URL обратного вызова.",
+    "non-existent-destination-error": "Невозможно оплатить в {{assetCode}}, поскольку учетная запись назначения еще не существует. Создание учетных записей всегда должно выполняться через XLM.",
+    "only-interactive-kyc-supported-error": "Поддерживаются только интерактивные KYC.",
+    "password-required-error": "Учетная запись {{accountName}} защищена паролем, но пароль не был передан.",
+    "promise-timeout-error": "Обещание завершилось по истечении времени {{timeout}} мс",
+    "request-failed-error": "Запрос к {{target}} завершился с ошибкой статуса {{status}}: {{message}}",
+    "stellar-address-not-found-error": "Адрес Stellar не найден: {{address}}",
+    "stellar-address-request-failed-error": "Не удалось найти адрес Stellar {{address}}.",
+    "submission-failed-error": "Не удалось отправить транзакцию на {{endpoint}} с ошибкой статуса {{status}}: {{message}}",
+    "testnet-endpoint-not-available-error": "{{service}} не предоставляет конечную точку тестовой сети.",
+    "timeout-error": "Время запроса истекло",
+    "unexpected-action-error": "Неожиданное действие: {{action}}",
+    "unexpected-state-error": "Обнаружено неожиданное состояние: {{state}}",
+    "unexpected-response-type-error": "Неожиданный тип ответа: {{type}} / ${dataType}",
+    "unknown-error": "Произошла неизвестная ошибка.",
+    "update-already-running-error": "Обновление уже запущено!",
+    "wrong-password-error": "Неверный пароль.",
+    "wrong-request-start-error": "Ожидался запрос, начинающийся с 'web+stellar:'",
     "submission-error": {
-      "default": "Transaction rejected by the network. Error code(s): {{codes}}",
-      "internal-server-error": "The server had trouble processing this request. Please try again.",
+      "default": "Транзакция отклонена сетью. Код(ы) ошибки: {{codes}}",
+      "internal-server-error": "Серверу не удалось обработать этот запрос. Пожалуйста, попробуйте еще раз.",
       "op-result-code": {
-        "op_cross_self": "The order would counter an open order of yours.",
-        "op_has_sub_entries": "Account still has trustlines (assets) or open trading orders.",
-        "op_immutable_set": "Account is immutable (AUTH_IMMUTABLE flag set).",
-        "op_line_full": "The destination account's balance would exceed the destination's trust in the asset.",
-        "op_low_reserve": "Transaction rejected by the network. Source or destination account balance would be below minimum balance.",
-        "op_no_account": "Destination account does not exist.",
-        "op_no_issuer": "Asset is invalid. Incorrect asset issuer.",
-        "op_no_trust": "Destination account does not trust the asset you are attempting to send.",
-        "op_offer_not_found": "Offer does not exist.",
-        "op_self_not_allowed": "Account cannot trust assets issued by itself.",
-        "op_underfunded": "Not enough funds to perform this operation."
+        "op_cross_self": "Заказ противоречил вашему открытому заказу.",
+        "op_has_sub_entries": "Учетная запись все еще имеет доверительные отношения (активы) или открытые торговые ордера.",
+        "op_immutable_set": "Учетная запись неизменяема (установлен флаг AUTH_IMMUTABLE).",
+        "op_line_full": "Баланс учетной записи назначения превысил доверие учетной записи к активу.",
+        "op_low_reserve": "Транзакция отклонена сетью. Баланс учетной записи отправителя или получателя будет ниже минимального баланса.",
+        "op_no_account": "Учетная запись назначения не существует.",
+        "op_no_issuer": "Актив недействителен. Неверный эмитент актива.",
+        "op_no_trust": "Учетная запись назначения не доверяет активу, который вы пытаетесь отправить.",
+        "op_offer_not_found": "Предложение не существует.",
+        "op_self_not_allowed": "Учетная запись не может доверять активам, выпущенным самой собой.",
+        "op_underfunded": "Недостаточно средств для выполнения этой операции."
       },
       "prefix": {
-        "server-error": "Server Error"
+        "server-error": "Ошибка сервера"
       },
       "tx-result-code": {
-        "insufficient_fee": "Network demands higher fees than set in the transaction.",
-        "internal_error": "An unknown error occured on the Stellar server.",
-        "no_account": "Source account not found.",
-        "tx_bad_auth": "Too few valid signatures or wrong network.",
-        "tx_bad_auth_extra": "Unused signatures attached to transaction.",
-        "tx_bad_seq": "Sequence number mismatch. Please re-create the transaction.",
-        "tx_insufficient_balance": "Insufficient balance. Balance would fall below the minimum reserve.",
-        "tx_too_late": "Transaction draft has expired. Try again."
+        "insufficient_fee": "Сеть требует более высоких комиссий, чем указано в транзакции.",
+        "internal_error": "На сервере Stellar произошла неизвестная ошибка.",
+        "no_account": "Учетная запись отправителя не найдена.",
+        "tx_bad_auth": "Слишком мало действительных подписей или неверная сеть.",
+        "tx_bad_auth_extra": "К транзакции прикреплены неиспользуемые подписи.",
+        "tx_bad_seq": "Несоответствие номера последовательности. Пожалуйста, создайте транзакцию заново.",
+        "tx_insufficient_balance": "Недостаточный баланс. Баланс упадет ниже минимального резерва.",
+        "tx_too_late": "Черновик транзакции истек. Попробуйте еще раз."
       },
-      "timeout": "The server did not respond. Please try again."
+      "timeout": "Сервер не ответил. Пожалуйста, попробуйте еще раз."
     }
   },
   "qr-reader": {
     "action": {
-      "cancel": "Cancel"
+      "cancel": "Отмена"
     }
   },
   "submission-progress": {
-    "pending": "Submitting to network ...",
+    "pending": "Отправка в сеть ...",
     "success": {
-      "default": "Successful",
-      "multisig": "Waiting for missing signatures",
-      "third-party": "Waiting for authorization of third-party service"
+      "default": "Успешно",
+      "multisig": "Ожидание недостающих подписей",
+      "third-party": "Ожидание авторизации стороннего сервиса"
     }
   },
   "testnet-badge": {
-    "label": "Testnet"
+    "label": "Тестовая сеть"
   },
   "user-interface": {
     "copied-to-clipboard": "Скопировано в буфер обмена."

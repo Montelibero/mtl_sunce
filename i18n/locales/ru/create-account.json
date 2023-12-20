@@ -1,86 +1,86 @@
 {
   "action": {
-    "cancel": "Cancel",
-    "confirm": "Confirm",
-    "create": "Create Account",
-    "import": "Import Account",
-    "join-shared": "Add Account"
+    "cancel": "Отмена",
+    "confirm": "Подтвердить",
+    "create": "Создать аккаунт",
+    "import": "Импортировать аккаунт",
+    "join-shared": "Добавить аккаунт"
   },
   "action-selection": {
     "create": {
-      "description": "Create a new empty account",
-      "label": "Create Account"
+      "description": "Создать новый пустой аккаунт",
+      "label": "Создать аккаунт"
     },
     "import": {
-      "description": "Restore account from backup",
-      "label": "Import Account"
+      "description": "Восстановить аккаунт из резервной копии",
+      "label": "Импортировать аккаунт"
     },
     "join-shared": {
-      "description": "Co-sign a shared account",
-      "label": "Join Account"
+      "description": "Стать со-подписантом общего аккаунта",
+      "label": "Присоединиться к аккаунту"
     }
   },
   "base-name": {
-    "mainnet": "My Account",
-    "testnet": "My Testnet Account"
+    "mainnet": "Мой аккаунт",
+    "testnet": "Мой аккаунт в тестовой сети"
   },
   "confirm": {
-    "text": "You are about to create an account without password protection. Anyone that has access to your device will have access to your account funds. <1 /> <3 /> Are you sure you want to continue without setting up a password?",
-    "title": "Continue without password"
+    "text": "Вы собираетесь создать аккаунт без защиты паролем. Любой, кто имеет доступ к вашему устройству, сможет получить доступ к средствам на вашем аккаунте. <1 /> <3 /> Вы уверены, что хотите продолжить без создания пароля?",
+    "title": "Продолжить без пароля"
   },
   "header": {
     "placeholder": {
-      "mainnet": "New Account",
-      "testnet": "New Testnet Account"
+      "mainnet": "Новый аккаунт",
+      "testnet": "Новый аккаунт в тестовой сети"
     }
   },
   "inputs": {
     "import": {
-      "helper-text": "A Stellar secret key is 56 alphanumeric characters long and starts with an S",
-      "placeholder": "SABCDEFGH…",
-      "label": "Secret key",
-      "title": "Import Existing"
+      "helper-text": "Секретный ключ Stellar состоит из 56 алфавитно-цифровых символов и начинается с буквы S",
+      "placeholder": "SABCDEFGH…", // No change needed
+      "label": "Секретный ключ",
+      "title": "Импорт существующего"
     },
     "multisig-account": {
-      "explanation-long": "Make sure the account to join has at least 2 XLM on it, so they can add you as a co-signer.",
-      "explanation-short": "Make sure the account to join has been funded.",
-      "helper-text": "The multi-signature account's address (public key)",
-      "placeholder": "GABCDEFGH…",
-      "label": "Multi-signature account"
+      "explanation-long": "Убедитесь, что на аккаунте, к которому вы присоединяетесь, есть как минимум 2 XLM, чтобы они могли добавить вас в качестве со-подписанта.",
+      "explanation-short": "Убедитесь, что аккаунт, к которому вы присоединяетесь, пополнен.",
+      "helper-text": "Адрес мультиподписного аккаунта (публичный ключ)",
+      "placeholder": "GABCDEFGH…", // No change needed
+      "label": "Мультиподписной аккаунт"
     },
     "password": {
-      "label": "Password",
-      "placeholder": "Enter a password"
+      "label": "Пароль",
+      "placeholder": "Введите пароль"
     },
     "password-repeat": {
-      "label": "Repeat password",
-      "placeholder": "Repeat your password"
+      "label": "Повторите пароль",
+      "placeholder": "Повторите ваш пароль"
     }
   },
   "options": {
     "cosigner": {
-      "label": "Join shared account",
-      "description": "Co-sign a multi-signature account"
+      "label": "Присоединиться к общему аккаунту",
+      "description": "Стать со-подписантом мультиподписного аккаунта"
     },
     "cosigner-import": {
-      "label": "Co-signs shared account",
-      "description": "Key is signer of another account"
+      "label": "Со-подписывает общий аккаунт",
+      "description": "Ключ является подписантом другого аккаунта"
     },
     "import": {
-      "label": "Import secret key",
-      "description": "Restore account from backup"
+      "label": "Импортировать секретный ключ",
+      "description": "Восстановить аккаунт из резервной копии"
     },
     "password": {
-      "label": "Password protection",
-      "protected": "Your secret key will be encrypted",
-      "unprotected": "Your secret key will be unprotected"
+      "label": "Защита паролем",
+      "protected": "Ваш секретный ключ будет зашифрован",
+      "unprotected": "Ваш секретный ключ будет без защиты"
     }
   },
   "validation": {
-    "invalid-key": "Invalid Stellar secret key.",
-    "no-account-name": "No account name has been entered.",
-    "no-password": "No password has been entered.",
-    "password-no-match": "Password does not match.",
-    "same-account": "Already added this account."
+    "invalid-key": "Неверный секретный ключ Stellar.",
+    "no-account-name": "Не введено имя аккаунта.",
+    "no-password": "Не введен пароль.",
+    "password-no-match": "Пароли не совпадают.",
+    "same-account": "Этот аккаунт уже добавлен."
   }
 }
