@@ -1,0 +1,76 @@
+{
+  "account-list": {
+    "add-account-card": {
+      "label": "Добавить адрес"
+    },
+    "badges": {
+      "tooltip": {
+        "multi-sig": "Multi-Signature Account",
+        "security-service": "{{service}} Protection"
+      }
+    }
+  },
+  "all-accounts": {
+    "switch": {
+      "label": "Testnet"
+    },
+    "update": {
+      "notification": {
+        "start": "Starting download of update...",
+        "success": "Download is ready and will be installed on next restart!"
+      },
+      "tooltip": "Update available"
+    },
+    "title": {
+      "testnet": "Testnet Accounts",
+      "mainnet": "Мои адреса"
+    }
+  },
+  "notification": {
+    "desktop": {
+      "new-signature-request": {
+        "title": "New transaction to co-sign",
+        "body": "From {{signersHavingSigned}}"
+      },
+      "received-payment": {
+        "title": "Received payment | {{account}}",
+        "body": "Received {{amount}} {{assetCode}}"
+      },
+      "trade-completed": {
+        "title": "Trade completed | {{account}}"
+      }
+    },
+    "details": {
+      "action": {
+        "dismiss": "Dismiss"
+      },
+      "support": "Having an issue with the app? <1/> Contact us via",
+      "title": "Error",
+      "offline": "Offline"
+    },
+    "permission": {
+      "app-notification": {
+        "error": "Enable in operating system settings",
+        "granted": {
+          "title": "Notifications enabled",
+          "text": "Solar will now show notifications"
+        },
+        "message": "Enable app notifications"
+      }
+    }
+  },
+  "terms-and-conditions": {
+    "action": {
+      "confirm": "Confirm"
+    },
+    "header": "Welcome to Solar",
+    "checkbox": {
+      "1": {
+        "label": "I understand that I am responsible for the safety of my funds and that Solar is not able to recover my funds in case of data loss or if I lose my credentials."
+      },
+      "2": {
+        "label": "I have read, understood and agree to the <1>Terms and Conditions</1> <2>&amp;</2> <3>Privacy policy</3> of Solar."
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "action": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "create": "Create Account",
+    "import": "Import Account",
+    "join-shared": "Add Account"
+  },
+  "action-selection": {
+    "create": {
+      "description": "Create a new empty account",
+      "label": "Create Account"
+    },
+    "import": {
+      "description": "Restore account from backup",
+      "label": "Import Account"
+    },
+    "join-shared": {
+      "description": "Co-sign a shared account",
+      "label": "Join Account"
+    }
+  },
+  "base-name": {
+    "mainnet": "My Account",
+    "testnet": "My Testnet Account"
+  },
+  "confirm": {
+    "text": "You are about to create an account without password protection. Anyone that has access to your device will have access to your account funds. <1 /> <3 /> Are you sure you want to continue without setting up a password?",
+    "title": "Continue without password"
+  },
+  "header": {
+    "placeholder": {
+      "mainnet": "New Account",
+      "testnet": "New Testnet Account"
+    }
+  },
+  "inputs": {
+    "import": {
+      "helper-text": "A Stellar secret key is 56 alphanumeric characters long and starts with an S",
+      "placeholder": "SABCDEFGH…",
+      "label": "Secret key",
+      "title": "Import Existing"
+    },
+    "multisig-account": {
+      "explanation-long": "Make sure the account to join has at least 2 XLM on it, so they can add you as a co-signer.",
+      "explanation-short": "Make sure the account to join has been funded.",
+      "helper-text": "The multi-signature account's address (public key)",
+      "placeholder": "GABCDEFGH…",
+      "label": "Multi-signature account"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter a password"
+    },
+    "password-repeat": {
+      "label": "Repeat password",
+      "placeholder": "Repeat your password"
+    }
+  },
+  "options": {
+    "cosigner": {
+      "label": "Join shared account",
+      "description": "Co-sign a multi-signature account"
+    },
+    "cosigner-import": {
+      "label": "Co-signs shared account",
+      "description": "Key is signer of another account"
+    },
+    "import": {
+      "label": "Import secret key",
+      "description": "Restore account from backup"
+    },
+    "password": {
+      "label": "Password protection",
+      "protected": "Your secret key will be encrypted",
+      "unprotected": "Your secret key will be unprotected"
+    }
+  },
+  "validation": {
+    "invalid-key": "Invalid Stellar secret key.",
+    "no-account-name": "No account name has been entered.",
+    "no-password": "No password has been entered.",
+    "password-no-match": "Password does not match.",
+    "same-account": "Already added this account."
+  }
+}

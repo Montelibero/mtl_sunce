@@ -1,0 +1,239 @@
+{
+  "account-deletion": {
+    "action": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "delete": "Remove",
+      "merge": {
+        "long": "Merge into",
+        "short": "Merge"
+      }
+    },
+    "confirm": {
+      "title": "Confirm deletion",
+      "text": {
+        "confirm": "Are you sure?",
+        "delete": "The account will be deleted",
+        "merge": "and the remaining funds transferred"
+      }
+    },
+    "remaining-funds": {
+      "text": "Send remaining funds to"
+    },
+    "text": {
+      "1": "Are you sure you want to remove the account \"{{accountName}}\" from Solar? You can still use it elsewhere if you save the secret key.",
+      "2": " Make sure to backup your secret key or merge the funds into another account of yours, since there are still funds left!"
+    },
+    "title": "Confirm Account Removal",
+    "warning-dialog": {
+      "close": {
+        "label": "OK"
+      }
+    },
+    "warnings": {
+      "cannot-merge": {
+        "text": "Cannot merge account yet. First you need to cancel all open trading orders and remove all assets.",
+        "title": "Manual action required"
+      }
+    }
+  },
+  "custom-trustline": {
+    "action": {
+      "cancel": "Cancel",
+      "trust": {
+        "long": "Trust Asset",
+        "short": "Trust"
+      }
+    },
+    "textfield": {
+      "code": {
+        "label": "Code"
+      },
+      "issuer": {
+        "label": "Issuer",
+        "placeholder": "Issuing account public key"
+      },
+      "limit": {
+        "label": "Limit (optional)",
+        "placeholder": "Limit trust in this asset / maximum balance to hold"
+      }
+    },
+    "title": "Add Custom Asset"
+  },
+  "export-key": {
+    "action": {
+      "confirm": "Done",
+      "reveal": {
+        "long": "Reveal key",
+        "short": "Click to reveal secret key"
+      }
+    },
+    "info": {
+      "backup": {
+        "title": "Back up your secret key now",
+        "paragraph-1": "The secret key backup is the only way to recover your funds if you forget your password or cannot access your device anymore.",
+        "paragraph-2": "Write down the key or print it. Keep it in a safe place and do not share it with anyone."
+      },
+      "export": {
+        "paragraph-1": "The secret key backup is the only way to recover your funds if you forget your password or cannot access your device anymore.",
+        "paragraph-2": "Write down the key or print it. Keep it in a safe place and do not share it with anyone."
+      },
+      "secret-key": "Write down the key on paper and store it in a safe place.",
+      "tap-to-copy": "Tap to copy"
+    },
+    "textfield": {
+      "password": {
+        "label": "Password"
+      }
+    },
+    "title": {
+      "default": "Export Secret Key",
+      "initial-backup": "Secret Key Backup"
+    }
+  },
+  "manage-signers": {
+    "action": {
+      "add-signer": "Add Signer",
+      "apply": {
+        "long": "Apply changes",
+        "short": "Apply"
+      },
+      "cancel": "Cancel",
+      "proceed": "Proceed"
+    },
+    "preset-description": {
+      "m-out-of-n": "Add or remove signers from the account. Any single signature will authorize transactions.",
+      "m-out-of-n_plural": "Add or remove signers from the account. {{ count }} signatures will authorize transactions.",
+      "one-out-of-n": "Add or remove signers from the account. Any single signer can authorize transactions.",
+      "single-signature": "Choose the key that should be the account's single signer."
+    },
+    "preset-description-extra": {
+      "m-out-of-n": "Go to 'Add Account' > 'Join Account' in the co-signing Solar wallet to create a new co-signer's key.",
+      "one-out-of-n": "Go to 'Add Account' > 'Join Account' in the co-signing Solar wallet to create a new co-signer's key."
+    },
+    "preset-selector": {
+      "options": {
+        "m-out-of-n": {
+          "primary": "Collective signing",
+          "secondary": "Multiple signers have to sign a transaction."
+        },
+        "one-out-of-n": {
+          "primary": "Backup keys",
+          "secondary": "Every signer can sign transactions by themself."
+        },
+        "single-signature": {
+          "primary": "Single signature",
+          "secondary": "No co-signers. Just one key pair."
+        }
+      },
+      "title": "Choose how your account should work"
+    },
+    "signers-editor": {
+      "list": {
+        "item": {
+          "weight": "Weight",
+          "local-key": "Local key"
+        }
+      },
+      "new-signer": {
+        "label": "Public Key or Stellar Address",
+        "placeholder": {
+          "long": "GABC… or address",
+          "short": "GABCDEFGHIJK… or alice*example.org"
+        }
+      },
+      "threshold": {
+        "primary": "Required signatures",
+        "secondary": "No. of signatures to authorize transactions"
+      },
+      "validation": {
+        "existing-signer": "Cannot add existing signer.",
+        "integer-required": "Must be an integer.",
+        "invalid-stellar-address": "Expected a public key or stellar address."
+      }
+    },
+    "title": {
+      "long": "Manage Signers",
+      "short": "Manage Account Signers"
+    },
+    "validation": {
+      "no-signers": "No signers left. Don't lock yourself out!",
+      "invalid-weight-type": "Weight must be an integer",
+      "threshold-higher-than-weights": "Threshold higher than combined key weights",
+      "no-threshold": "Please set a threshold"
+    }
+  },
+  "set-password": {
+    "action": {
+      "change-password": {
+        "long": "Change password",
+        "short": "Change"
+      },
+      "remove-password": {
+        "long": "Remove password",
+        "short": "Remove"
+      }
+    },
+    "notification": {
+      "password-changed": "Password changed.",
+      "password-set": "Password set.",
+      "password-removed": "Password removed."
+    },
+    "textfield": {
+      "prev-password": {
+        "label": "Current password"
+      },
+      "next-password": {
+        "label": "New password"
+      },
+      "next-password-repeat": {
+        "label": "Repeat new password"
+      }
+    },
+    "title": {
+      "change-password": "Change Password",
+      "set-password": "Set Password"
+    },
+    "validation": {
+      "next-password-missing": "Enter a password or set \"remove password\".",
+      "next-password-repeat-missing": "Please repeat the password.",
+      "passwords-no-match": "Password does not match",
+      "previous-password-missing": "Current password is missing."
+    }
+  },
+  "settings": {
+    "delete-account": {
+      "text": {
+        "primary": "Merge or Remove Account"
+      }
+    },
+    "export-secret-key": {
+      "text": {
+        "primary": "Export Secret Key",
+        "secondary": "Decrypt and show secret key"
+      }
+    },
+    "multi-sig": {
+      "text": {
+        "primary": "Multi-Signature",
+        "secondary": {
+          "cosigner-of": "This account is cosigner of",
+          "short": "Manage co-signers",
+          "long": "Make account multi-signature and manage co-signers"
+        }
+      }
+    },
+    "set-password": {
+      "text": {
+        "primary": {
+          "account-protected": "Change Password",
+          "account-not-protected": "Set Password"
+        },
+        "secondary": {
+          "account-protected": "Your account is secure, protected by a password",
+          "account-not-protected": "Your account is not protected"
+        }
+      }
+    }
+  }
+}

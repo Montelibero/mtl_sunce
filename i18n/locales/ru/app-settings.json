@@ -1,0 +1,79 @@
+{
+  "settings": {
+    "biometric-lock": {
+      "text": {
+        "primary": {
+          "default": "Fingerprint lock",
+          "ios": "Face ID / Touch ID"
+        },
+        "secondary": {
+          "disabled": "Biometric authentication is disabled",
+          "enabled": "Biometric authentication is enabled",
+          "not-enrolled": "Configure biometric authentication in your operating system settings"
+        }
+      },
+      "prompt": {
+        "enable": "Unlock your device once to enable the feature.",
+        "disable": "Unlock your device to disable the auto-lock."
+      }
+    },
+    "language": {
+      "auto-detect": {
+        "label": "auto"
+      },
+      "text": {
+        "primary": "Язык",
+        "secondary": "Выбрать язык интерфейса"
+      }
+    },
+    "memo": {
+      "text": {
+        "primary": "Показывать мемо",
+        "secondary": {
+          "hidden": "Мемо будут скрыты в списке транзакций",
+          "shown": "Мемо будут отображаться в списке транзакций"
+        }
+      }
+    },
+    "multi-sig": {
+      "text": {
+        "primary": "Включить мультиподпись",
+        "secondary": {
+          "enabled": "Инструменты мультиподписи включены",
+          "disabled": "Инструменты мультиподписи выключены"
+        }
+      }
+    },
+    "testnet": {
+      "text": {
+        "primary": "Отображать адреса Testnet",
+        "secondary": {
+          "cannot-disable": "Нельзя выключить, потому что уже добавлены адреса из Testnet",
+          "hidden": "Testnet адреса скрыты",
+          "shown": "Testnet адреса отображаются"
+        }
+      }
+    },
+    "title": "Настройки",
+    "trusted-services": {
+      "text": {
+        "primary": "Manage Trusted Services",
+        "secondary": "Remove Trusted Services"
+      }
+    }
+  },
+  "trusted-services": {
+    "info": "Trusted Services are web services that are allowed to interact with Solar wallet by requesting account data or proposing transactions. You can add a new service once it tries to interact with Solar.",
+    "service-selection": {
+      "action": {
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+      },
+      "confirm": {
+        "title": "Confirm removal",
+        "text": "The service will be removed from your trust list. Are you sure?"
+      },
+      "no-services": "No trusted services"
+    }
+  }
+}
