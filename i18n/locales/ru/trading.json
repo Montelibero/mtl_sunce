@@ -1,67 +1,67 @@
 {
   "action": {
-    "add-asset": "Add asset",
-    "submit": "Place order"
+    "add-asset": "Добавить актив",
+    "submit": "Разместить ордер"
   },
   "action-selection": {
     "buy": {
-      "description": "Buy some amount of an asset on the distributed exchange",
-      "label": "Buy asset"
+      "description": "Купить некоторое количество актива на распределенной бирже",
+      "label": "Купить актив"
     },
     "sell": {
-      "description": "Trade some amount of an asset for another one",
-      "label": "Sell asset"
+      "description": "Обменять некоторое количество одного актива на другой",
+      "label": "Продать актив"
     }
   },
   "advanced": {
-    "header": "Advanced"
+    "header": "Расширенные"
   },
   "inputs": {
     "estimated-costs": {
       "label": {
-        "buy": "Estimated costs",
-        "sell": "Estimated return"
+        "buy": "Предполагаемые затраты",
+        "sell": "Предполагаемая прибыль"
       }
     },
     "primary-amount": {
       "label": {
-        "buy": "Amount to buy",
-        "sell": "Amount to sell"
+        "buy": "Количество к покупке",
+        "sell": "Количество к продаже"
       },
       "max-button": {
-        "label": "Max"
+        "label": "Макс"
       },
-      "placeholder": "Max. {{amount}}"
+      "placeholder": "Макс. {{amount}}"
     },
     "primary-asset-selector": {
       "label": {
-        "buy": "You buy",
-        "sell": "You sell"
+        "buy": "Вы покупаете",
+        "sell": "Вы продаете"
       }
     },
     "secondary-asset-selector": {
       "label": {
-        "buy": "Spend",
-        "sell": "Receive"
+        "buy": "Тратить",
+        "sell": "Получать"
       }
     }
   },
-  "no-assets-info": "This account does not use any assets other than Stellar Lumens yet.",
-  "title": "Trade",
+  "no-assets-info": "Этот аккаунт пока не использует никакие активы, кроме Stellar Lumens.",
+  "title": "Торговля",
   "trading-price": {
-    "default-label": "Price (limit)",
-    "label": "Price per {{unit}} (limit)"
+    "default-label": "Цена (лимит)",
+    "label": "Цена за {{unit}} (лимит)"
   },
   "validation": {
-    "primary-amount-missing": "No amount specified.",
-    "primary-asset-missing": "No asset selected.",
-    "invalid-amount": "Invalid amount specified.",
-    "invalid-price": "Invalid price",
-    "not-enough-balance": "Exceeds your spendable balance",
-    "secondary-asset-missing": "No asset selected."
+    "primary-amount-missing": "Не указано количество.",
+    "primary-asset-missing": "Не выбран актив.",
+    "invalid-amount": "Указано неверное количество.",
+    "invalid-price": "Неверная цена",
+    "not-enough-balance": "Превышает доступный баланс",
+    "secondary-asset-missing": "Не выбран актив."
   },
   "warning": {
-    "title": "Warning",
-    "message": "The spread between buying and selling price is about {{spread}}%."
+    "title": "Предупреждение",
+    "message": "Разница между ценой покупки и продажи составляет около {{spread}}%."
   }
 }

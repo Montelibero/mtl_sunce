@@ -1,43 +1,43 @@
 {
   "actions": {
-    "submit": "Send now"
+    "submit": "Отправить сейчас"
   },
   "memo-metadata": {
     "label": {
-      "default": "Memo",
-      "id": "Memo (ID)",
-      "text": "Memo (Text)"
+      "default": "Заметка",
+      "id": "Заметка (ID)",
+      "text": "Заметка (Текст)"
     },
     "placeholder": {
-      "optional": "Description (optional)",
-      "mandatory": "Description (mandatory)"
+      "optional": "Описание (необязательно)",
+      "mandatory": "Описание (обязательно)"
     }
   },
   "inputs": {
     "destination": {
-      "label": "Destination address",
-      "placeholder": "GABCD..., MABCD... or alice*example.org"
+      "label": "Адрес получателя",
+      "placeholder": "GABCD..., MABCD... или alice*example.org"
     },
     "price": {
-      "label": "Amount",
-      "placeholder": "Max. {{amount}}"
+      "label": "Сумма",
+      "placeholder": "Макс. {{amount}}"
     }
   },
   "note": {
-    "multisig-pubkey": "Address of the multi-signature account, not your local co-signature key."
+    "multisig-pubkey": "Адрес мультиподписного аккаунта, а не ваш локальный ключ совместной подписи."
   },
   "title": {
-    "send": "Send funds",
-    "receive": "Receive Funds"
+    "send": "Отправить средства",
+    "receive": "Получить средства"
   },
   "validation": {
-    "memo-required": "Set a memo when sending funds to {{destination}}",
-    "memo-too-long": "Memo too long.",
-    "no-destination": "No destination specified.",
-    "no-price": "No amount specified.",
-    "not-enough-funds": "Not enough funds.",
-    "invalid-destination": "Expected a public key or stellar address.",
-    "invalid-price": "Invalid amount.",
-    "integer-memo-required": "Memo must be an integer."
+    "memo-required": "Укажите заметку при отправке средств на {{destination}}",
+    "memo-too-long": "Заметка слишком длинная.",
+    "no-destination": "Не указан адрес получателя.",
+    "no-price": "Не указана сумма.",
+    "not-enough-funds": "Недостаточно средств.",
+    "invalid-destination": "Ожидается публичный ключ или stellar адрес.",
+    "invalid-price": "Неверная сумма.",
+    "integer-memo-required": "Заметка должна быть числом."
   }
 }
