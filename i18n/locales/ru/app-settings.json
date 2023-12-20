@@ -46,11 +46,11 @@
     },
     "testnet": {
       "text": {
-        "primary": "Отображать адреса Testnet",
+        "primary": "Отображать аккаунты Testnet",
         "secondary": {
-          "cannot-disable": "Нельзя выключить, потому что уже добавлены адреса из Testnet",
-          "hidden": "Testnet адреса скрыты",
-          "shown": "Testnet адреса отображаются"
+          "cannot-disable": "Нельзя выключить, потому что уже добавлены аккаунты из Testnet",
+          "hidden": "Testnet аккаунты скрыты",
+          "shown": "Testnet аккаунты отображаются"
         }
       }
     },

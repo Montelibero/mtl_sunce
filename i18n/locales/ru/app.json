@@ -1,25 +1,25 @@
 {
   "account-list": {
     "add-account-card": {
-      "label": "Добавить адрес"
+      "label": "Добавить аккаунт"
     },
     "badges": {
       "tooltip": {
-        "multi-sig": "Multi-Signature Account",
-        "security-service": "{{service}} Protection"
+        "multi-sig": "Аккаунт с мультиподписью",
+        "security-service": "Защита {{service}}"
       }
     }
   },
   "all-accounts": {
     "switch": {
-      "label": "Testnet"
+      "label": "Тестовая сеть"
     },
     "update": {
       "notification": {
-        "start": "Starting download of update...",
-        "success": "Download is ready and will be installed on next restart!"
+        "start": "Начинается загрузка обновления...",
+        "success": "Загрузка завершена и будет установлена при следующем перезапуске!"
       },
-      "tooltip": "Update available"
+      "tooltip": "Доступно обновление"
     },
     "title": {
       "testnet": "Testnet Accounts",
@@ -29,47 +29,47 @@
   "notification": {
     "desktop": {
       "new-signature-request": {
-        "title": "New transaction to co-sign",
-        "body": "From {{signersHavingSigned}}"
+        "title": "Новая транзакция для совместной подписи",
+        "body": "От {{signersHavingSigned}}"
       },
       "received-payment": {
-        "title": "Received payment | {{account}}",
-        "body": "Received {{amount}} {{assetCode}}"
+        "title": "Получен платеж | {{account}}",
+        "body": "Получено {{amount}} {{assetCode}}"
       },
       "trade-completed": {
-        "title": "Trade completed | {{account}}"
+        "title": "Торговля завершена | {{account}}"
       }
     },
     "details": {
       "action": {
-        "dismiss": "Dismiss"
+        "dismiss": "Закрыть"
       },
-      "support": "Having an issue with the app? <1/> Contact us via",
-      "title": "Error",
-      "offline": "Offline"
+      "support": "Проблемы с приложением? <1/> Свяжитесь с нами через",
+      "title": "Ошибка",
+      "offline": "Не в сети"
     },
     "permission": {
       "app-notification": {
-        "error": "Enable in operating system settings",
+        "error": "Включите в настройках операционной системы",
         "granted": {
-          "title": "Notifications enabled",
-          "text": "Solar will now show notifications"
+          "title": "Уведомления включены",
+          "text": "Solar теперь будет показывать уведомления"
         },
-        "message": "Enable app notifications"
+        "message": "Включить уведомления приложения"
       }
     }
   },
   "terms-and-conditions": {
     "action": {
-      "confirm": "Confirm"
+      "confirm": "Подтвердить"
     },
-    "header": "Welcome to Solar",
+    "header": "Добро пожаловать в Solar",
     "checkbox": {
       "1": {
-        "label": "I understand that I am responsible for the safety of my funds and that Solar is not able to recover my funds in case of data loss or if I lose my credentials."
+        "label": "Я понимаю, что я несу ответственность за безопасность моих средств и что Solar не может восстановить мои средства в случае потери данных или если я потеряю свои учетные данные."
       },
       "2": {
-        "label": "I have read, understood and agree to the <1>Terms and Conditions</1> <2>&amp;</2> <3>Privacy policy</3> of Solar."
+        "label": "Я прочитал, понял и согласен с <1>Условиями использования</1> <2>&amp;</2> <3>Политикой конфиденциальности</3> Solar."
       }
     }
   }

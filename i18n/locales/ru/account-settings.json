@@ -1,39 +1,39 @@
 {
   "account-deletion": {
     "action": {
-      "cancel": "Cancel",
-      "confirm": "Confirm",
-      "delete": "Remove",
+      "cancel": "Отмена",
+      "confirm": "Подтвердить",
+      "delete": "Удалить",
       "merge": {
-        "long": "Merge into",
-        "short": "Merge"
+        "long": "Объединить с",
+        "short": "Объединить"
       }
     },
     "confirm": {
-      "title": "Confirm deletion",
+      "title": "Подтверждение удаления",
       "text": {
-        "confirm": "Are you sure?",
-        "delete": "The account will be deleted",
-        "merge": "and the remaining funds transferred"
+        "confirm": "Вы уверены?",
+        "delete": "Аккаунт будет удален",
+        "merge": "и оставшиеся средства будут переведены"
       }
     },
     "remaining-funds": {
-      "text": "Send remaining funds to"
+      "text": "Отправить оставшиеся средства на"
     },
     "text": {
-      "1": "Are you sure you want to remove the account \"{{accountName}}\" from Solar? You can still use it elsewhere if you save the secret key.",
-      "2": " Make sure to backup your secret key or merge the funds into another account of yours, since there are still funds left!"
+      "1": "Вы уверены, что хотите удалить аккаунт \"{{accountName}}\" из Solar? Вы все еще можете использовать его в другом месте, если сохраните секретный ключ.",
+      "2": " Убедитесь, что вы сделали резервную копию вашего секретного ключа или объединили средства с другим вашим аккаунтом, так как на счету еще остались средства!"
     },
     "title": "Confirm Account Removal",
     "warning-dialog": {
       "close": {
-        "label": "OK"
+        "label": "Хорошо"
       }
     },
     "warnings": {
       "cannot-merge": {
-        "text": "Cannot merge account yet. First you need to cancel all open trading orders and remove all assets.",
-        "title": "Manual action required"
+        "text": "Невозможно объединить аккаунты. Сначала вам нужно отменить все открытые торговые ордера и изъять все активы.",
+        "title": "Требуется ручное действие"
       }
     }
   },
@@ -41,21 +41,21 @@
     "action": {
       "cancel": "Cancel",
       "trust": {
-        "long": "Trust Asset",
-        "short": "Trust"
+        "long": "Доверять активу",
+        "short": "Доверять"
       }
     },
     "textfield": {
       "code": {
-        "label": "Code"
+        "label": "Код"
       },
       "issuer": {
-        "label": "Issuer",
-        "placeholder": "Issuing account public key"
+        "label": "Эмитент",
+        "placeholder": "Публичный ключ эмитента"
       },
       "limit": {
-        "label": "Limit (optional)",
-        "placeholder": "Limit trust in this asset / maximum balance to hold"
+        "label": "Лимит (необязательно)",
+        "placeholder": "Ограничить доверие к этому активу / максимальный баланс для хранения"
       }
     },
     "title": "Add Custom Asset"
@@ -64,174 +64,174 @@
     "action": {
       "confirm": "Done",
       "reveal": {
-        "long": "Reveal key",
-        "short": "Click to reveal secret key"
+        "long": "Показать ключ",
+        "short": "Нажмите, чтобы показать секретный ключ"
       }
     },
     "info": {
       "backup": {
-        "title": "Back up your secret key now",
-        "paragraph-1": "The secret key backup is the only way to recover your funds if you forget your password or cannot access your device anymore.",
-        "paragraph-2": "Write down the key or print it. Keep it in a safe place and do not share it with anyone."
+        "title": "Сделайте резервную копию вашего секретного ключа сейчас",
+        "paragraph-1": "Резервная копия секретного ключа - единственный способ восстановить ваши средства, если вы забудете пароль или не сможете получить доступ к вашему устройству.",
+        "paragraph-2": "Запишите ключ или распечатайте его. Храните его в безопасном месте и не делитесь им с кем-либо."
       },
       "export": {
-        "paragraph-1": "The secret key backup is the only way to recover your funds if you forget your password or cannot access your device anymore.",
-        "paragraph-2": "Write down the key or print it. Keep it in a safe place and do not share it with anyone."
+        "paragraph-1": "Резервная копия секретного ключа - единственный способ восстановить ваши средства, если вы забудете пароль или не сможете получить доступ к вашему устройству.",
+        "paragraph-2": "Запишите ключ или распечатайте его. Храните его в безопасном месте и не делитесь им с кем-либо."
       },
-      "secret-key": "Write down the key on paper and store it in a safe place.",
-      "tap-to-copy": "Tap to copy"
+      "secret-key": "Запишите ключ на бумаге и храните в безопасном месте.",
+      "tap-to-copy": "Нажмите, чтобы скопировать"
     },
     "textfield": {
       "password": {
-        "label": "Password"
+        "label": "Пароль"
       }
     },
     "title": {
-      "default": "Export Secret Key",
-      "initial-backup": "Secret Key Backup"
+      "default": "Экспорт секретного ключа",
+      "initial-backup": "Резервное копирование секретного ключа"
     }
   },
   "manage-signers": {
     "action": {
-      "add-signer": "Add Signer",
+      "add-signer": "Добавить подписанта",
       "apply": {
-        "long": "Apply changes",
-        "short": "Apply"
+        "long": "Применить изменения",
+        "short": "Применить"
       },
-      "cancel": "Cancel",
-      "proceed": "Proceed"
+      "cancel": "Отмена",
+      "proceed": "Продолжить"
     },
     "preset-description": {
-      "m-out-of-n": "Add or remove signers from the account. Any single signature will authorize transactions.",
-      "m-out-of-n_plural": "Add or remove signers from the account. {{ count }} signatures will authorize transactions.",
-      "one-out-of-n": "Add or remove signers from the account. Any single signer can authorize transactions.",
-      "single-signature": "Choose the key that should be the account's single signer."
+      "m-out-of-n": "Добавить или удалить подписантов с аккаунта. Любая единичная подпись авторизует транзакции.",
+      "m-out-of-n_plural": "Добавить или удалить подписантов с аккаунта. {{ count }} подписей авторизуют транзакции.",
+      "one-out-of-n": "Добавить или удалить подписантов с аккаунта. Любой единичный подписант может авторизовать транзакции.",
+      "single-signature": "Выберите ключ, который будет единственным подписантом аккаунта."
     },
     "preset-description-extra": {
-      "m-out-of-n": "Go to 'Add Account' > 'Join Account' in the co-signing Solar wallet to create a new co-signer's key.",
-      "one-out-of-n": "Go to 'Add Account' > 'Join Account' in the co-signing Solar wallet to create a new co-signer's key."
+      "m-out-of-n": "Перейдите в 'Добавить аккаунт' > 'Присоединиться к аккаунту' в ко-подписывающем кошельке Solar, чтобы создать новый ключ ко-подписанта.",
+      "one-out-of-n": "Перейдите в 'Добавить аккаунт' > 'Присоединиться к аккаунту' в ко-подписывающем кошельке Solar, чтобы создать новый ключ ко-подписанта."
     },
     "preset-selector": {
       "options": {
         "m-out-of-n": {
-          "primary": "Collective signing",
-          "secondary": "Multiple signers have to sign a transaction."
+          "primary": "Коллективная подпись",
+          "secondary": "Несколько подписантов должны подписать транзакцию."
         },
         "one-out-of-n": {
-          "primary": "Backup keys",
-          "secondary": "Every signer can sign transactions by themself."
+          "primary": "Резервные ключи",
+          "secondary": "Каждый подписант может подписать транзакции самостоятельно."
         },
         "single-signature": {
-          "primary": "Single signature",
-          "secondary": "No co-signers. Just one key pair."
+          "primary": "Единственная подпись",
+          "secondary": "Нет ко-подписантов. Только одна пара ключей."
         }
       },
-      "title": "Choose how your account should work"
+      "title": "Выберите, как должен работать ваш аккаунт"
     },
     "signers-editor": {
       "list": {
         "item": {
-          "weight": "Weight",
-          "local-key": "Local key"
+          "weight": "Вес",
+          "local-key": "Локальный ключ"
         }
       },
       "new-signer": {
-        "label": "Public Key or Stellar Address",
+        "label": "Публичный ключ или Stellar адрес",
         "placeholder": {
-          "long": "GABC… or address",
-          "short": "GABCDEFGHIJK… or alice*example.org"
+          "long": "GABC… или адрес",
+          "short": "GABCDEFGHIJK… или alice*example.org"
         }
       },
       "threshold": {
-        "primary": "Required signatures",
-        "secondary": "No. of signatures to authorize transactions"
+        "primary": "Требуемые подписи",
+        "secondary": "Кол-во подписей для авторизации транзакций"
       },
       "validation": {
-        "existing-signer": "Cannot add existing signer.",
-        "integer-required": "Must be an integer.",
-        "invalid-stellar-address": "Expected a public key or stellar address."
+        "existing-signer": "Нельзя добавить существующего подписанта.",
+        "integer-required": "Должно быть целым числом.",
+        "invalid-stellar-address": "Ожидается публичный ключ или stellar адрес."
       }
     },
     "title": {
-      "long": "Manage Signers",
-      "short": "Manage Account Signers"
+      "long": "Управление подписантами",
+      "short": "Управление подписантами аккаунта"
     },
     "validation": {
-      "no-signers": "No signers left. Don't lock yourself out!",
-      "invalid-weight-type": "Weight must be an integer",
-      "threshold-higher-than-weights": "Threshold higher than combined key weights",
-      "no-threshold": "Please set a threshold"
+      "no-signers": "Не осталось подписантов. Не блокируйте себя!",
+      "invalid-weight-type": "Вес должен быть целым числом",
+      "threshold-higher-than-weights": "Порог выше, чем суммарный вес ключей",
+      "no-threshold": "Пожалуйста, установите порог"
     }
   },
   "set-password": {
     "action": {
       "change-password": {
-        "long": "Change password",
-        "short": "Change"
+        "long": "Изменить пароль",
+        "short": "Изменить"
       },
       "remove-password": {
-        "long": "Remove password",
-        "short": "Remove"
+        "long": "Удалить пароль",
+        "short": "Удалить"
       }
     },
     "notification": {
-      "password-changed": "Password changed.",
-      "password-set": "Password set.",
-      "password-removed": "Password removed."
+      "password-changed": "Пароль изменен.",
+      "password-set": "Пароль установлен.",
+      "password-removed": "Пароль удален."
     },
     "textfield": {
       "prev-password": {
-        "label": "Current password"
+        "label": "Текущий пароль"
       },
       "next-password": {
-        "label": "New password"
+        "label": "Новый пароль"
       },
       "next-password-repeat": {
-        "label": "Repeat new password"
+        "label": "Повторите новый пароль"
       }
     },
     "title": {
-      "change-password": "Change Password",
-      "set-password": "Set Password"
+      "change-password": "Изменить пароль",
+      "set-password": "Установить пароль"
     },
     "validation": {
-      "next-password-missing": "Enter a password or set \"remove password\".",
-      "next-password-repeat-missing": "Please repeat the password.",
-      "passwords-no-match": "Password does not match",
-      "previous-password-missing": "Current password is missing."
+      "next-password-missing": "Введите пароль или выберите \"удалить пароль\".",
+      "next-password-repeat-missing": "Пожалуйста, повторите пароль.",
+      "passwords-no-match": "Пароли не совпадают",
+      "previous-password-missing": "Текущий пароль отсутствует."
     }
   },
   "settings": {
     "delete-account": {
       "text": {
-        "primary": "Merge or Remove Account"
+        "primary": "Объединить или Удалить Аккаунт"
       }
     },
     "export-secret-key": {
       "text": {
-        "primary": "Export Secret Key",
-        "secondary": "Decrypt and show secret key"
+        "primary": "Экспортировать Секретный Ключ",
+        "secondary": "Расшифровать и показать секретный ключ"
       }
     },
     "multi-sig": {
       "text": {
-        "primary": "Multi-Signature",
+        "primary": "Мульти-Подпись",
         "secondary": {
-          "cosigner-of": "This account is cosigner of",
-          "short": "Manage co-signers",
-          "long": "Make account multi-signature and manage co-signers"
+          "cosigner-of": "Этот аккаунт является ко-подписантом",
+          "short": "Управление ко-подписантами",
+          "long": "Сделать аккаунт мульти-подписным и управлять ко-подписантами"
         }
       }
     },
     "set-password": {
       "text": {
         "primary": {
-          "account-protected": "Change Password",
-          "account-not-protected": "Set Password"
+          "account-protected": "Изменить Пароль",
+          "account-not-protected": "Установить Пароль"
         },
         "secondary": {
-          "account-protected": "Your account is secure, protected by a password",
-          "account-not-protected": "Your account is not protected"
+          "account-protected": "Ваш аккаунт защищен паролем",
+          "account-not-protected": "Ваш аккаунт не защищен"
         }
       }
     }
