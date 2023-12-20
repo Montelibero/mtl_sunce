@@ -12,7 +12,7 @@ import LanguageIcon from "@material-ui/icons/Language"
 import MessageIcon from "@material-ui/icons/Message"
 import TestnetIcon from "@material-ui/icons/MoneyOff"
 import TrustIcon from "@material-ui/icons/VerifiedUser"
-import { availableLanguages, languageNames } from "../../../i18n/index"
+import { availableLanguages, languageNames } from "../../../i18n"
 import AppSettingsItem from "./AppSettingsItem"
 
 interface SettingsToggleProps {

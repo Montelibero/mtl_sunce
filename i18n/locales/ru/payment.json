@@ -1,0 +1,43 @@
+{
+  "actions": {
+    "submit": "Отправить сейчас"
+  },
+  "memo-metadata": {
+    "label": {
+      "default": "Заметка",
+      "id": "Заметка (ID)",
+      "text": "Заметка (Текст)"
+    },
+    "placeholder": {
+      "optional": "Описание (необязательно)",
+      "mandatory": "Описание (обязательно)"
+    }
+  },
+  "inputs": {
+    "destination": {
+      "label": "Адрес получателя",
+      "placeholder": "GABCD..., MABCD... или alice*example.org"
+    },
+    "price": {
+      "label": "Сумма",
+      "placeholder": "Макс. {{amount}}"
+    }
+  },
+  "note": {
+    "multisig-pubkey": "Адрес мультиподписного аккаунта, а не ваш локальный ключ совместной подписи."
+  },
+  "title": {
+    "send": "Отправить средства",
+    "receive": "Получить средства"
+  },
+  "validation": {
+    "memo-required": "Укажите заметку при отправке средств на {{destination}}",
+    "memo-too-long": "Заметка слишком длинная.",
+    "no-destination": "Не указан адрес получателя.",
+    "no-price": "Не указана сумма.",
+    "not-enough-funds": "Недостаточно средств.",
+    "invalid-destination": "Ожидается публичный ключ или stellar адрес.",
+    "invalid-price": "Неверная сумма.",
+    "integer-memo-required": "Заметка должна быть числом."
+  }
+}
