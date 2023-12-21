@@ -12,7 +12,7 @@ const TestnetBadge = (props: { style?: React.CSSProperties }) => {
     padding: "0.1rem 0.3rem",
     background: grey[500],
     borderRadius: 3,
-    color: "white",
+    color: "black",
     fontSize: "10px",
     lineHeight: "14px",
     textTransform: "uppercase",

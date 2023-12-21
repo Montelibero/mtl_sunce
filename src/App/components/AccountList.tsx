@@ -138,9 +138,9 @@ function AddAccountCard(props: { onClick: () => any; style?: React.CSSProperties
   const style = {
     ...props.style,
     background: "transparent",
-    border: "2px solid white",
+    border: "2px solid black",
     boxShadow: "none",
-    color: "white"
+    color: "black"
   }
   const { t } = useTranslation()
   return (
