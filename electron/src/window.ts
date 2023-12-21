@@ -23,7 +23,7 @@ export function createMainWindow() {
     minHeight: 300,
     title: "Solar Wallet",
     icon: nativeImage.createFromPath(path.join(__dirname, "../build/icon.png")),
-    backgroundColor: "#0196E8",
+    backgroundColor: "#EBBE2C",
     titleBarStyle: process.platform === "darwin" ? "hidden" : "default",
     webPreferences: {
       contextIsolation: true, // isolate context for preload scripts

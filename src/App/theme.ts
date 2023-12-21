@@ -9,13 +9,13 @@ import { SlideLeftTransition, SlideUpTransition } from "../Generic/components/Tr
 
 // TODO: The dark and light derivation of the brand color have not been design-reviewed!
 export const brandColor = {
-  dark: "#a17f14",
+  dark: "#d6a400",
   main: "#ebbe2c",
   main15: "#ebbe2c26",
   light: "#f8e091"
 }
 
-export const primaryBackground = "linear-gradient(to left bottom, #ebbe2c, #a17f14)"
+export const primaryBackground = "linear-gradient(to left bottom, #ebbe2c, #d6a400)"
 export const primaryBackgroundColor = "#f8ab5e"
 
 export const warningColor = amber["500"]
@@ -316,7 +316,7 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      contrastText: "white",
+      contrastText: "black",
       dark: brandColor.dark,
       main: brandColor.main,
       light: brandColor.light
