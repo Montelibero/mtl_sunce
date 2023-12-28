@@ -4,7 +4,7 @@ import { CustomErrorSerializer } from "../Generic/lib/errors"
 import { NetWorker as NetWorkerInterface } from "./net-worker"
 
 // Load worker eagerly
-const netWorker = new Worker("./net-worker.ts")
+const netWorker = new Worker(new URL("./net-worker.ts", import.meta.url))
 
 registerSerializer(CustomErrorSerializer)
 
