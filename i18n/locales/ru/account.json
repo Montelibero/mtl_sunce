@@ -1,0 +1,345 @@
+{
+  "action": {
+    "receive": "Получить",
+    "send": "Отправить"
+  },
+  "add-asset": {
+    "action": {
+      "add-asset": "Добавить актив в аккаунт",
+      "remove": "Удалить",
+      "trade": "Торговать"
+    },
+    "button": {
+      "add-custom-asset": {
+        "label": "Добавить пользовательский актив"
+      }
+    },
+    "item": {
+      "issuer": {
+        "secondary": {
+          "one-asset": "Один соответствующий актив",
+          "more-than-one-asset": "{{amount}} соответствующих активов"
+        }
+      },
+      "no-result": {
+        "primary": "Соответствующих активов нет",
+        "secondary": "Ни один актив или эмитент не соответствует вашему поиску"
+      }
+    },
+    "search-field": {
+      "placeholder": "Поиск активов по коду или названию…"
+    },
+    "title": "Добавить актив"
+  },
+  "asset-details": {
+    "lumen": {
+      "description": {
+        "label": "Описание",
+        "text": "Основной токен сети Stellar.\n\n Каждый аккаунт в сети имеет баланс луменов. Лумены используются для оплаты комиссий за транзакции."
+      }
+    },
+    "general": {
+      "account-flags": {
+        "auth-required": "Требуется авторизация эмитентом",
+        "auth-not-required": "Авторизация не требуется",
+        "auth-revocable": "Авторизация может быть отозвана",
+        "auth-not-revocable": "Авторизация не может быть отозвана",
+        "auth-immutable": "Эти флаги неизменны",
+        "auth-mutable": "Эмитент может изменить эти флаги",
+        "label": "Флаги аккаунта"
+      },
+      "anchor-asset": {
+        "label": "Привязан к"
+      },
+      "conditions": {
+        "label": "Условия"
+      },
+      "description": {
+        "label": "Описание"
+      },
+      "issuing-account": {
+        "label": "Эмитирующий аккаунт"
+      },
+      "organisation": {
+        "address": {
+          "label": "Адрес"
+        },
+        "dba": {
+          "label": "Торговое наименование"
+        },
+        "description": {
+          "label": "Описание"
+        },
+        "email": {
+          "label": "Электронная почта"
+        },
+        "name": {
+          "label": "Название организации"
+        },
+        "phone-number": {
+          "label": "Номер телефона"
+        },
+        "website": {
+          "label": "Веб-сайт"
+        }
+      },
+      "redemption-instructions": {
+        "label": "Инструкции по погашению"
+      }
+    }
+  },
+  "balance-details": {
+    "button": {
+      "add-asset": {
+        "label": "Добавить актив в аккаунт"
+      }
+    },
+    "item": {
+      "spendable-balance": {
+        "primary": "Доступный баланс"
+      }
+    },
+    "spendable-balances": {
+      "base-reserve": {
+        "primary": "Базовый резерв",
+        "secondary": "Фиксированный базовый резерв"
+      },
+      "data-reserve": {
+        "primary": "Резерв данных",
+        "secondary": "Поля данных аккаунта"
+      },
+      "headline": "Суммы в XLM",
+      "open-orders-reserve": {
+        "primary": "Резерв открытых ордеров",
+        "secondary": "Резерв на ордер"
+      },
+      "selling-liabilities": {
+        "primary": "Сумма к продаже",
+        "secondary": "Зарезервировано в открытых ордерах"
+      },
+      "signers-reserve": {
+        "primary": "Резерв подписантов аккаунта",
+        "secondary": {
+          "single-key": "Резерв одного ключа",
+          "multiple-keys": "Основной ключ + со-подписанты"
+        }
+      },
+      "spendable-balance": {
+        "primary": "Доступный баланс",
+        "secondary": "Свободно используемая сумма"
+      },
+      "total-balance": {
+        "primary": "Общий баланс",
+        "secondary": "Ваш баланс, вкл. недоступное"
+      },
+      "trustline-reserve": {
+        "primary": "Резерв трастлайнов",
+        "secondary": "На каждый баланс, не в XLM"
+      }
+    }
+  },
+  "context-menu": {
+    "account-settings": {
+      "label": "Настройки аккаунта"
+    },
+    "assets-and-balances": {
+      "label": "Активы и балансы"
+    },
+    "deposit": {
+      "label": "Пополнить счет"
+    },
+    "trade": {
+      "label": "Торговля"
+    },
+    "transactions": {
+      "label": "Транзакции"
+    },
+    "withdraw": {
+      "label": "Вывести средства"
+    }
+  },
+  "cosigner": {
+    "not-cosigner-yet": {
+      "label": "Ваш публичный ключ:",
+      "note": "Ваш ключ ещё не является подписантом аккаунта. Пожалуйста, попросите владельца аккаунта добавить вас."
+    }
+  },
+  "purchase-lumens": {
+    "legal-confirmation": {
+      "action": {
+        "confirm": "Я понимаю"
+      }
+    },
+    "moonpay": {
+      "text": {
+        "primary": "MoonPay",
+        "secondary": "Купить Stellar Lumens мгновенно с помощью вашей дебетовой/кредитной карты или Apple Pay"
+      },
+      "legal-confirmation": " Вы будете перенаправлены на moonpay.io, сервис третьей стороны. Процесс пополнения управляется Moon Pay Ltd, а не Solar или SatoshiPay Ltd. <1 /> <2 /> Пожалуйста, обратитесь в службу поддержки moonpay.io по вопросам, связанным с вашим пополнением."
+    },
+    "title": "Купить Stellar lumens"
+  },
+  "remove-trustline": {
+    "action": {
+      "cancel": "Отмена",
+      "remove": "Удалить"
+    },
+    "text": {
+      "warning": "Вы не можете удалить этот актив, пока баланс актива не будет равен нулю.",
+      "info": "Вы собираетесь удалить <1>{{asset}}</1> с аккаунта \"{{accountName}}\"."
+    },
+    "title": "Подтвердите удаление актива"
+  },
+  "transactions": {
+    "action": {
+      "friendbot": {
+        "description": "Получите немного бесплатных тестовых луменов",
+        "label": "Обратиться к friendbot"
+      },
+      "navigate-to-deposit": {
+        "description": "Через кредитную карту, банковский перевод и т.д.",
+        "label": "Пополнить счет"
+      }
+    },
+    "offer-list": {
+      "text": {
+        "buy": "Купить <1 /> за <3 />",
+        "sell": "Продать <1 /> за <3 />",
+        "for": "за"
+      },
+      "title": "Открытые ордера"
+    },
+    "transaction-list": {
+      "offer-description": {
+        "prefix": {
+          "default": "Ордер",
+          "cancel": "Отменить ордер",
+          "update": "Обновить ордер"
+        },
+        "buy": "Купить {{buyingAmount}} {{buyingCode}} за {{sellingAmount}} {{sellingCode}}",
+        "sell": "Продать {{sellingAmount}} {{sellingCode}} за {{buyingAmount}} {{buyingCode}}"
+      },
+      "item": {
+        "from": "От",
+        "to": "Кому",
+        "memo": "Заметка",
+        "remote-public-keys": {
+          "more": "ещё"
+        },
+        "trust": {
+          "add-trust": "Доверять активу {{asset}}",
+          "remove-trust": "Отменить доверие активу {{asset}}"
+        }
+      },
+      "load-more": {
+        "label": "Загрузить больше"
+      },
+      "title": "Последние операции"
+    },
+    "signature-request-list": {
+      "title": {
+        "requests-to-cosign": "Транзакции для совместной подписи",
+        "requests-waiting-for-others": "Ожидание дополнительных подписей"
+      }
+    }
+  },
+  "transaction-review": {
+    "action": {
+      "confirm": "Подтвердить",
+      "cancel-order": "Отменить ордер",
+      "dismiss": "Отменить",
+      "inspect": "Инспектировать",
+      "show-more": "Показать больше информации"
+    },
+    "account-creation-warning": {
+      "primary": "Пополнение нового аккаунта",
+      "secondary": "Пополнение пустого аккаунта. Убедитесь, что адресат указан верно."
+    },
+    "add-signer-warning": {
+      "primary": "Добавление другого подписанта",
+      "secondary": "Убедитесь, что вы добавляете правильного со-подписанта. Добавление неизвестного ключа может навсегда заблокировать ваш аккаунт."
+    },
+    "dangerous-transaction-warning": {
+      "primary": "Транзакция инициирована неизвестным аккаунтом",
+      "secondary": "Пожалуйста, внимательно проверьте. В случае сомнений, лучше отклоните."
+    },
+    "dismissal": {
+      "action": {
+        "cancel": "Отмена",
+        "confirm": "Подтвердить"
+      },
+      "header": "Отклонить ожидающую мультиподписную транзакцию?",
+      "title": "Подтверждение"
+    },
+    "signers": {
+      "heading-details": {
+        "single-signature": "Одиночная подпись",
+        "default-signatures": "{{threshold}} из {{length}} мультиподпись",
+        "custom-consensus": "Мультиподпись с пользовательским консенсусом"
+      },
+      "label": "Подписанты {{details}}"
+    },
+    "signer-status": {
+      "tooltip": {
+        "has-signed": "Подписал транзакцию",
+        "has-not-signed": "Ожидает его подписи"
+      }
+    },
+    "summary": {
+      "item": {
+        "account": {
+          "label": "Аккаунт"
+        },
+        "authenticating-account": {
+          "label": "Аутентификация аккаунта"
+        },
+        "expiry": {
+          "label": "Истечение срока"
+        },
+        "max-fee": {
+          "label": "Максимальная комиссия"
+        },
+        "service": {
+          "label": "Сервис"
+        },
+        "submission": {
+          "label": "Подача"
+        },
+        "tx-hash": {
+          "label": "Хеш транзакции"
+        }
+      }
+    },
+    "textfield": {
+      "password": {
+        "label": "Пароль"
+      }
+    },
+    "title": {
+      "transaction": "Транзакция",
+      "payment": "Платеж",
+      "delete-orders-operation": "Удаление торговых ордеров",
+      "web-auth": "Веб-аутентификация"
+    },
+    "transaction-memo": {
+      "label": "{{type}} Заметка"
+    },
+    "validation": {
+      "no-account-data": "Нарушение инвариантности: Невозможно найти данные аккаунта источника транзакции в наборе подписок на данные аккаунта.",
+      "no-manage-data-operation": "Нарушение инвариантности: Транзакция веб-аутентификации Stellar должна содержать операцию manage_data.",
+      "password-required": "Требуется пароль"
+    }
+  },
+  "title": {
+    "password-status": {
+      "protected": "Защищено паролем",
+      "unprotected": "Без пароля"
+    },
+    "tooltip": {
+      "multi-sig-account": "Аккаунт с мультиподписью",
+      "security-service": "Защита {{service}}"
+    },
+    "placeholder": "Название аккаунта...",
+    "testnet": "Тестовая сеть"
+  }
+}

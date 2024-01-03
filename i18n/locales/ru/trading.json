@@ -1,0 +1,67 @@
+{
+  "action": {
+    "add-asset": "Добавить актив",
+    "submit": "Разместить ордер"
+  },
+  "action-selection": {
+    "buy": {
+      "description": "Купить некоторое количество актива на распределенной бирже",
+      "label": "Купить актив"
+    },
+    "sell": {
+      "description": "Обменять некоторое количество одного актива на другой",
+      "label": "Продать актив"
+    }
+  },
+  "advanced": {
+    "header": "Расширенные"
+  },
+  "inputs": {
+    "estimated-costs": {
+      "label": {
+        "buy": "Предполагаемые затраты",
+        "sell": "Предполагаемая прибыль"
+      }
+    },
+    "primary-amount": {
+      "label": {
+        "buy": "Количество к покупке",
+        "sell": "Количество к продаже"
+      },
+      "max-button": {
+        "label": "Макс"
+      },
+      "placeholder": "Макс. {{amount}}"
+    },
+    "primary-asset-selector": {
+      "label": {
+        "buy": "Вы покупаете",
+        "sell": "Вы продаете"
+      }
+    },
+    "secondary-asset-selector": {
+      "label": {
+        "buy": "Тратить",
+        "sell": "Получать"
+      }
+    }
+  },
+  "no-assets-info": "Этот аккаунт пока не использует никакие активы, кроме Stellar Lumens.",
+  "title": "Торговля",
+  "trading-price": {
+    "default-label": "Цена (лимит)",
+    "label": "Цена за {{unit}} (лимит)"
+  },
+  "validation": {
+    "primary-amount-missing": "Не указано количество.",
+    "primary-asset-missing": "Не выбран актив.",
+    "invalid-amount": "Указано неверное количество.",
+    "invalid-price": "Неверная цена",
+    "not-enough-balance": "Превышает доступный баланс",
+    "secondary-asset-missing": "Не выбран актив."
+  },
+  "warning": {
+    "title": "Предупреждение",
+    "message": "Разница между ценой покупки и продажи составляет около {{spread}}%."
+  }
+}

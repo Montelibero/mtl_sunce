@@ -1,0 +1,76 @@
+{
+  "account-list": {
+    "add-account-card": {
+      "label": "Добавить аккаунт"
+    },
+    "badges": {
+      "tooltip": {
+        "multi-sig": "Аккаунт с мультиподписью",
+        "security-service": "Защита {{service}}"
+      }
+    }
+  },
+  "all-accounts": {
+    "switch": {
+      "label": "Тестовая сеть"
+    },
+    "update": {
+      "notification": {
+        "start": "Начинается загрузка обновления...",
+        "success": "Загрузка завершена и будет установлена при следующем перезапуске!"
+      },
+      "tooltip": "Доступно обновление"
+    },
+    "title": {
+      "testnet": "Testnet Accounts",
+      "mainnet": "Мои адреса"
+    }
+  },
+  "notification": {
+    "desktop": {
+      "new-signature-request": {
+        "title": "Новая транзакция для совместной подписи",
+        "body": "От {{signersHavingSigned}}"
+      },
+      "received-payment": {
+        "title": "Получен платеж | {{account}}",
+        "body": "Получено {{amount}} {{assetCode}}"
+      },
+      "trade-completed": {
+        "title": "Торговля завершена | {{account}}"
+      }
+    },
+    "details": {
+      "action": {
+        "dismiss": "Закрыть"
+      },
+      "support": "Проблемы с приложением? <1/> Свяжитесь с нами через",
+      "title": "Ошибка",
+      "offline": "Не в сети"
+    },
+    "permission": {
+      "app-notification": {
+        "error": "Включите в настройках операционной системы",
+        "granted": {
+          "title": "Уведомления включены",
+          "text": "Solar теперь будет показывать уведомления"
+        },
+        "message": "Включить уведомления приложения"
+      }
+    }
+  },
+  "terms-and-conditions": {
+    "action": {
+      "confirm": "Подтвердить"
+    },
+    "header": "Добро пожаловать в Solar",
+    "checkbox": {
+      "1": {
+        "label": "Я понимаю, что я несу ответственность за безопасность моих средств и что Solar не может восстановить мои средства в случае потери данных или если я потеряю свои учетные данные."
+      },
+      "2": {
+        "label": "Я прочитал, понял и согласен с <1>Условиями использования</1> <2>&amp;</2> <3>Политикой конфиденциальности</3> Solar."
+      }
+    }
+  }
+}

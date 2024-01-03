@@ -5,6 +5,7 @@ import { initReactI18next } from "react-i18next"
 import translationEN from "../../i18n/en"
 import translationES from "../../i18n/es"
 import translationIT from "../../i18n/it"
+import translationRU from "../../i18n/ru"
 
 i18n
   .use(LanguageDetector)
@@ -24,6 +25,9 @@ i18n
       },
       it: {
         translation: translationIT
+      },
+      ru: {
+        translation: translationRU
       }
     }
   })
