@@ -59,7 +59,7 @@ const Section = React.memo(function Section(props: SectionProps) {
 
   const style: React.CSSProperties = {
     background,
-    color: props.brandColored ? "white" : undefined,
+    color: props.brandColored ? "black" : undefined,
     flexGrow: typeof props.grow === "number" ? props.grow : 1,
     flexShrink: typeof props.shrink === "number" ? props.shrink : undefined,
     minHeight: props.minHeight,

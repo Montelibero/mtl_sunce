@@ -35,7 +35,9 @@
   },
   "lint-staged": {
     "ignore": [
-      "**/*.yml"
+      "**/*.yml",
+      "**/*.svg",
+      "**/*.png"
     ],
     "linters": {
       "*": [
