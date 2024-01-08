@@ -69,7 +69,6 @@
     "@material-ui/icons": "^4.5.1",
     "@satoshipay/stellar-sep-10": "^0.3.0",
     "@satoshipay/stellar-transfer": "^0.2.2",
-    "@satoshipay/worker-plugin": "^3.2.0",
     "@stellarguard/stellar-uri": "^2.0.0",
     "@storybook/addon-actions": "^7.6.6",
     "@storybook/addons": "^7.6.6",
