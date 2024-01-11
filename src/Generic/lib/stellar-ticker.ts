@@ -33,7 +33,7 @@ export async function fetchAllAssets(testnet: boolean): Promise<AssetRecord[]> {
 
     assetsCache.save(cacheKey, allAssets)
     return allAssets
-  } finally {
+  } catch (e) {
     return []
   }
 }
