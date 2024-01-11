@@ -19,17 +19,21 @@ const assetsCache = createPersistentCache<AssetRecord[]>("known-assets", { expir
 
 export async function fetchAllAssets(testnet: boolean): Promise<AssetRecord[]> {
   const cacheKey = testnet ? "testnet" : "mainnet"
-  const tickerURL = testnet ? "https://ticker-testnet.stellar.org" : "https://ticker.stellar.org"
+  const tickerURL = testnet ? "https://ticker-testnet.kamni.io" : "https://ticker.kamni.io"
 
   const cachedAssets = assetsCache.read(cacheKey)
 
   if (cachedAssets) {
     return cachedAssets
-  } else {
+  }
+
+  try {
     const { netWorker } = await workers
     const allAssets = await netWorker.fetchAllAssets(tickerURL)
 
     assetsCache.save(cacheKey, allAssets)
     return allAssets
+  } finally {
+    return []
   }
 }
