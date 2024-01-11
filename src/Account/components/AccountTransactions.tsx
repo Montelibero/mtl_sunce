@@ -21,6 +21,14 @@ import FriendbotButton from "./FriendbotButton"
 import OfferList from "./OfferList"
 import { InteractiveSignatureRequestList } from "./SignatureRequestList"
 import TransactionList from "./TransactionList"
+import { FeeBumpTransaction, Horizon, Networks, Transaction, TransactionBuilder } from "stellar-sdk"
+
+interface DecodedTransactionResponse extends Horizon.TransactionResponse {
+  decodedTx: Transaction
+}
+
+const excludeClaimableFilter = (tx: DecodedTransactionResponse) =>
+  !tx.decodedTx.operations.every(o => o.type === "createClaimableBalance")
 
 function PendingMultisigTransactions(props: { account: Account }) {
   const { pendingSignatureRequests } = React.useContext(SignatureDelegationContext)
@@ -87,6 +95,36 @@ function AccountTransactions(props: { account: Account }) {
     router
   ])
 
+  const decodeTx = (envelopeXdr: string): Transaction => {
+    const decoded = TransactionBuilder.fromXDR(envelopeXdr, account.testnet ? Networks.TESTNET : Networks.PUBLIC)
+    return decoded instanceof FeeBumpTransaction ? decoded.innerTransaction : decoded
+  }
+
+  // TODO: keep decoded transaction in app cache, now only `recentTxs.transactions` are cached
+  const txs = React.useMemo(
+    () =>
+      recentTxs.transactions.map(tx => ({
+        ...tx,
+        decodedTx: decodeTx(tx.envelope_xdr)
+      })),
+    [recentTxs.transactions]
+  )
+
+  // TODO: make this array modifyable via UI (some kind of filtering functionality)
+  const activeFilters = [excludeClaimableFilter]
+
+  const filteredTxs = React.useMemo(
+    () =>
+      // combine all the filers with logical AND
+      txs.filter(tx =>
+        activeFilters.reduce((res, filter) => {
+          res = res && filter(tx)
+          return res
+        }, true)
+      ),
+    [txs]
+  )
+
   return (
     <>
       {accountData.balances.length > 0 ? (
@@ -101,7 +139,7 @@ function AccountTransactions(props: { account: Account }) {
             onFetchMoreTransactions={handleFetchMoreTransactions}
             title={t("account.transactions.transaction-list.title")}
             testnet={account.testnet}
-            transactions={recentTxs.transactions}
+            transactions={filteredTxs}
           />
         </>
       ) : (
