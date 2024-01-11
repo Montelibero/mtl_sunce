@@ -110,20 +110,7 @@ function AccountTransactions(props: { account: Account }) {
     [recentTxs.transactions]
   )
 
-  // TODO: make this array modifyable via UI (some kind of filtering functionality)
-  const activeFilters = [excludeClaimableFilter]
-
-  const filteredTxs = React.useMemo(
-    () =>
-      // combine all the filers with logical AND
-      txs.filter(tx =>
-        activeFilters.reduce((res, filter) => {
-          res = res && filter(tx)
-          return res
-        }, true)
-      ),
-    [txs]
-  )
+  const filteredTxs = React.useMemo(() => txs.filter(excludeClaimableFilter), [txs])
 
   return (
     <>
