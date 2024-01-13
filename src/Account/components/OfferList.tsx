@@ -38,35 +38,33 @@ function createDismissalTransaction(
   const buying = offerAssetToAsset(offer.buying)
   const selling = offerAssetToAsset(offer.selling)
 
-  if (selling.isNative()) {
-    return createTransaction(
-      [
-        Operation.manageBuyOffer({
-          offerId: offer.id,
-          buyAmount: "0",
-          buying,
-          price: offer.price,
-          selling,
-          withMuxing: true
-        })
-      ],
-      { accountData, horizon, walletAccount: account }
-    )
-  } else {
-    return createTransaction(
-      [
-        Operation.manageSellOffer({
-          offerId: offer.id,
-          amount: "0",
-          buying,
-          price: offer.price,
-          selling,
-          withMuxing: true
-        })
-      ],
-      { accountData, horizon, walletAccount: account }
-    )
-  }
+  return selling.isNative()
+    ? createTransaction(
+        [
+          Operation.manageBuyOffer({
+            offerId: offer.id,
+            buyAmount: "0",
+            buying,
+            price: offer.price,
+            selling,
+            withMuxing: true
+          })
+        ],
+        { accountData, horizon, walletAccount: account }
+      )
+    : createTransaction(
+        [
+          Operation.manageSellOffer({
+            offerId: offer.id,
+            amount: "0",
+            buying,
+            price: offer.price,
+            selling,
+            withMuxing: true
+          })
+        ],
+        { accountData, horizon, walletAccount: account }
+      )
 }
 
 interface OfferListItemProps {
@@ -239,49 +237,42 @@ function OfferList(props: Props & { sendTransaction: (tx: Transaction) => Promis
     }
   }
 
-  if (offerHistory.offers.length === 0) {
-    return null
-  } else {
-    return (
-      <List style={{ background: "transparent" }}>
-        <ExpansionPanel
-          className={classes.expansionPanel}
-          elevation={0}
-          expanded={expanded}
-          onChange={() => setExpanded(!expanded)}
+  return offerHistory.offers.length === 0 ? null : (
+    <List style={{ background: "transparent" }}>
+      <ExpansionPanel
+        className={classes.expansionPanel}
+        elevation={0}
+        expanded={expanded}
+        onChange={() => setExpanded(!expanded)}
+      >
+        <ExpansionPanelSummary
+          classes={{ root: classes.expansionPanelSummary, content: classes.expansionPanelSummaryContent }}
+          expandIcon={<ExpandMoreIcon />}
         >
-          <ExpansionPanelSummary
-            classes={{ root: classes.expansionPanelSummary, content: classes.expansionPanelSummaryContent }}
-            expandIcon={<ExpandMoreIcon />}
+          <ListSubheader
+            className={classes.listItem}
+            disableSticky
+            style={{ background: "transparent", paddingRight: 0 }}
           >
-            <ListSubheader
-              className={classes.listItem}
-              disableSticky
-              style={{ background: "transparent", paddingRight: 0 }}
-            >
-              {props.title}
-            </ListSubheader>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classes.expansionPanelDetails}>
-            {offerHistory.offers.map(offer => (
-              <OfferListItem
-                key={offer.id}
-                accountPublicKey={props.account.accountID}
-                offer={offer}
-                onCancel={() => onCancel(offer)}
-              />
-            ))}
-            {offerHistory.olderOffersAvailable ? (
-              <LoadMoreOffersListItem
-                pending={moreTxsLoadingState.type === "pending"}
-                onClick={handleFetchMoreOffers}
-              />
-            ) : null}
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      </List>
-    )
-  }
+            {props.title}
+          </ListSubheader>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails className={classes.expansionPanelDetails}>
+          {offerHistory.offers.map(offer => (
+            <OfferListItem
+              key={offer.id}
+              accountPublicKey={props.account.accountID}
+              offer={offer}
+              onCancel={() => onCancel(offer)}
+            />
+          ))}
+          {offerHistory.olderOffersAvailable ? (
+            <LoadMoreOffersListItem pending={moreTxsLoadingState.type === "pending"} onClick={handleFetchMoreOffers} />
+          ) : null}
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+    </List>
+  )
 }
 
 function OfferListContainer(props: Props) {

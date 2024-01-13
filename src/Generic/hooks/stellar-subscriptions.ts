@@ -24,9 +24,9 @@ import { useNetWorker } from "./workers"
 
 function useDataSubscriptions<DataT, UpdateT>(
   reducer: (prev: DataT, update: UpdateT) => DataT,
-  items: Array<{ get(): DataT; set(value: DataT): void; observe(): ObservableLike<UpdateT> }>
+  items: { get(): DataT; set(value: DataT): void; observe(): ObservableLike<UpdateT> }[]
 ): DataT[] {
-  const unfinishedFetches: Array<Promise<DataT>> = []
+  const unfinishedFetches: Promise<DataT>[] = []
   const [, setRefreshCounter] = useDebouncedState(0, 100)
 
   const currentDataSets = mapSuspendables(items, item => item.get())
@@ -175,18 +175,16 @@ export function useOlderOffers(accountID: string, testnet: boolean) {
       const limit = 10
       const prevOffers = history?.offers || []
 
-      if (prevOffers.length > 0) {
-        fetched = await netWorker.fetchAccountOpenOrders(horizonURLs, accountID, {
-          cursor: prevOffers[prevOffers.length - 1].paging_token,
-          limit,
-          order: "desc"
-        })
-      } else {
-        fetched = await netWorker.fetchAccountOpenOrders(horizonURLs, accountID, {
-          limit,
-          order: "desc"
-        })
-      }
+      fetched = await (prevOffers.length > 0
+        ? netWorker.fetchAccountOpenOrders(horizonURLs, accountID, {
+            cursor: prevOffers[prevOffers.length - 1].paging_token,
+            limit,
+            order: "desc"
+          })
+        : netWorker.fetchAccountOpenOrders(horizonURLs, accountID, {
+            limit,
+            order: "desc"
+          }))
 
       const fetchedOffers: ServerApi.OfferRecord[] = fetched._embedded.records
 
@@ -269,14 +267,12 @@ function applyAccountTransactionsUpdate(
   prev: TransactionHistory,
   update: Horizon.TransactionResponse
 ): TransactionHistory {
-  if (prev.transactions.some(tx => txsMatch(tx, update))) {
-    return prev
-  } else {
-    return {
-      ...prev,
-      transactions: [update, ...prev.transactions]
-    }
-  }
+  return prev.transactions.some(tx => txsMatch(tx, update))
+    ? prev
+    : {
+        ...prev,
+        transactions: [update, ...prev.transactions]
+      }
 }
 
 export function useLiveRecentTransactions(accountID: string, testnet: boolean): TransactionHistory {
@@ -334,20 +330,18 @@ export function useOlderTransactions(accountID: string, testnet: boolean) {
       const limit = 15
       const prevTransactions = history?.transactions || []
 
-      if (prevTransactions.length > 0) {
-        fetched = await netWorker.fetchAccountTransactions(horizonURLs, accountID, {
-          emptyOn404: true,
-          cursor: prevTransactions[prevTransactions.length - 1].paging_token,
-          limit: 15,
-          order: "desc"
-        })
-      } else {
-        fetched = await netWorker.fetchAccountTransactions(horizonURLs, accountID, {
-          emptyOn404: true,
-          limit,
-          order: "desc"
-        })
-      }
+      fetched = await (prevTransactions.length > 0
+        ? netWorker.fetchAccountTransactions(horizonURLs, accountID, {
+            emptyOn404: true,
+            cursor: prevTransactions[prevTransactions.length - 1].paging_token,
+            limit: 15,
+            order: "desc"
+          })
+        : netWorker.fetchAccountTransactions(horizonURLs, accountID, {
+            emptyOn404: true,
+            limit,
+            order: "desc"
+          }))
 
       const fetchedTransactions: Horizon.TransactionResponse[] = fetched._embedded.records
 

@@ -3,11 +3,7 @@ import React from "react"
 const removeNullValueProps = (object: { [key: string]: any }) => {
   return Object.keys(object).reduce((result, propKey) => {
     const propValue = object[propKey]
-    if (propValue !== null) {
-      return { ...result, [propKey]: propValue }
-    } else {
-      return result
-    }
+    return propValue !== null ? { ...result, [propKey]: propValue } : result
   }, {})
 }
 

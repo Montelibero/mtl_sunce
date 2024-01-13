@@ -9,7 +9,7 @@ function addSigner(
 ): OptimisticUpdate<Horizon.AccountResponse> {
   return {
     apply(prevAccountData) {
-      const allOtherSigners = prevAccountData.signers.filter((existing) => {
+      const allOtherSigners = prevAccountData.signers.filter(existing => {
         return existing.key !== signer.ed25519PublicKey
       })
       return {
@@ -65,14 +65,12 @@ function setMasterWeight(
       return {
         ...prevAccountData,
         signers: prevAccountData.signers.map(signer => {
-          if (signer.type === "ed25519_public_key" && signer.key === accountID) {
-            return {
-              ...signer,
-              weight: masterWeight
-            }
-          } else {
-            return signer
-          }
+          return signer.type === "ed25519_public_key" && signer.key === accountID
+            ? {
+                ...signer,
+                weight: masterWeight
+              }
+            : signer
         })
       }
     },
@@ -117,8 +115,8 @@ function setAccountOptions(
   horizonURL: string,
   operation: Operation.SetOptions,
   transaction: Transaction
-): Array<OptimisticUpdate<Horizon.AccountResponse>> {
-  const updates: Array<OptimisticUpdate<Horizon.AccountResponse>> = []
+): OptimisticUpdate<Horizon.AccountResponse>[] {
+  const updates: OptimisticUpdate<Horizon.AccountResponse>[] = []
   const { signer } = operation
 
   if (signer && "ed25519PublicKey" in signer && typeof signer.weight === "number" && signer.weight > 0) {

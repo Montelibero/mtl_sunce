@@ -569,11 +569,9 @@ function subscribeToOpenOrdersUncached(horizonURLs: string[], accountID: string)
       },
       subscribeToUpdates() {
         const handleNewOptimisticUpdate = (newOptimisticUpdate: OptimisticOfferUpdate) => {
-          if (newOptimisticUpdate.effectsAccountID === accountID && newOptimisticUpdate.horizonURL === horizonURL) {
-            return optimisticallyUpdateOffers(horizonURL, accountID, latestSet)
-          } else {
-            return latestSet
-          }
+          return newOptimisticUpdate.effectsAccountID === accountID && newOptimisticUpdate.horizonURL === horizonURL
+            ? optimisticallyUpdateOffers(horizonURL, accountID, latestSet)
+            : latestSet
         }
         // We somewhat rely on the optimistic updates as a trigger to fetch
         // actual on-ledger data as the open orders SSE stream turns out to be

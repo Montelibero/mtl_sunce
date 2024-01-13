@@ -172,59 +172,55 @@ function ChangeTrustOperation(props: OperationProps<Operation.ChangeTrust> & { t
     props.testnet
   )
 
-  if (BigNumber(props.operation.limit).eq(0)) {
-    return (
-      <SummaryItem heading={props.hideHeading ? undefined : t("operations.change-trust.title.remove-asset")}>
+  return BigNumber(props.operation.limit).eq(0) ? (
+    <SummaryItem heading={props.hideHeading ? undefined : t("operations.change-trust.title.remove-asset")}>
+      <SummaryDetailsField
+        label={t("operations.change-trust.summary.asset")}
+        value={stringifyAssetToReadableString(props.operation.line)}
+      />
+      {props.operation.line instanceof Asset && (
         <SummaryDetailsField
-          label={t("operations.change-trust.summary.asset")}
-          value={stringifyAssetToReadableString(props.operation.line)}
+          label={t("operations.change-trust.summary.issued-by")}
+          value={
+            <CopyableAddress
+              address={homeDomain || props.operation.line.issuer}
+              testnet={props.testnet}
+              variant="short"
+            />
+          }
         />
-        {props.operation.line instanceof Asset && (
-          <SummaryDetailsField
-            label={t("operations.change-trust.summary.issued-by")}
-            value={
-              <CopyableAddress
-                address={homeDomain || props.operation.line.issuer}
-                testnet={props.testnet}
-                variant="short"
-              />
-            }
-          />
-        )}
-      </SummaryItem>
-    )
-  } else {
-    return (
-      <SummaryItem heading={props.hideHeading ? undefined : t("operations.change-trust.title.add-asset")}>
-        <SummaryDetailsField label="Asset" value={stringifyAssetToReadableString(props.operation.line)} />
-        {props.operation.line instanceof Asset && (
-          <SummaryDetailsField
-            label={t("operations.change-trust.summary.issued-by")}
-            value={
-              <CopyableAddress
-                address={homeDomain || props.operation.line.issuer}
-                testnet={props.testnet}
-                variant="short"
-              />
-            }
-          />
-        )}
-        {BigNumber(props.operation.limit).gt(900000000000) ? null : (
-          <SummaryDetailsField
-            label={t("operations.change-trust.summary.limit.label")}
-            value={
-              trustlineLimitEqualsUnlimited(props.operation.limit)
-                ? t("operations.change-trust.summary.limit.value.unlimited")
-                : t("operations.change-trust.summary.limit.value.limited-to", {
-                    limit: props.operation.limit,
-                    code: stringifyAssetToReadableString(props.operation.line)
-                  })
-            }
-          />
-        )}
-      </SummaryItem>
-    )
-  }
+      )}
+    </SummaryItem>
+  ) : (
+    <SummaryItem heading={props.hideHeading ? undefined : t("operations.change-trust.title.add-asset")}>
+      <SummaryDetailsField label="Asset" value={stringifyAssetToReadableString(props.operation.line)} />
+      {props.operation.line instanceof Asset && (
+        <SummaryDetailsField
+          label={t("operations.change-trust.summary.issued-by")}
+          value={
+            <CopyableAddress
+              address={homeDomain || props.operation.line.issuer}
+              testnet={props.testnet}
+              variant="short"
+            />
+          }
+        />
+      )}
+      {BigNumber(props.operation.limit).gt(900000000000) ? null : (
+        <SummaryDetailsField
+          label={t("operations.change-trust.summary.limit.label")}
+          value={
+            trustlineLimitEqualsUnlimited(props.operation.limit)
+              ? t("operations.change-trust.summary.limit.value.unlimited")
+              : t("operations.change-trust.summary.limit.value.limited-to", {
+                  limit: props.operation.limit,
+                  code: stringifyAssetToReadableString(props.operation.line)
+                })
+          }
+        />
+      )}
+    </SummaryItem>
+  )
 }
 
 export function OfferDetailsString(

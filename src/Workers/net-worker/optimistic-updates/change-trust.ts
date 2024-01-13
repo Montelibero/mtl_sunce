@@ -105,11 +105,9 @@ function changeTrust(
   operation: Operation.ChangeTrust,
   transaction: Transaction
 ): OptimisticAccountUpdate[] {
-  if (BigNumber(operation.limit).eq(0)) {
-    return [removeTrustline(horizonURL, operation, transaction)]
-  } else {
-    return [addTrustline(horizonURL, operation, transaction)]
-  }
+  return BigNumber(operation.limit).eq(0)
+    ? [removeTrustline(horizonURL, operation, transaction)]
+    : [addTrustline(horizonURL, operation, transaction)]
 }
 
 export default changeTrust

@@ -7,13 +7,11 @@ function createReconnectDelay(options: { initialDelay: number }): () => Promise<
   let lastConnectionAttemptTime = 0
 
   const networkBackOnline = () => {
-    if (navigator.onLine === false) {
-      return new Promise(resolve => {
-        self.addEventListener("online", resolve, { once: true, passive: true })
-      })
-    } else {
-      return Promise.resolve()
-    }
+    return navigator.onLine === false
+      ? new Promise(resolve => {
+          self.addEventListener("online", resolve, { once: true, passive: true })
+        })
+      : Promise.resolve()
   }
 
   const timeReached = (waitUntil: number) => {

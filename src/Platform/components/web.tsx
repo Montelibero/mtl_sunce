@@ -3,11 +3,7 @@ import { props as QRReaderProps } from "react-qr-reader"
 import ViewLoading from "../../Generic/components/ViewLoading"
 
 function patchComponentModule<T>(mod: T | { default: T }): { default: T } {
-  if (mod && "default" in mod && mod.default) {
-    return mod
-  } else {
-    return { default: mod as T }
-  }
+  return mod && "default" in mod && mod.default ? mod : { default: mod as T }
 }
 
 const ReactQRReader = React.lazy(() => import("react-qr-reader").then(patchComponentModule))
