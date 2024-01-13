@@ -34,7 +34,7 @@ const useBalanceItemStyles = makeStyles({
   badge: {
     top: 4,
     right: 4,
-    boxShadow: "0 0 3px 1px white"
+    boxShadow: "0 0 3px 1px black"
   },
   mainListItemText: {
     flex: "1 1 auto",
