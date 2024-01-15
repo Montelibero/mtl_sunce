@@ -1,15 +1,15 @@
 {
-  "name": "io.solarwallet.app",
-  "version": "0.28.2",
-  "description": "Wallet for the Stellar payment network by SatoshiPay.",
+  "name": "org.montelibero.solar",
+  "version": "0.28.3",
+  "description": "Wallet for the Stellar payment network by Montelibero (based od SatoshiPay).",
   "license": "MIT",
   "private": true,
   "author": {
-    "name": "SatoshiPay Ltd",
-    "email": "hello@solarwallet.io"
+    "name": "Montelibero Movement",
+    "email": "solar@montelibero.org"
   },
   "homepage": "https://solarwallet.io/",
-  "repository": "github:satoshipay/solar",
+  "repository": "github:montelibero/mtl_solar",
   "main": "./electron/lib/index.prod.js",
   "scripts": {
     "precommit": "lint-staged",
@@ -38,7 +38,8 @@
     "ignore": [
       "**/*.yml",
       "**/*.svg",
-      "**/*.png"
+      "**/*.png",
+      "**/*.template"
     ],
     "linters": {
       "*": [

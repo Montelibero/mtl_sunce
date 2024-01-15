@@ -55,7 +55,7 @@ const useBalanceItemStyles = makeStyles({
     }
   },
   logo: {
-    boxShadow: "0 0 2px #fff",
+    boxShadow: "0 0 2px #000",
     boxSizing: "border-box",
     margin: 0,
     marginLeft: 0,
