@@ -746,6 +746,7 @@ export async function fetchLatestAccountEffect(horizonURL: string, accountID: st
 
 export interface FetchTransactionsOptions extends PaginationOptions {
   emptyOn404?: boolean
+  emptyOn410?: boolean
 }
 
 export async function fetchAccountTransactions(
@@ -766,7 +767,7 @@ export async function fetchAccountTransactions(
   )
   const response = await fetchQueue.add(() => fetch(String(url)), { priority: 1 })
 
-  if (response.status === 404 && options.emptyOn404) {
+  if ((response.status === 404 && options.emptyOn404) || (response.status === 410 && options.emptyOn410)) {
     return {
       _links: {
         next: { href: String(url) },
