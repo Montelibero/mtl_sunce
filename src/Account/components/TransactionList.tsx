@@ -571,7 +571,7 @@ function TransactionList(props: TransactionListProps) {
     [props.transactions, props.account.publicKey, props.account.testnet, classes.listItem, openTransaction]
   )
 
-  if (props.transactions.length === 0) {
+  if (props.transactions.length === 0 && !props.olderTransactionsAvailable) {
     return null
   }
 
