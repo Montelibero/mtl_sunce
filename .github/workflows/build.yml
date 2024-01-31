@@ -1,0 +1,72 @@
+name: Build and Release (Draft)
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build, Test and Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: get version
+        run: echo "PACKAGE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
+  build-app:
+      strategy:
+        fail-fast: false
+
+        matrix:
+          os: [ windows-latest, ubuntu-latest, macos-latest ]
+          include:
+            - os: windows-latest
+              script: "build:win"
+            - os: ubuntu-latest
+              script: "build:linux"
+            - os: macos-latest
+              script: "build:mac"
+
+      runs-on: ${{ matrix.os }}
+      steps:
+        - uses: actions/checkout@v4
+
+        - name: setup node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+
+        - name: Setup
+          run: npm ci
+
+        - name: Tooling (Linux)
+          if: matrix.os == 'ubuntu-latest'
+          run: |
+            sudo apt update
+            sudo apt install snapd
+            sudo snap install --classic snapcraft
+
+        - name: Tooling (Win)
+          if: matrix.os == 'windows-latest'
+          run: |
+            npm install -g win-node-env
+
+        - name: Test
+          run: npm test -- --no-watch --no-progress --browsers=ChromeHeadless
+          continue-on-error: true
+
+        - name: Build and Publish
+          run: npm run ${{matrix.script}}
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
