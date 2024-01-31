@@ -7,13 +7,11 @@ import { Account } from "~App/contexts/accounts"
 import { SettingsContext } from "~App/contexts/settings"
 import { SignatureDelegationContext } from "~App/contexts/signatureDelegation"
 import { useHorizonURLs } from "~Generic/hooks/stellar"
-import {
-  useLiveRecentTransactions,
-  useLiveAccountData,
-  useOlderTransactions
-} from "~Generic/hooks/stellar-subscriptions"
+import { useLiveAccountData } from "~Generic/hooks/stellar-subscriptions"
 import { useIsMobile, useRouter } from "~Generic/hooks/userinterface"
 import { useLoadingState } from "~Generic/hooks/util"
+import { DecodedTransactionResponse } from "~Generic/hooks/_caches"
+import useFilteredTransactions from "~Generic/hooks/useFilteredTransactions"
 import * as routes from "~App/routes"
 import MainSelectionButton from "~Generic/components/MainSelectionButton"
 import { VerticalLayout } from "~Layout/components/Box"
@@ -21,11 +19,6 @@ import FriendbotButton from "./FriendbotButton"
 import OfferList from "./OfferList"
 import { InteractiveSignatureRequestList } from "./SignatureRequestList"
 import TransactionList from "./TransactionList"
-import { FeeBumpTransaction, Horizon, Networks, Transaction, TransactionBuilder } from "stellar-sdk"
-
-interface DecodedTransactionResponse extends Horizon.TransactionResponse {
-  decodedTx: Transaction
-}
 
 const excludeClaimableFilter = (tx: DecodedTransactionResponse) =>
   !tx.decodedTx.operations.every(o => o.type === "createClaimableBalance")
@@ -80,8 +73,18 @@ function AccountTransactions(props: { account: Account }) {
   const horizonURLs = useHorizonURLs(account.testnet)
   const isSmallScreen = useIsMobile()
   const [moreTxsLoadingState, handleMoreTxsFetch] = useLoadingState()
-  const recentTxs = useLiveRecentTransactions(account.accountID, account.testnet)
-  const fetchMoreTransactions = useOlderTransactions(account.accountID, account.testnet)
+
+  const txsFilter = React.useCallback(
+    (txs: DecodedTransactionResponse[]) => txs.filter(excludeClaimableFilter), // TODO: make it switchable via UI (next task)
+    []
+  )
+
+  const { transactions, olderTransactionsAvailable, fetchMoreTransactions } = useFilteredTransactions(
+    account.accountID,
+    account.testnet,
+    txsFilter
+  )
+
   const router = useRouter()
   const settings = React.useContext(SettingsContext)
 
@@ -95,23 +98,6 @@ function AccountTransactions(props: { account: Account }) {
     router
   ])
 
-  const decodeTx = (envelopeXdr: string): Transaction => {
-    const decoded = TransactionBuilder.fromXDR(envelopeXdr, account.testnet ? Networks.TESTNET : Networks.PUBLIC)
-    return decoded instanceof FeeBumpTransaction ? decoded.innerTransaction : decoded
-  }
-
-  // TODO: keep decoded transaction in app cache, now only `recentTxs.transactions` are cached
-  const txs = React.useMemo(
-    () =>
-      recentTxs.transactions.map(tx => ({
-        ...tx,
-        decodedTx: decodeTx(tx.envelope_xdr)
-      })),
-    [recentTxs.transactions]
-  )
-
-  const filteredTxs = React.useMemo(() => txs.filter(excludeClaimableFilter), [txs])
-
   return (
     <>
       {accountData.balances.length > 0 ? (
@@ -122,11 +108,11 @@ function AccountTransactions(props: { account: Account }) {
             account={account}
             background="transparent"
             loadingMoreTransactions={moreTxsLoadingState.type === "pending"}
-            olderTransactionsAvailable={recentTxs.olderTransactionsAvailable}
+            olderTransactionsAvailable={olderTransactionsAvailable}
             onFetchMoreTransactions={handleFetchMoreTransactions}
             title={t("account.transactions.transaction-list.title")}
             testnet={account.testnet}
-            transactions={filteredTxs}
+            transactions={transactions}
           />
         </>
       ) : (

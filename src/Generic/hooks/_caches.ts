@@ -1,6 +1,6 @@
 import { TransferServerInfo } from "@satoshipay/stellar-transfer"
 import { multicast, Observable, ObservableLike } from "observable-fns"
-import { Asset, Horizon, ServerApi } from "stellar-sdk"
+import { Asset, Horizon, ServerApi, Transaction } from "stellar-sdk"
 import { trackError } from "~App/contexts/notifications"
 import { AccountData } from "../lib/account"
 import { FixedOrderbookRecord } from "../lib/orderbook"
@@ -98,9 +98,13 @@ function createAssetPairCacheKey([horizonURLs, selling, buying]: readonly [strin
   return `${horizonURLs.map(url => `${url}:`)}${stringifyAsset(selling)}:${stringifyAsset(buying)}`
 }
 
+export interface DecodedTransactionResponse extends Horizon.TransactionResponse {
+  decodedTx: Transaction
+}
+
 export interface TransactionHistory {
   olderTransactionsAvailable: boolean
-  transactions: Horizon.TransactionResponse[]
+  transactions: DecodedTransactionResponse[]
 }
 
 export interface OfferHistory {
