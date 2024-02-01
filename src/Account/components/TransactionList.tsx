@@ -409,6 +409,7 @@ export const TransactionListItem = React.memo(function TransactionListItem(props
   const isSmallScreen = useIsMobile()
 
   const { onOpenTransaction } = props
+  // TODO: take decoded tx from props
   const restoredTransaction = React.useMemo(
     () => TransactionBuilder.fromXDR(props.transactionEnvelopeXdr, props.testnet ? Networks.TESTNET : Networks.PUBLIC),
     [props.testnet, props.transactionEnvelopeXdr]
@@ -514,6 +515,7 @@ function TransactionList(props: TransactionListProps) {
     const network = props.account.testnet ? Networks.TESTNET : Networks.PUBLIC
     const txResponse = props.transactions.find(recentTx => recentTx.hash === openedTxHash)
 
+    // TODO: use decoded transaction from cache once we have it
     let tx = txResponse ? TransactionBuilder.fromXDR(txResponse.envelope_xdr, network) : null
 
     if (tx instanceof FeeBumpTransaction) {
@@ -569,7 +571,7 @@ function TransactionList(props: TransactionListProps) {
     [props.transactions, props.account.publicKey, props.account.testnet, classes.listItem, openTransaction]
   )
 
-  if (props.transactions.length === 0) {
+  if (props.transactions.length === 0 && !props.olderTransactionsAvailable) {
     return null
   }
 

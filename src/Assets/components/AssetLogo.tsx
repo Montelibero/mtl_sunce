@@ -10,11 +10,12 @@ const paddedAssetIconsRegex = /bitbondsto\.com/
 
 const useAssetLogoStyles = makeStyles({
   imageAvatar: {
-    backgroundColor: "white"
+    backgroundColor: "white",
+    boxShadow: "0px 0px 2px 1px #888888"
   },
   textAvatar: {
     background: `linear-gradient(145deg, ${brandColor.main} 0%, ${brandColor.dark} 35%, ${brandColor.dark} 75%, ${brandColor.main} 100%)`,
-    border: "1px solid rgba(255, 255, 255, 0.66)",
+    border: "1px solid rgba(0, 0, 0, 0.66)",
     color: "rgba(255, 255, 255, 1)",
     fontSize: 12,
     fontWeight: 500

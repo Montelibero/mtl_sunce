@@ -1,15 +1,15 @@
 {
-  "name": "io.solarwallet.app",
-  "version": "0.28.2",
-  "description": "Wallet for the Stellar payment network by SatoshiPay.",
+  "name": "org.montelibero.solar",
+  "version": "0.28.3",
+  "description": "Wallet for the Stellar payment network by Montelibero (based od SatoshiPay).",
   "license": "MIT",
   "private": true,
   "author": {
-    "name": "SatoshiPay Ltd",
-    "email": "hello@solarwallet.io"
+    "name": "Montelibero Movement",
+    "email": "solar@montelibero.org"
   },
   "homepage": "https://solarwallet.io/",
-  "repository": "github:satoshipay/solar",
+  "repository": "github:montelibero/mtl_solar",
   "main": "./electron/lib/index.prod.js",
   "scripts": {
     "precommit": "lint-staged",
@@ -24,10 +24,10 @@
     "prebuild:electron:ts": "npm run clean:electron:ts && cd electron && tsc",
     "prebuild:electron:ts:watch": "npm run clean:electron:ts && cd electron && tsc -w",
     "prebuild:electron": "run-s prebuild:electron:ts clean:dist prebuild:electron:bundle",
-    "build:linux": "PLATFORM=linux npm run prebuild:electron && electron-builder --linux --x64 --config ./electron-build.yml",
-    "build:mac": "PLATFORM=darwin npm run prebuild:electron && electron-builder --mac --x64 --config ./electron-build.yml",
+    "build:linux": "PLATFORM=linux npm run prebuild:electron && electron-builder -p always --linux --x64 --config ./electron-build.yml",
+    "build:mac": "PLATFORM=darwin npm run prebuild:electron && electron-builder -p always --mac --x64 --config ./electron-build.yml",
     "build:mac:signed": "source ./scripts/signing-env.sh mac && NOTARIZE=true npm run build:mac -- -c.forceCodeSigning=true",
-    "build:win": "PLATFORM=win32 npm run prebuild:electron && electron-builder --win --ia32 --config ./electron-build.yml",
+    "build:win": "export arch=x64|| set arch=x64 && npm run prebuild:electron && electron-builder -p always --win --x64 --config ./electron-build.yml",
     "build:win:signed": "source ./scripts/signing-env.sh win && npm run build:win -- -c.forceCodeSigning=true",
     "dev": "run-p prebuild:electron:ts:watch dev:bundle dev:app:delayed",
     "dev:app": "NODE_ENV=development TS_NODE_PROJECT=./electron/tsconfig.json run-electron -r ts-node/register/transpile-only ./electron/src/index.dev",
@@ -38,7 +38,8 @@
     "ignore": [
       "**/*.yml",
       "**/*.svg",
-      "**/*.png"
+      "**/*.png",
+      "**/*.template"
     ],
     "linters": {
       "*": [

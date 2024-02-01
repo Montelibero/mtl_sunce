@@ -39,10 +39,10 @@
   },
   "custom-trustline": {
     "action": {
-      "cancel": "Cancel",
+      "cancel": "Отмена",
       "trust": {
-        "long": "Доверять активу",
-        "short": "Доверять"
+        "long": "Добавить актив",
+        "short": "Добавить"
       }
     },
     "textfield": {
@@ -58,7 +58,7 @@
         "placeholder": "Ограничить доверие к этому активу / максимальный баланс для хранения"
       }
     },
-    "title": "Add Custom Asset"
+    "title": "Добавить пользовательский актив"
   },
   "export-key": {
     "action": {

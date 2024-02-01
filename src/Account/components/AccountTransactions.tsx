@@ -7,13 +7,11 @@ import { Account } from "~App/contexts/accounts"
 import { SettingsContext } from "~App/contexts/settings"
 import { SignatureDelegationContext } from "~App/contexts/signatureDelegation"
 import { useHorizonURLs } from "~Generic/hooks/stellar"
-import {
-  useLiveRecentTransactions,
-  useLiveAccountData,
-  useOlderTransactions
-} from "~Generic/hooks/stellar-subscriptions"
+import { useLiveAccountData } from "~Generic/hooks/stellar-subscriptions"
 import { useIsMobile, useRouter } from "~Generic/hooks/userinterface"
 import { useLoadingState } from "~Generic/hooks/util"
+import { DecodedTransactionResponse } from "~Generic/hooks/_caches"
+import useFilteredTransactions from "~Generic/hooks/useFilteredTransactions"
 import * as routes from "~App/routes"
 import MainSelectionButton from "~Generic/components/MainSelectionButton"
 import { VerticalLayout } from "~Layout/components/Box"
@@ -21,6 +19,9 @@ import FriendbotButton from "./FriendbotButton"
 import OfferList from "./OfferList"
 import { InteractiveSignatureRequestList } from "./SignatureRequestList"
 import TransactionList from "./TransactionList"
+
+const excludeClaimableFilter = (tx: DecodedTransactionResponse) =>
+  !tx.decodedTx.operations.every(o => o.type === "createClaimableBalance")
 
 function PendingMultisigTransactions(props: { account: Account }) {
   const { pendingSignatureRequests } = React.useContext(SignatureDelegationContext)
@@ -72,8 +73,18 @@ function AccountTransactions(props: { account: Account }) {
   const horizonURLs = useHorizonURLs(account.testnet)
   const isSmallScreen = useIsMobile()
   const [moreTxsLoadingState, handleMoreTxsFetch] = useLoadingState()
-  const recentTxs = useLiveRecentTransactions(account.accountID, account.testnet)
-  const fetchMoreTransactions = useOlderTransactions(account.accountID, account.testnet)
+
+  const txsFilter = React.useCallback(
+    (txs: DecodedTransactionResponse[]) => txs.filter(excludeClaimableFilter), // TODO: make it switchable via UI (next task)
+    []
+  )
+
+  const { transactions, olderTransactionsAvailable, fetchMoreTransactions } = useFilteredTransactions(
+    account.accountID,
+    account.testnet,
+    txsFilter
+  )
+
   const router = useRouter()
   const settings = React.useContext(SettingsContext)
 
@@ -97,11 +108,11 @@ function AccountTransactions(props: { account: Account }) {
             account={account}
             background="transparent"
             loadingMoreTransactions={moreTxsLoadingState.type === "pending"}
-            olderTransactionsAvailable={recentTxs.olderTransactionsAvailable}
+            olderTransactionsAvailable={olderTransactionsAvailable}
             onFetchMoreTransactions={handleFetchMoreTransactions}
             title={t("account.transactions.transaction-list.title")}
             testnet={account.testnet}
-            transactions={recentTxs.transactions}
+            transactions={transactions}
           />
         </>
       ) : (
