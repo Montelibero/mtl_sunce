@@ -44,7 +44,7 @@ export function useTransferInfos(
   assets: Asset[],
   testnet: boolean,
   assetTransferDomainOverrides: Record<string, string> = {}
-): Array<TransferServerInfo | undefined> {
+): (TransferServerInfo | undefined)[] {
   const accountIDs = assets.map(asset => asset.issuer).filter(issuer => Boolean(issuer))
   const homeDomains = useAccountHomeDomains(accountIDs, testnet)
 

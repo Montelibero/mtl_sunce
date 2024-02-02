@@ -9,32 +9,26 @@ import { isPublicKey } from "../lib/stellar-address"
 type Variant = "full" | "short" | "shorter"
 
 function getDigitCounts(variant?: Variant) {
-  if (variant === "short") {
-    return {
-      leading: 6,
-      trailing: 6
-    }
-  } else {
-    return {
-      leading: 4,
-      trailing: 4
-    }
-  }
+  return variant === "short"
+    ? {
+        leading: 6,
+        trailing: 6
+      }
+    : {
+        leading: 4,
+        trailing: 4
+      }
 }
 
 function shortenName(name: string, intendedLength: number) {
-  if (name.length <= intendedLength) {
-    return name
-  } else {
-    return (
-      name.substr(0, intendedLength - 3).trim() +
-      "…" +
-      name
-        .substr(intendedLength - 3)
-        .substr(-3)
-        .trim()
-    )
-  }
+  return name.length <= intendedLength
+    ? name
+    : name.substr(0, intendedLength - 3).trim() +
+        "…" +
+        name
+          .substr(intendedLength - 3)
+          .substr(-3)
+          .trim()
 }
 
 interface PublicKeyProps {

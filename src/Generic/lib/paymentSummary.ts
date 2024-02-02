@@ -1,16 +1,16 @@
 import BigNumber from "big.js"
 import { Asset, Operation, Transaction } from "stellar-sdk"
 
-export type PaymentSummary = Array<{
+export type PaymentSummary = {
   asset: Asset
   balanceChange: BigNumber
   publicKeys: string[]
-}>
+}[]
 
 export function getPaymentSummary(accountPublicKey: string, transaction: Transaction) {
   const balanceChanges: PaymentSummary = []
 
-  const paymentOps: Array<Operation.Payment | Operation.CreateAccount> = transaction.operations.filter(
+  const paymentOps: (Operation.Payment | Operation.CreateAccount)[] = transaction.operations.filter(
     op => op.type === "payment" || op.type === "createAccount"
   ) as any
 

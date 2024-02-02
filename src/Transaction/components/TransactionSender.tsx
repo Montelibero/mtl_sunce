@@ -101,8 +101,8 @@ interface State {
   submissionStatus: "before" | "pending" | "fulfilled" | "rejected"
   submissionType: SubmissionType
   submissionPromise: Promise<any> | null
-  submissionSuccessCallbacks: Array<() => void>
-  submissionClosedCallbacks: Array<() => void>
+  submissionSuccessCallbacks: (() => void)[]
+  submissionClosedCallbacks: (() => void)[]
   signedTransaction: Transaction | null
   unsignedTransaction: Transaction | null
 }

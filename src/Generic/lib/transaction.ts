@@ -104,7 +104,7 @@ interface TxBlueprint {
   walletAccount: Account
 }
 
-export async function createTransaction(operations: Array<xdr.Operation<any>>, options: TxBlueprint) {
+export async function createTransaction(operations: xdr.Operation<any>[], options: TxBlueprint) {
   const { horizon, walletAccount } = options
   const { netWorker } = await workers
 

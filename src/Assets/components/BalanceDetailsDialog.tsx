@@ -23,11 +23,9 @@ import AddAssetDialog from "./AddAssetDialog"
 import BalanceDetailsListItem from "./BalanceDetailsListItem"
 
 function isAssetMatchingBalance(asset: Asset, balance: BalanceLine): boolean {
-  if (balance.asset_type === "native") {
-    return asset.isNative()
-  } else {
-    return balance.asset_code === asset.getCode() && balance.asset_issuer === asset.getIssuer()
-  }
+  return balance.asset_type === "native"
+    ? asset.isNative()
+    : balance.asset_code === asset.getCode() && balance.asset_issuer === asset.getIssuer()
 }
 
 interface TrustedAssetsProps {

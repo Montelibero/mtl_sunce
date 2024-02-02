@@ -34,9 +34,9 @@ function withDecodedTx(tx: Horizon.TransactionResponse, network: Networks): Deco
 
 function useDataSubscriptions<DataT, UpdateT>(
   reducer: (prev: DataT, update: UpdateT) => DataT,
-  items: Array<{ get(): DataT; set(value: DataT): void; observe(): ObservableLike<UpdateT> }>
+  items: { get(): DataT; set(value: DataT): void; observe(): ObservableLike<UpdateT> }[]
 ): DataT[] {
-  const unfinishedFetches: Array<Promise<DataT>> = []
+  const unfinishedFetches: Promise<DataT>[] = []
   const [, setRefreshCounter] = useDebouncedState(0, 100)
 
   const currentDataSets = mapSuspendables(items, item => item.get())
@@ -185,18 +185,16 @@ export function useOlderOffers(accountID: string, testnet: boolean) {
       const limit = 10
       const prevOffers = history?.offers || []
 
-      if (prevOffers.length > 0) {
-        fetched = await netWorker.fetchAccountOpenOrders(horizonURLs, accountID, {
-          cursor: prevOffers[prevOffers.length - 1].paging_token,
-          limit,
-          order: "desc"
-        })
-      } else {
-        fetched = await netWorker.fetchAccountOpenOrders(horizonURLs, accountID, {
-          limit,
-          order: "desc"
-        })
-      }
+      fetched = await (prevOffers.length > 0
+        ? netWorker.fetchAccountOpenOrders(horizonURLs, accountID, {
+            cursor: prevOffers[prevOffers.length - 1].paging_token,
+            limit,
+            order: "desc"
+          })
+        : netWorker.fetchAccountOpenOrders(horizonURLs, accountID, {
+            limit,
+            order: "desc"
+          }))
 
       const fetchedOffers: ServerApi.OfferRecord[] = fetched._embedded.records
 
@@ -277,14 +275,12 @@ const txsMatch = (a: Horizon.TransactionResponse, b: Horizon.TransactionResponse
 
 function applyAccountTransactionsUpdate(network: Networks) {
   return (prev: TransactionHistory, update: DecodedTransactionResponse): TransactionHistory => {
-    if (prev.transactions.some(tx => txsMatch(tx, update))) {
-      return prev
-    } else {
-      return {
-        ...prev,
-        transactions: [withDecodedTx(update, network), ...prev.transactions]
-      }
-    }
+    return prev.transactions.some(tx => txsMatch(tx, update))
+      ? prev
+      : {
+          ...prev,
+          transactions: [withDecodedTx(update, network), ...prev.transactions]
+        }
   }
 }
 
@@ -357,7 +353,9 @@ export function useOlderTransactions(accountID: string, testnet: boolean) {
             limit: 15,
             order: "desc"
           })
-        } catch (e) {}
+        } catch (e) {
+          fetched = ({ _embedded: { records: [] } } as unknown) as CollectionPage<Horizon.TransactionResponse>
+        }
       } else {
         fetched = await netWorker.fetchAccountTransactions(horizonURLs, accountID, {
           emptyOn404: true,

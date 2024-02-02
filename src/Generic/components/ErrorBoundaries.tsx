@@ -36,11 +36,7 @@ function ErrorBoundary<Props extends { children: React.ReactNode }>(
     render() {
       const { error } = this.state
 
-      if (error) {
-        return <View {...this.props} error={error} />
-      } else {
-        return <>{this.props.children}</>
-      }
+      return error ? <View {...this.props} error={error} /> : <>{this.props.children}</>
     }
   }
 }

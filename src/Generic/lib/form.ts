@@ -10,9 +10,5 @@ export function replaceCommaWithDot(input: string) {
 // should be used when creating a Big from user input because there are issues with
 // parsing a Big from number-strings with a comma on iOS
 export function FormBigNumber(value: BigSource) {
-  if (typeof value === "string") {
-    return BigNumber(replaceCommaWithDot(value))
-  } else {
-    return BigNumber(value)
-  }
+  return typeof value === "string" ? BigNumber(replaceCommaWithDot(value)) : BigNumber(value)
 }

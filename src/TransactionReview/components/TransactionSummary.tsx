@@ -256,19 +256,17 @@ function TransactionSummary(props: TransactionSummaryProps) {
   const wideScreen = useMediaQuery("(min-width:900px)")
   const widthStyling = wideScreen ? { maxWidth: 700, minWidth: 320 } : { minWidth: "66vw" }
 
-  if (isStellarWebAuthTransaction(props.transaction)) {
-    return <WebAuthTransactionSummary style={widthStyling} testnet={props.testnet} transaction={props.transaction} />
-  } else {
-    return (
-      <DefaultTransactionSummary
-        {...props}
-        accountData={accountData}
-        isDangerousSignatureRequest={isDangerousSignatureRequest}
-        showHash={props.showHash}
-        showSigners={showSigners}
-      />
-    )
-  }
+  return isStellarWebAuthTransaction(props.transaction) ? (
+    <WebAuthTransactionSummary style={widthStyling} testnet={props.testnet} transaction={props.transaction} />
+  ) : (
+    <DefaultTransactionSummary
+      {...props}
+      accountData={accountData}
+      isDangerousSignatureRequest={isDangerousSignatureRequest}
+      showHash={props.showHash}
+      showSigners={showSigners}
+    />
+  )
 }
 
 export default React.memo(TransactionSummary)

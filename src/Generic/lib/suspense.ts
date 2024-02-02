@@ -10,7 +10,7 @@ export function mapSuspendables<In, Out>(
     ignoreSingleErrors?: boolean
   } = {}
 ): Out[] {
-  const pendingSuspenses: Array<Promise<any>> = []
+  const pendingSuspenses: Promise<any>[] = []
   const rejections: Error[] = []
 
   const result = array.map((element, index) => {

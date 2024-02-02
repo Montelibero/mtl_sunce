@@ -37,11 +37,7 @@ export function subscribeToMessages<Message extends keyof IPC.MessageType>(
   callback: (message: any) => void
 ): UnsubscribeFn {
   // subscribing to deep link urls is the only use case right now
-  if (messageType === Messages.DeepLinkURL) {
-    return subscribeToDeepLinkURLs(callback)
-  } else {
-    return () => undefined
-  }
+  return messageType === Messages.DeepLinkURL ? subscribeToDeepLinkURLs(callback) : () => undefined
 }
 
 callHandlers[Messages.CopyToClipboard] = (text: string) => (navigator as any).clipboard.writeText(text)

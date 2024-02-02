@@ -118,7 +118,7 @@ function createSearchResultRow(
   // tslint:disable-next-line interface-over-type-literal
   type IssuerItemRecord = { type: "issuer"; issuer: string }
 
-  const itemRenderMap: Array<AssetItemRecord | IssuerItemRecord> = []
+  const itemRenderMap: (AssetItemRecord | IssuerItemRecord)[] = []
 
   for (const issuer of Object.keys(assetsByIssuer)) {
     itemRenderMap.push({

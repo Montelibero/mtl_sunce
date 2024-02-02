@@ -70,7 +70,7 @@ const useAssetSelectorStyles = makeStyles({
 
 interface AssetSelectorProps {
   autoFocus?: TextFieldProps["autoFocus"]
-  assets: Array<Asset | BalanceLine>
+  assets: (Asset | BalanceLine)[]
   children?: React.ReactNode
   className?: string
   disabledAssets?: Asset[]

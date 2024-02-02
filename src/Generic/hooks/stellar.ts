@@ -163,7 +163,7 @@ export function useAccountHomeDomains(
   accountIDs: string[],
   testnet: boolean,
   allowIncompleteResult?: boolean
-): Array<string | undefined> {
+): (string | undefined)[] {
   const horizonURLs = useHorizonURLs(testnet)
   const netWorker = useNetWorker()
   const [, setRerenderCounter] = React.useState(0)

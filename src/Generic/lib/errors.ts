@@ -54,19 +54,11 @@ function isSerializedCustomError(thing: any): thing is SerializedCustomError {
 
 export const CustomErrorSerializer: SerializerImplementation = {
   deserialize(message, defaultHandler) {
-    if (isSerializedCustomError(message)) {
-      return CustomError.deserialize(message)
-    } else {
-      return defaultHandler(message)
-    }
+    return isSerializedCustomError(message) ? CustomError.deserialize(message) : defaultHandler(message)
   },
 
   serialize(thing, defaultHandler) {
-    if (CustomError.isCustomError(thing)) {
-      return CustomError.serialize(thing) as any
-    } else {
-      return defaultHandler(thing)
-    }
+    return CustomError.isCustomError(thing) ? (CustomError.serialize(thing) as any) : defaultHandler(thing)
   }
 }
 

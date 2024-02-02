@@ -36,7 +36,7 @@ import { SingleBalance } from "./AccountBalances"
 const dedupe = <T extends any>(array: T[]): T[] => Array.from(new Set(array))
 const doNothing = () => undefined
 
-function sum(...amounts: Array<string | number | BigNumber>): BigNumber {
+function sum(...amounts: (string | number | BigNumber)[]): BigNumber {
   return amounts.reduce<BigNumber>((total, amount) => total.add(amount), BigNumber(0))
 }
 

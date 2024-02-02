@@ -24,36 +24,32 @@ export function FormBuilderField(props: FormBuilderFieldProps) {
     ? t("transfer-service.form-builder.placeholder.optional", `(Optional) ${formattedName}`, { name: formattedName })
     : formattedName
 
-  if (choices) {
-    return (
-      <TextField
-        helperText={formattedDescription}
-        label={formattedName}
-        onChange={props.onChange}
-        placeholder={placeholder}
-        select
-        style={{ flexGrow: 1, ...props.style }}
-        value={props.value}
-      >
-        {choices.map((choice, index) => (
-          <MenuItem key={index} value={choice}>
-            {formatIdentifier(choice)}
-          </MenuItem>
-        ))}
-      </TextField>
-    )
-  } else {
-    return (
-      <TextField
-        helperText={formattedDescription}
-        label={formattedName}
-        onChange={props.onChange}
-        placeholder={placeholder}
-        style={{ flexGrow: 1, ...props.style }}
-        value={props.value || ""}
-      />
-    )
-  }
+  return choices ? (
+    <TextField
+      helperText={formattedDescription}
+      label={formattedName}
+      onChange={props.onChange}
+      placeholder={placeholder}
+      select
+      style={{ flexGrow: 1, ...props.style }}
+      value={props.value}
+    >
+      {choices.map((choice, index) => (
+        <MenuItem key={index} value={choice}>
+          {formatIdentifier(choice)}
+        </MenuItem>
+      ))}
+    </TextField>
+  ) : (
+    <TextField
+      helperText={formattedDescription}
+      label={formattedName}
+      onChange={props.onChange}
+      placeholder={placeholder}
+      style={{ flexGrow: 1, ...props.style }}
+      value={props.value || ""}
+    />
+  )
 }
 
 interface Props {
