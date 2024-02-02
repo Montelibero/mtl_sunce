@@ -42,7 +42,7 @@
       "**/*.template"
     ],
     "linters": {
-      "*": [
+      "*.{json,yml,md,njk,ts,tsx,js,jsx}": [
         "prettier --write",
         "git add"
       ]
