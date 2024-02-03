@@ -510,7 +510,7 @@ function TransactionList(props: TransactionListProps) {
 
     // tslint:disable-next-line prefer-object-spread
     return tx && txResponse ? Object.assign(tx, { created_at: txResponse.created_at }) : tx
-  }, [openedTxHash, props.account.testnet, props.transactions])
+  }, [openedTxHash, props.transactions])
 
   const openTransaction = React.useCallback(
     (transactionHash: string) => {
