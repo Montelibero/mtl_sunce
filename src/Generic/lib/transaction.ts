@@ -12,6 +12,7 @@ import {
   Networks,
   MuxedAccount
 } from "stellar-sdk"
+import BigNumber from "big.js"
 import { Account } from "~App/contexts/accounts"
 import { workers } from "~Workers/worker-controller"
 import { WrongPasswordError, CustomError } from "./errors"
@@ -19,6 +20,7 @@ import { applyTimeout } from "./promise"
 import { getAllSources, isNotFoundError } from "./stellar"
 import { isMuxedAddress } from "./stellar-address"
 import { MultisigTransactionResponse } from "./multisig-service"
+import { getPaymentSummary } from "./paymentSummary"
 
 /** in stroops */
 const maximumFeeToSpend = 1_000_000
@@ -229,4 +231,19 @@ export function isStellarWebAuthTransaction(transaction: Transaction) {
     firstOperation.type === "manageData" &&
     firstOperation.name.match(/ auth$/i)
   )
+}
+
+export const DUST_THRESHOLD = BigNumber(0.001)
+
+export function isDustTransaction(tx: Transaction, account: Account) {
+  const paymentSummary = getPaymentSummary(account.publicKey, tx)
+
+  // not a payment
+  if (paymentSummary.length === 0) return false
+
+  // payment to self
+  if (paymentSummary.every(payment => payment.publicKeys.every(pubkey => pubkey === account.publicKey))) return false
+
+  // native payment with dust amount
+  return paymentSummary[0].asset.getCode() === "XLM" && paymentSummary[0].balanceChange.abs() <= DUST_THRESHOLD
 }

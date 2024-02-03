@@ -44,7 +44,7 @@ export function getPaymentSummary(accountPublicKey: string, transaction: Transac
       balanceChanges.push({
         asset,
         balanceChange,
-        publicKeys: remotePublicKey ? [remotePublicKey] : []
+        publicKeys: remotePublicKey ? [remotePublicKey] : [] // TODO: this doesn't work okay for incloming multisig txs?
       })
     }
   }
