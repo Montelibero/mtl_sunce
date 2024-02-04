@@ -34,7 +34,8 @@ module.exports = async function(params) {
     appBundleId: appId,
     appPath: appPath,
     appleId: process.env.APPLE_ID || fail("APPLE_ID has not been set."),
-    appleIdPassword: process.env.APPLE_ID_PASSWORD || fail("APPLE_ID_PASSWORD has not been set.")
+    appleIdPassword: process.env.APPLE_ID_PASSWORD || fail("APPLE_ID_PASSWORD has not been set."),
+    teamId: process.env.APPLE_ID_TEAM || fail("APPLE_ID_TEAM has not been set.")
   })
 
   console.log(`Done notarizing ${appId}`)
