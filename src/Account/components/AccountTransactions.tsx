@@ -19,9 +19,13 @@ import FriendbotButton from "./FriendbotButton"
 import OfferList from "./OfferList"
 import { InteractiveSignatureRequestList } from "./SignatureRequestList"
 import TransactionList from "./TransactionList"
+import { isDustTransaction } from "~Generic/lib/transaction"
 
 const excludeClaimableFilter = (tx: DecodedTransactionResponse) =>
   !tx.decodedTx.operations.every(o => o.type === "createClaimableBalance")
+
+const excludeDustFilter = (account: Account, tx: DecodedTransactionResponse) =>
+  !isDustTransaction(tx.decodedTx, account)
 
 function PendingMultisigTransactions(props: { account: Account }) {
   const { pendingSignatureRequests } = React.useContext(SignatureDelegationContext)
@@ -75,7 +79,8 @@ function AccountTransactions(props: { account: Account }) {
   const [moreTxsLoadingState, handleMoreTxsFetch] = useLoadingState()
 
   const txsFilter = React.useCallback(
-    (txs: DecodedTransactionResponse[]) => txs.filter(excludeClaimableFilter), // TODO: make it switchable via UI (next task)
+    (txs: DecodedTransactionResponse[]) =>
+      txs.filter(tx => excludeClaimableFilter(tx) && excludeDustFilter(account, tx)), // TODO: make it switchable via UI (next task)
     []
   )
 
