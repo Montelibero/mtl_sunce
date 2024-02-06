@@ -11,6 +11,8 @@ declare namespace Platform {
     multisignature: boolean
     testnet: boolean
     trustedServices: TrustedService[]
+    showDust: boolean
+    showClaimableBalanceTxs: boolean
   }
 }
 

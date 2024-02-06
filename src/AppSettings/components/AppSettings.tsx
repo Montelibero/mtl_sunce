@@ -14,6 +14,8 @@ import {
   HideMemoSetting,
   LanguageSetting,
   MultiSigSetting,
+  ShowClaimableBalanceSetting,
+  ShowDustSetting,
   TestnetSetting,
   TrustedServicesSetting
 } from "./Settings"
@@ -73,6 +75,11 @@ function AppSettings() {
         />
         <HideMemoSetting onToggle={settings.toggleHideMemos} value={settings.hideMemos} />
         <MultiSigSetting onToggle={settings.toggleMultiSignature} value={settings.multiSignature} />
+        <ShowDustSetting onToggle={settings.toggleShowDust} value={settings.showDust} />
+        <ShowClaimableBalanceSetting
+          onToggle={settings.toggleShowClaimableBalanceTxs}
+          value={settings.showClaimableBalanceTxs}
+        />
         {trustedServicesEnabled ? <TrustedServicesSetting onClick={navigateToTrustedServices} /> : undefined}
       </List>
       <SettingsDialogs />

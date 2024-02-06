@@ -72,6 +72,7 @@ function PendingMultisigTransactions(props: { account: Account }) {
 
 function AccountTransactions(props: { account: Account }) {
   const { account } = props
+  const { showDust, showClaimableBalanceTxs } = React.useContext(SettingsContext)
   const { t } = useTranslation()
   const accountData = useLiveAccountData(account.accountID, account.testnet)
   const horizonURLs = useHorizonURLs(account.testnet)
@@ -80,7 +81,9 @@ function AccountTransactions(props: { account: Account }) {
 
   const txsFilter = React.useCallback(
     (txs: DecodedTransactionResponse[]) =>
-      txs.filter(tx => excludeClaimableFilter(tx) && excludeDustFilter(account, tx)), // TODO: make it switchable via UI (next task)
+      txs.filter(tx => {
+        return (showClaimableBalanceTxs || excludeClaimableFilter(tx)) && (showDust || excludeDustFilter(account, tx))
+      }),
     []
   )
 

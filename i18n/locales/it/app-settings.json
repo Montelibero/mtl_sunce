@@ -60,6 +60,24 @@
         "primary": "Gestisci servizi attendibili",
         "secondary": "Rimuovi servizi attendibili"
       }
+    },
+    "dust": {
+      "text": {
+        "primary": "Mostra transazioni di polvere",
+        "secondary": {
+          "hidden": "Le transazioni inferiori a 0,001 XLM sono nascoste nella vista delle transazioni",
+          "shown": "Le transazioni inferiori a 0,001 XLM vengono visualizzate nella vista delle transazioni"
+        }
+      }
+    },
+    "create-claimable-balance": {
+      "text": {
+        "primary": "Mostra le transazioni Creare Saldo Reclamabile",
+        "secondary": {
+          "hidden": "Le transazioni Crea Saldo Reclamabile sono nascoste nella vista delle transazioni",
+          "shown": "Le transazioni Crea Saldo Reclamabile sono visualizzate nella vista transazioni"
+        }
+      }
     }
   },
   "trusted-services": {
