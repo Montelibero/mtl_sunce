@@ -60,6 +60,24 @@
         "primary": "Управление доверенными сервисами",
         "secondary": "Удаление доверенных сервисов"
       }
+    },
+    "dust": {
+      "text": {
+        "primary": "Показывать пыль",
+        "secondary": {
+          "hidden": "Транзакции меньше, чем 0.001 XLM, скрыты в списке транзакций",
+          "shown": "Транзакции меньше, чем 0.001 XLM, видны в списке транзакций"
+        }
+      }
+    },
+    "create-claimable-balance": {
+      "text": {
+        "primary": "Показывать траназакции Create Claimable Balance",
+        "secondary": {
+          "hidden": "Транзакции Create Claimable Balance скрыты в списке транзакций",
+          "shown": "Транзакции Create Claimable Balance видны в списке транзакций"
+        }
+      }
     }
   },
   "trusted-services": {

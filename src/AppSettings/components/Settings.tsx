@@ -7,6 +7,8 @@ import Switch from "@material-ui/core/Switch"
 import { makeStyles } from "@material-ui/core/styles"
 import ArrowRightIcon from "@material-ui/icons/KeyboardArrowRight"
 import FingerprintIcon from "@material-ui/icons/Fingerprint"
+import BlurOffIcon from "@material-ui/icons/BlurOff"
+import ReportOffIcon from "@material-ui/icons/ReportOff"
 import GroupIcon from "@material-ui/icons/Group"
 import LanguageIcon from "@material-ui/icons/Language"
 import MessageIcon from "@material-ui/icons/Message"
@@ -158,6 +160,42 @@ export const MultiSigSetting = React.memo(function MultiSigSetting(props: Settin
         props.value
           ? t("app-settings.settings.multi-sig.text.secondary.enabled")
           : t("app-settings.settings.multi-sig.text.secondary.disabled")
+      }
+    />
+  )
+})
+
+export const ShowDustSetting = React.memo(function ShowDustSetting(props: SettingProps) {
+  const classes = useSettingsStyles(props)
+  const { t } = useTranslation()
+  return (
+    <AppSettingsItem
+      actions={<SettingsToggle checked={props.value} onChange={props.onToggle} />}
+      icon={<BlurOffIcon className={classes.icon} />}
+      onClick={props.onToggle}
+      primaryText={t("app-settings.settings.dust.text.primary")}
+      secondaryText={
+        props.value
+          ? t("app-settings.settings.dust.text.secondary.shown")
+          : t("app-settings.settings.dust.text.secondary.hidden")
+      }
+    />
+  )
+})
+
+export const ShowClaimableBalanceSetting = React.memo(function ShowClaimableBalanceSetting(props: SettingProps) {
+  const classes = useSettingsStyles(props)
+  const { t } = useTranslation()
+  return (
+    <AppSettingsItem
+      actions={<SettingsToggle checked={props.value} onChange={props.onToggle} />}
+      icon={<ReportOffIcon className={classes.icon} />}
+      onClick={props.onToggle}
+      primaryText={t("app-settings.settings.create-claimable-balance.text.primary")}
+      secondaryText={
+        props.value
+          ? t("app-settings.settings.create-claimable-balance.text.secondary.shown")
+          : t("app-settings.settings.create-claimable-balance.text.secondary.hidden")
       }
     />
   )
