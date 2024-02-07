@@ -5,8 +5,8 @@
   "displayName": "Solar",
   "cordova": {
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ],
     "plugins": {
       "cordova-plugin-secure-storage": {},
@@ -29,7 +29,8 @@
       "cordova-plugin-fingerprint-aio": {
         "FACEID_USAGE_DESCRIPTION": "Login now...."
       },
-      "cordova-plugin-network-information": {}
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-proguard": {}
     }
   },
   "dependencies": {
@@ -53,6 +54,7 @@
     "cordova-plugin-device": "^2.1.0",
     "cordova-plugin-fingerprint-aio": "^5.0.1",
     "cordova-plugin-network-information": "^3.0.0",
+    "cordova-plugin-proguard": "^2.2.0",
     "cordova-plugin-secure-storage": "github:satoshipay/cordova-plugin-secure-storage",
     "dotenv-cli": "^2.0.0",
     "json": "^10.0.0",
