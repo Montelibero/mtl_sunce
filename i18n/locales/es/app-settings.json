@@ -60,6 +60,24 @@
         "primary": "Administrar Trusted Services",
         "secondary": "Remover Trusted Services"
       }
+    },
+    "dust": {
+      "text": {
+        "primary": "Mostrar transacciones de polvo",
+        "secondary": {
+          "hidden": "Las transacciones inferiores a 0,001 XLM no se muestran en la vista de transacciones",
+          "shows": "Las transacciones inferiores a 0,001 XLM se muestran en la vista de transacciones"
+        }
+      }
+    },
+    "create-claimable-balance": {
+      "text": {
+        "primary": "Mostrar transacciones de Crear Saldo Reclamable",
+        "secondary": {
+          "hidden": "Las transacciones de Crear Saldo Reclamable no se muestran en la vista de transacciones",
+          "shown": "Las transacciones de Crear Saldo Reclamable se muestran en la vista de transacciones"
+        }
+      }
     }
   },
   "trusted-services": {

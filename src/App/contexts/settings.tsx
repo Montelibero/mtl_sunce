@@ -30,10 +30,14 @@ interface ContextType {
   setLanguage: (language: string | undefined) => void
   setSetting: (key: keyof Platform.SettingsData, value: any) => void
   showTestnet: boolean
+  showDust: boolean
+  showClaimableBalanceTxs: boolean
   toggleBiometricLock: () => void
   toggleMultiSignature: () => void
   toggleTestnet: () => void
   toggleHideMemos: () => void
+  toggleShowDust: () => void
+  toggleShowClaimableBalanceTxs: () => void
   trustedServices: TrustedService[]
   updateAvailable: boolean
 }
@@ -49,6 +53,8 @@ const initialSettings: SettingsState = {
   initialized: false,
   multisignature: false,
   testnet: false,
+  showDust: false,
+  showClaimableBalanceTxs: false,
   trustedServices: []
 }
 
@@ -70,11 +76,15 @@ const SettingsContext = React.createContext<ContextType>({
   multiSignatureCoordinator,
   setLanguage: () => undefined,
   setSetting: () => undefined,
+  showDust: false,
+  showClaimableBalanceTxs: false,
   showTestnet: initialSettings.testnet,
   toggleBiometricLock: () => undefined,
   toggleMultiSignature: () => undefined,
   toggleTestnet: () => undefined,
   toggleHideMemos: () => undefined,
+  toggleShowDust: () => undefined,
+  toggleShowClaimableBalanceTxs: () => undefined,
   trustedServices: initialSettings.trustedServices,
   updateAvailable: false
 })
@@ -133,6 +143,9 @@ export function SettingsProvider(props: Props) {
   const toggleMultiSignature = () => updateSettings({ multisignature: !settings.multisignature })
   const toggleTestnet = () => updateSettings({ testnet: !settings.testnet })
   const toggleHideMemos = () => updateSettings({ hideMemos: !settings.hideMemos })
+  const toggleShowDust = () => updateSettings({ showDust: !settings.showDust })
+  const toggleShowClaimableBalanceTxs = () =>
+    updateSettings({ showClaimableBalanceTxs: !settings.showClaimableBalanceTxs })
 
   const setLanguage = (language: string | undefined) => {
     if (language) {
@@ -174,10 +187,14 @@ export function SettingsProvider(props: Props) {
     setLanguage,
     setSetting,
     showTestnet: settings.testnet,
+    showDust: settings.showDust,
+    showClaimableBalanceTxs: settings.showClaimableBalanceTxs,
     toggleBiometricLock,
     toggleMultiSignature,
     toggleTestnet,
     toggleHideMemos,
+    toggleShowDust,
+    toggleShowClaimableBalanceTxs,
     trustedServices: settings.trustedServices,
     updateAvailable
   }

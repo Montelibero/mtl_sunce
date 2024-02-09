@@ -60,6 +60,24 @@
         "primary": "Manage Trusted Services",
         "secondary": "Remove Trusted Services"
       }
+    },
+    "dust": {
+      "text": {
+        "primary": "Show dust transactions",
+        "secondary": {
+          "hidden": "Transactions smaller than 0.001 XLM are hidden in transaction list",
+          "shown": "Transactions smaller than 0.001 XLM are shown in transaction list"
+        }
+      }
+    },
+    "create-claimable-balance": {
+      "text": {
+        "primary": "Show Create Claimable Balance transactions",
+        "secondary": {
+          "hidden": "Create Claimable Balance transactions are hidden in transaction list",
+          "shown": "Create Claimable Balance transactions are shown in transaction list"
+        }
+      }
     }
   },
   "trusted-services": {
