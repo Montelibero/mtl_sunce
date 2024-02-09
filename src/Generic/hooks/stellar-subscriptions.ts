@@ -269,9 +269,7 @@ export function useLiveOrderbook(selling: Asset, buying: Asset, testnet: boolean
   return useDataSubscription(applyOrderbookUpdate, get, set, observe)
 }
 
-const txsMatch = (a: Horizon.TransactionResponse, b: Horizon.TransactionResponse): boolean => {
-  return a.source_account === b.source_account && a.source_account_sequence === b.source_account_sequence
-}
+const txsMatch = (a: Horizon.TransactionResponse, b: Horizon.TransactionResponse): boolean => a.hash === b.hash
 
 function applyAccountTransactionsUpdate(network: Networks) {
   return (prev: TransactionHistory, update: DecodedTransactionResponse): TransactionHistory => {
@@ -376,7 +374,7 @@ export function useOlderTransactions(accountID: string, testnet: boolean) {
         {
           // not an accurate science right now…
           olderTransactionsAvailable: fetchedTransactions.length === limit,
-          transactions: [...(accountTransactionsCache.get(selector)?.transactions || []), ...transactions]
+          transactions: [...prevTransactions, ...transactions]
         },
         true
       )
