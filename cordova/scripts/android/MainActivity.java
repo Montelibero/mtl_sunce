@@ -17,7 +17,7 @@
        under the License.
  */
 
-package io.solarwallet;
+package org.montelibero.solar;
 
 import android.graphics.Color;
 import android.os.Build;
