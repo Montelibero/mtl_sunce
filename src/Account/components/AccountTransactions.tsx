@@ -119,7 +119,6 @@ function AccountTransactions(props: { account: Account }) {
             olderTransactionsAvailable={olderTransactionsAvailable}
             onFetchMoreTransactions={handleFetchMoreTransactions}
             title={t("account.transactions.transaction-list.title")}
-            testnet={account.testnet}
             transactions={transactions}
           />
         </>
