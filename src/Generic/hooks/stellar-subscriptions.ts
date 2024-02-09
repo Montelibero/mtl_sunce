@@ -376,7 +376,7 @@ export function useOlderTransactions(accountID: string, testnet: boolean) {
         {
           // not an accurate science right now…
           olderTransactionsAvailable: fetchedTransactions.length === limit,
-          transactions: [...(accountTransactionsCache.get(selector)?.transactions || []), ...transactions]
+          transactions: [...prevTransactions, ...transactions]
         },
         true
       )
