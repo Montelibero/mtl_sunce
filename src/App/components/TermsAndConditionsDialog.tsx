@@ -14,7 +14,11 @@ import { Section } from "~Layout/components/Page"
 const Transition = React.forwardRef((props: TransitionProps, ref) => <Fade ref={ref} {...props} appear={false} />)
 
 function CheckboxLabel(props: { children: React.ReactNode }) {
-  return <span style={{ color: "black", fontSize: "120%" }}>{props.children}</span>
+  return (
+    <Typography variant="body1" style={{ color: "black" }}>
+      {props.children}
+    </Typography>
+  )
 }
 
 function ExternalLink(props: { children: React.ReactNode; href: string }) {
