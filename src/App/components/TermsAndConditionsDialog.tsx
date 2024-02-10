@@ -14,7 +14,11 @@ import { Section } from "~Layout/components/Page"
 const Transition = React.forwardRef((props: TransitionProps, ref) => <Fade ref={ref} {...props} appear={false} />)
 
 function CheckboxLabel(props: { children: React.ReactNode }) {
-  return <span style={{ color: "black", fontSize: "120%" }}>{props.children}</span>
+  return (
+    <Typography variant="body1" style={{ color: "black" }}>
+      {props.children}
+    </Typography>
+  )
 }
 
 function ExternalLink(props: { children: React.ReactNode; href: string }) {
@@ -47,12 +51,12 @@ function TermsAndConditions(props: Props) {
   }
 
   return (
-    <Section brandColored top bottom style={{ display: "flex", flexDirection: "column" }}>
+    <Section brandColored top bottom style={{ display: "flex", flexDirection: "column", overflowY: "auto" }}>
       <VerticalLayout grow={1} justifyContent="center" margin="0 auto" padding="3vh 4vw" maxWidth={800}>
-        <Typography color="inherit" variant="h4">
+        <Typography color="inherit" variant="h5">
           {t("app.terms-and-conditions.header")}
         </Typography>
-        <FormGroup style={{ margin: "3em 0" }}>
+        <FormGroup style={{ marginTop: "5vh", marginBottom: "5vh" }}>
           <FormControlLabel
             control={
               <Checkbox
