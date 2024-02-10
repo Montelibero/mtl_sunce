@@ -47,7 +47,7 @@ function TermsAndConditions(props: Props) {
   }
 
   return (
-    <Section brandColored top bottom style={{ display: "flex", flexDirection: "column" }}>
+    <Section brandColored top bottom style={{ display: "flex", flexDirection: "column", overflowY: "auto" }}>
       <VerticalLayout grow={1} justifyContent="center" margin="0 auto" padding="3vh 4vw" maxWidth={800}>
         <Typography color="inherit" variant="h4">
           {t("app.terms-and-conditions.header")}
