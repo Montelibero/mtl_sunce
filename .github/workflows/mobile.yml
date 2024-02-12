@@ -27,15 +27,22 @@ jobs:
             npm run build:ios
 
         - name: Upload artifacts
-          uses: actions/upload-artifact@v2
+          uses: actions/upload-artifact@v4
           with:
             name: Solar.app
-            path: /Users/runner/work/mtl_solar/mtl_solar/cordova/platforms/ios/build/emulator/Solar.app
+            path: ~/cordova/platforms/ios/build/emulator/Solar.app
+            compression-level: 0
+
 
   build-android:
       runs-on: macos-latest
       steps:
         - uses: actions/checkout@v4
+
+        - name: INIT
+          run: |
+            echo "PWD: $PWD"
+            echo ~
 
         - name: setup node
           uses: actions/setup-node@v4
@@ -62,15 +69,37 @@ jobs:
             npm install
             npm run prebuild:electron
 
-        - name: Build project artifacts (Android)
+        - name: Install project platform (Android)
           run: |
             cd cordova
             npm install
             npm run install:android
-            npm run build:android
+            npm run prebuild:android
 
-        - name: Upload artifacts
-          uses: actions/upload-artifact@v2
+        - name: Build artifacts
+          env:
+            KEYSTORE_LOCATION: ~/android.keystore
+            ENCRYPTED_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+            KEYSTORE_GPG_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_GPG_PASS }}
+            KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+            SIGNINGKEY_ALIAS: android
+            SIGNINGKEY_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+          run: | # decrypting keystore from secrets to a file is safe because the resulting file is encrypted as well
+            echo $ENCRYPTED_KEYSTORE > $KEYSTORE_LOCATION.asc
+            gpg -d --passphrase $KEYSTORE_GPG_PASSWORD --batch $KEYSTORE_LOCATION.asc > $KEYSTORE_LOCATION
+            PACKAGE_TYPE=bundle npm run build:android:signed:auto
+            PACKAGE_TYPE=apk npm run build:android:signed:auto
+
+        - name: Upload .apk artifact
+          uses: actions/upload-artifact@v4
           with:
-            name: app-debug.apk
-            path: /Users/runner/work/mtl_solar/mtl_solar/cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+            name: app-release.apk
+            path: ~/cordova/platforms/android/app/build/outputs/apk/release/app-release.apk
+            compression-level: 0
+
+        - name: Upload .aab artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: app-release.apk
+            path: ~/cordova/platforms/android/app/build/outputs/bundle/release/app-release.aab
+            compression-level: 0
