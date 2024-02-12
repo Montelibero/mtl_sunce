@@ -39,11 +39,6 @@ jobs:
       steps:
         - uses: actions/checkout@v4
 
-        - name: INIT
-          run: |
-            echo "PWD: $PWD"
-            echo ~
-
         - name: setup node
           uses: actions/setup-node@v4
           with:
@@ -78,15 +73,16 @@ jobs:
 
         - name: Build artifacts
           env:
-            KEYSTORE_LOCATION: ~/android.keystore
+            KEYSTORE_LOCATION: ${{ github.workspace }}/android.keystore
             ENCRYPTED_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
             KEYSTORE_GPG_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_GPG_PASS }}
             KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASS }}
             SIGNINGKEY_ALIAS: android
             SIGNINGKEY_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASS }}
           run: | # decrypting keystore from secrets to a file is safe because the resulting file is encrypted as well
-            echo $ENCRYPTED_KEYSTORE > $KEYSTORE_LOCATION.asc
-            gpg -d --passphrase $KEYSTORE_GPG_PASSWORD --batch $KEYSTORE_LOCATION.asc > $KEYSTORE_LOCATION
+            ENCRYPTED_KEYSTORE_LOCATION="$KEYSTORE_LOCATION".asc
+            echo "$ENCRYPTED_KEYSTORE" > "$ENCRYPTED_KEYSTORE_LOCATION"
+            gpg -d --passphrase "$KEYSTORE_GPG_PASSWORD" --batch "$ENCRYPTED_KEYSTORE_LOCATION" > "$KEYSTORE_LOCATION"
             PACKAGE_TYPE=bundle npm run build:android:signed:auto
             PACKAGE_TYPE=apk npm run build:android:signed:auto
 
