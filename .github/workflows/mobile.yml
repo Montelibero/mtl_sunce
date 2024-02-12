@@ -30,7 +30,7 @@ jobs:
           uses: actions/upload-artifact@v4
           with:
             name: Solar.app
-            path: ~/cordova/platforms/ios/build/emulator/Solar.app
+            path: ${{ github.workspace }}/cordova/platforms/ios/build/emulator/Solar.app
             compression-level: 0
 
 
@@ -83,6 +83,7 @@ jobs:
             ENCRYPTED_KEYSTORE_LOCATION="$KEYSTORE_LOCATION".asc
             echo "$ENCRYPTED_KEYSTORE" > "$ENCRYPTED_KEYSTORE_LOCATION"
             gpg -d --passphrase "$KEYSTORE_GPG_PASSWORD" --batch "$ENCRYPTED_KEYSTORE_LOCATION" > "$KEYSTORE_LOCATION"
+            cd cordova
             PACKAGE_TYPE=bundle npm run build:android:signed:auto
             PACKAGE_TYPE=apk npm run build:android:signed:auto
 
@@ -90,12 +91,12 @@ jobs:
           uses: actions/upload-artifact@v4
           with:
             name: app-release.apk
-            path: ~/cordova/platforms/android/app/build/outputs/apk/release/app-release.apk
+            path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/apk/release/app-release.apk
             compression-level: 0
 
         - name: Upload .aab artifact
           uses: actions/upload-artifact@v4
           with:
             name: app-release.apk
-            path: ~/cordova/platforms/android/app/build/outputs/bundle/release/app-release.aab
+            path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/bundle/release/app-release.aab
             compression-level: 0
