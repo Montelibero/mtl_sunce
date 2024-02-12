@@ -1,6 +1,6 @@
 An open source Stellar wallet which emphasizes speed, ease-of-use, and security.
 
-Solar is created by SatoshiPay with the explicit goal of making a business-friendly wallet which empowers Stellar users anywhere in the world.
+Solar is created by SatoshiPay and developed by Montelibero Team with the explicit goal of making a business-friendly wallet which empowers Stellar users anywhere in the world.
 
 Here’s an overview of some of the key features:
 
@@ -27,4 +27,4 @@ Developers often need a quick way to test their features on the Stellar testnet.
 
 ----
 
-We constantly add new features and welcome feedback from the community. Get in touch on hello@solarwallet.io and tell us what features you want to see next and we will try to  prioritize them.
+We constantly add new features and welcome feedback from the community. Get in touch on solar@montelibero.org and tell us what features you want to see next and we will try to  prioritize them.
