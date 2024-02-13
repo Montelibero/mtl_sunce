@@ -30,7 +30,7 @@ jobs:
           uses: actions/upload-artifact@v4
           with:
             name: MTL_Solar_ios.app
-            path: ${{ github.workspace }}/cordova/platforms/ios/build/emulator/Solar.app
+            path: ${{ github.workspace }}/cordova/platforms/ios/build/emulator/Montelibero Solar.app
             compression-level: 0
 
   build-android:
