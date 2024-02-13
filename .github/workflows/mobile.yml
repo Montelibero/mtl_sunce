@@ -32,7 +32,6 @@ jobs:
             name: MTL_Solar_ios.app
             path: ${{ github.workspace }}/cordova/platforms/ios/build/emulator/Solar.app
             compression-level: 0
-            overwrite: true
 
   build-android:
       runs-on: macos-latest
@@ -78,7 +77,7 @@ jobs:
             KEYSTORE_GPG_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_GPG_PASS }}
             KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASS }}
             SIGNINGKEY_ALIAS: android
-            SIGNINGKEY_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+            SIGNINGKEY_PASSWORD: ${{ secrets.ANDROID_SIGNINGKEY_PASS }}
           run: | # decrypting keystore from secrets to a file is safe because the resulting file is encrypted as well
             ENCRYPTED_KEYSTORE_LOCATION="$KEYSTORE_LOCATION".asc
             echo "$ENCRYPTED_KEYSTORE" > "$ENCRYPTED_KEYSTORE_LOCATION"
@@ -93,7 +92,6 @@ jobs:
             name: MTL_Solar_android.apk
             path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/apk/release/app-release.apk
             compression-level: 0
-            overwrite: true
 
         - name: Upload .aab artifact
           uses: actions/upload-artifact@v4
@@ -101,4 +99,3 @@ jobs:
             name: MTL_Solar_android.aab
             path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/bundle/release/app-release.aab
             compression-level: 0
-            overwrite: true
