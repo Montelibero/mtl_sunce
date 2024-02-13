@@ -74,7 +74,12 @@ You can now select a device from the dropdown in the upper-left corner and run t
 Follow the setup of the development builds but instead of `npm run dev:android/ios` use:
 
 ```
+# Android
+npm run prebuild:android
 npm run build:android
+
+# iOS
+npm run prebuild:ios
 npm run build:ios
 ```
 
@@ -93,13 +98,10 @@ SIGNINGKEY_ALIAS=AliasOfMyKey
 
 Run the following npm script to start the build process of the signed apk.
 
-```
-npm run build:android:signed
-```
-
-Enter the passwords for keystore and key when prompted. The location of the generated .apk file will appear in the output log once the build process succeeds.
-
-## Troubleshooting
+````
+npm run prebuild:android
+### PACKAGE_TYPE=[apk, bundle]
+PACKAGE_TYPE=apk npm run build:android:signed:manual
 
 ### General build issues
 
@@ -110,7 +112,7 @@ cd cordova/
 rm -rf plugins/
 npm run remove:android && npm run remove:ios
 npm run install:ios    # or `install:android`
-```
+````
 
 Now try building the app again.
 
