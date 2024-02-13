@@ -1,14 +1,15 @@
 {
   "name": "org.montelibero.solar",
-  "version": "0.28.3",
-  "description": "Wallet for the Stellar payment network by Montelibero (based od SatoshiPay).",
+  "displayName": "MTL Solar",
+  "version": "1.0.0-beta",
+  "description": "Wallet for the Stellar payment network by Montelibero.",
   "license": "MIT",
   "private": true,
   "author": {
     "name": "Montelibero Movement",
     "email": "solar@montelibero.org"
   },
-  "homepage": "https://solarwallet.io/",
+  "homepage": "https://solar.montelibero.org/",
   "repository": "github:montelibero/mtl_solar",
   "main": "./electron/lib/index.prod.js",
   "scripts": {
