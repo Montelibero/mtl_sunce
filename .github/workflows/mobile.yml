@@ -19,11 +19,16 @@ jobs:
             npm install
             npm run prebuild:electron
 
-        - name: Build project artifacts (iOS)
+        - name: Install project platform (iOS)
           run: |
             cd cordova
             npm install
             npm run install:ios
+            npm run prebuild:ios
+
+        - name: Build artifacts
+          run: |
+            cd cordova
             npm run build:ios
 
         - name: Upload artifacts
