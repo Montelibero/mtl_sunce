@@ -43,7 +43,7 @@ be required until we have a signed release available.
 
 For Linux, we support the portable AppImage format that works across most Linux distributions, including Ubuntu.
 
-Download the latest linux-x86_64.AppImage from the [releases](https://github.com/CityChainFoundation/city-hub/releases) page.
+Download the latest linux-x86_64.AppImage from the [releases](https://github.com/Montelibero/mtl_solar/releases) page.
 
 Open a terminal, navigate to the download folder and make the .AppImage an executeable with
 the following command:
