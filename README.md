@@ -41,8 +41,7 @@ be required until we have a signed release available.
 
 ### Linux
 
-For Linux, we decided to use the new AppImage installer format. This is included in a lot of
-Linux distributions, including Ubuntu.
+For Linux, we support the portable AppImage format that works across most Linux distributions, including Ubuntu.
 
 Download the latest linux-x86_64.AppImage from the [releases](https://github.com/CityChainFoundation/city-hub/releases) page.
 
@@ -53,7 +52,7 @@ the following command:
 $ chmod a+x Montelibero-Solar-Wallet.*.AppImage
 ```
 
-Then you can simply run the installer:
+Then you can simply run the program:
 
 ```
 $ ./Montelibero-Solar-Wallet.*.AppImage
