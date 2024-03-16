@@ -5,8 +5,8 @@
   "displayName": "Solar",
   "cordova": {
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-secure-storage": {},
@@ -29,8 +29,7 @@
         "FACEID_USAGE_DESCRIPTION": "Login now...."
       },
       "cordova-plugin-network-information": {},
-      "cordova-plugin-proguard": {},
-      "@bulbigood/cordova-plugin-splashscreen": {}
+      "cordova-plugin-proguard": {}
     }
   },
   "dependencies": {
@@ -42,13 +41,12 @@
     "cordova-plugin-safariviewcontroller": "^2.0.0"
   },
   "devDependencies": {
-    "@bulbigood/cordova-plugin-splashscreen": "github:bulbigood/cordova-plugin-splashscreen#7.0.0-dev",
     "@moodlehq/cordova-plugin-local-notification": "^0.9.0-moodle.11",
     "@red-mobile/cordova-plugin-barcodescanner": "^9.1.0",
     "compare-func": "^2.0.0",
     "cordova-android": "^12.0.1",
     "cordova-fetch": "^4.0.0",
-    "cordova-ios": "^7.0.1",
+    "cordova-ios": "^6.1.1",
     "cordova-plugin-androidx-adapter": "^1.1.3",
     "cordova-plugin-customurlscheme": "github:bytelabsco/Custom-URL-scheme",
     "cordova-plugin-device": "^2.1.0",

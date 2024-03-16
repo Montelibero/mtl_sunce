@@ -36,6 +36,9 @@
 
         <hook type="before_build" src="scripts/android/useFullScreenActivity.sh" />
 
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/icon/android/adaptiveicon/mipmap-xxxhdpi/ic_launcher_foreground.png" />
+        <preference name="AndroidWindowSplashScreenBackground" value="#ebbe2c" />
+
         <icon background="res/icon/android/adaptiveicon/mipmap-mdpi/ic_launcher_background.png" density="mdpi" foreground="res/icon/android/adaptiveicon/mipmap-mdpi/ic_launcher_foreground.png" />
         <icon background="res/icon/android/adaptiveicon/mipmap-hdpi/ic_launcher_background.png" density="hdpi" foreground="res/icon/android/adaptiveicon/mipmap-hdpi/ic_launcher_foreground.png" />
         <icon background="res/icon/android/adaptiveicon/mipmap-xhdpi/ic_launcher_background.png" density="xhdpi" foreground="res/icon/android/adaptiveicon/mipmap-xhdpi/ic_launcher_foreground.png" />
@@ -108,7 +111,7 @@
     <plugin name="cordova-plugin-dialogs" spec="~2.0.1" />
     <plugin name="cordova-plugin-network-information" spec="~2.0.1" />
     <plugin name="cordova-plugin-secure-storage" spec="~3.0.1" />
-    <engine name="android" spec="^9.0.0" />
+    <engine name="android" spec="^12.0.1" />
     <engine name="ios" spec="^6.1.1" />
 
     <preference name="AndroidLaunchMode" value="singleTask"/>
