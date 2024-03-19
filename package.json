@@ -21,7 +21,7 @@
     "test": "tsc --noEmit && eslint",
     "clean:dist": "rimraf dist/*",
     "clean:electron:ts": "rimraf electron/lib/*",
-    "prebuild:electron:bundle": "NODE_ENV=production parcel build ./src/index.prod.njk --detailed-report --no-cache --no-source-maps --public-url=./",
+    "prebuild:electron:bundle": "cross-env NODE_ENV=production parcel build ./src/index.prod.njk --detailed-report --no-cache --no-source-maps --public-url=./",
     "prebuild:electron:ts": "npm run clean:electron:ts && cd electron && tsc",
     "prebuild:electron:ts:watch": "npm run clean:electron:ts && cd electron && tsc -w",
     "prebuild:electron": "run-s prebuild:electron:ts clean:dist prebuild:electron:bundle",
@@ -31,9 +31,9 @@
     "build:win": "export arch=x64|| set arch=x64 && npm run prebuild:electron && electron-builder -p always --win --x64 --config ./electron-build.yml",
     "build:win:signed": "source ./scripts/signing-env.sh win && npm run build:win -- -c.forceCodeSigning=true",
     "dev": "run-p prebuild:electron:ts:watch dev:bundle dev:app:delayed",
-    "dev:app": "NODE_ENV=development TS_NODE_PROJECT=./electron/tsconfig.json run-electron -r ts-node/register/transpile-only ./electron/src/index.dev",
+    "dev:app": "cross-env NODE_ENV=development TS_NODE_PROJECT=./electron/tsconfig.json run-electron -r ts-node/register/transpile-only ./electron/src/index.dev",
     "dev:app:delayed": "sleep 2 && run-s dev:app",
-    "dev:bundle": "NODE_ENV=development parcel watch ./src/index.dev.njk --hmr-hostname localhost --public-url=./"
+    "dev:bundle": "cross-env NODE_ENV=development parcel watch ./src/index.dev.njk --hmr-hostname localhost --public-url=./"
   },
   "lint-staged": {
     "ignore": [
@@ -110,6 +110,7 @@
     "babel-loader": "^8.0.6",
     "big.js": "^5.2.2",
     "core-js": "^2.6.9",
+    "cross-env": "^7.0.3",
     "crypto-browserify": "^3.12.0",
     "cssnano": "^4.1.10",
     "debug": "^4.1.1",
