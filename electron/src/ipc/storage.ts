@@ -24,7 +24,8 @@ const updateKeys = (arg: any) => {
   mainStore.set("keys", arg)
 }
 
-const keystore = createStore<PrivateKeyData, PublicKeyData>(updateKeys, readKeys())
+// Create a key store with a high number of iterations to make it harder to brute-force, default is only 10000.
+const keystore = createStore<PrivateKeyData, PublicKeyData>(updateKeys, readKeys(), { iterations: 250000 })
 
 export function readInstallationID() {
   if (!mainStore.has("installation-id")) {
