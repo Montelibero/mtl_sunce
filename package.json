@@ -40,7 +40,8 @@
       "**/*.yml",
       "**/*.svg",
       "**/*.png",
-      "**/*.template"
+      "**/*.template",
+      "**/*.njk"
     ],
     "linters": {
       "*.{json,yml,md,njk,ts,tsx,js,jsx}": [
