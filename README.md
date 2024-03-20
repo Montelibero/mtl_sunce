@@ -172,6 +172,8 @@ See [Cordova build readme](./cordova/README.md).
 
 The repository uses Linux-compatible symbolic links for the root `shared` folder that has types for TypeScript.
 
+You must first manually delete the existing files that are Linux symbolic links.
+
 For Windows, these files must be removed and the following command can be used:
 
 ```sh
