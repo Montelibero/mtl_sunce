@@ -167,6 +167,24 @@ Note: Application signing has only been tested on a Mac OS development machine s
 
 See [Cordova build readme](./cordova/README.md).
 
+## Symbolic links for Windows
+
+The repository uses Linux-compatible symbolic links for the root `shared` folder that has types for TypeScript.
+
+You must first manually delete the existing files that are Linux symbolic links.
+
+For Windows, these files must be removed and the following command can be used:
+
+```sh
+cd electron\src
+mklink /D shared ..\..\shared
+
+cd src
+mklink /D shared ..\shared
+```
+
+This will fix the `IPC` module errors.
+
 ## License
 
 MIT

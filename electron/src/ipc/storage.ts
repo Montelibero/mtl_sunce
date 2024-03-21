@@ -8,8 +8,7 @@ import { Keypair, Networks, Transaction } from "stellar-sdk"
 import { expose } from "./_ipc"
 import { Messages } from "../shared/ipc"
 
-// Use legacy path to not break backwards-compatibility
-const storeDirectoryPath = path.join(app.getPath("appData"), "satoshipay-stellar-wallet")
+const storeDirectoryPath = path.join(app.getPath("appData"), "mtl-solar-wallet")
 
 // Use different key stores for development and production
 const mainStore = new Store({
@@ -25,7 +24,8 @@ const updateKeys = (arg: any) => {
   mainStore.set("keys", arg)
 }
 
-const keystore = createStore<PrivateKeyData, PublicKeyData>(updateKeys, readKeys())
+// Create a key store with a high number of iterations to make it harder to brute-force, default is only 10000.
+const keystore = createStore<PrivateKeyData, PublicKeyData>(updateKeys, readKeys(), { iterations: 250000 })
 
 export function readInstallationID() {
   if (!mainStore.has("installation-id")) {
