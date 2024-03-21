@@ -233,7 +233,7 @@ export function isStellarWebAuthTransaction(transaction: Transaction) {
   )
 }
 
-export const DUST_THRESHOLD = BigNumber(0.001)
+export const DUST_THRESHOLD = BigNumber(0.01)
 
 export function isDustTransaction(tx: Transaction, account: Account) {
   const paymentSummary = getPaymentSummary(account.publicKey, tx)
