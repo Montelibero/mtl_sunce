@@ -11,8 +11,9 @@ if [ -f "../config/$TEMPLATE_FILE" ]; then
 
   export HTML_ENTRYPOINT="index.$ENVIRONMENT-$PLATFORM.html"
   export PACKAGE_VERSION="$(cat ../../package.json | ../node_modules/.bin/json version)"
-  export ANDROID_VERSIONCODE="$(date +%s)"
-  export IOS_BUNDLE_VERSION="$PACKAGE_VERSION.$(date +%s)"
+  aligned_build_version=$(($(TZ=UTC date +%s)-1708020000))
+  export ANDROID_VERSIONCODE="$aligned_build_version"
+  export IOS_BUNDLE_VERSION="$PACKAGE_VERSION.$aligned_build_version"
 
   if [ "$PACKAGE_VERSION" == "" ]; then
     echo "Error: Could not read app version." 1>&2

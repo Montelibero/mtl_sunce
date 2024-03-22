@@ -19,18 +19,24 @@ jobs:
             npm install
             npm run prebuild:electron
 
-        - name: Build project artifacts (iOS)
+        - name: Install project platform (iOS)
           run: |
             cd cordova
             npm install
             npm run install:ios
+            npm run prebuild:ios
+
+        - name: Build artifacts
+          run: |
+            cd cordova
             npm run build:ios
 
         - name: Upload artifacts
-          uses: actions/upload-artifact@v2
+          uses: actions/upload-artifact@v4
           with:
-            name: Solar.app
-            path: /Users/runner/work/mtl_solar/mtl_solar/cordova/platforms/ios/build/emulator/Solar.app
+            name: MTL_Solar_ios.app
+            path: ${{ github.workspace }}/cordova/platforms/ios/build/emulator/Montelibero Solar.app
+            compression-level: 0
 
   build-android:
       runs-on: macos-latest
@@ -62,15 +68,39 @@ jobs:
             npm install
             npm run prebuild:electron
 
-        - name: Build project artifacts (Android)
+        - name: Install project platform (Android)
           run: |
             cd cordova
             npm install
             npm run install:android
-            npm run build:android
+            npm run prebuild:android
 
-        - name: Upload artifacts
-          uses: actions/upload-artifact@v2
+        - name: Build artifacts
+          env:
+            KEYSTORE_LOCATION: ${{ github.workspace }}/android.keystore
+            ENCRYPTED_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+            KEYSTORE_GPG_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_GPG_PASS }}
+            KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+            SIGNINGKEY_ALIAS: android
+            SIGNINGKEY_PASSWORD: ${{ secrets.ANDROID_SIGNINGKEY_PASS }}
+          run: | # decrypting keystore from secrets to a file is safe because the resulting file is encrypted as well
+            ENCRYPTED_KEYSTORE_LOCATION="$KEYSTORE_LOCATION".asc
+            echo "$ENCRYPTED_KEYSTORE" > "$ENCRYPTED_KEYSTORE_LOCATION"
+            gpg -d --passphrase "$KEYSTORE_GPG_PASSWORD" --batch "$ENCRYPTED_KEYSTORE_LOCATION" > "$KEYSTORE_LOCATION"
+            cd cordova
+            PACKAGE_TYPE=bundle npm run build:android:signed:auto
+            PACKAGE_TYPE=apk npm run build:android:signed:auto
+
+        - name: Upload .apk artifact
+          uses: actions/upload-artifact@v4
           with:
-            name: app-debug.apk
-            path: /Users/runner/work/mtl_solar/mtl_solar/cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+            name: MTL_Solar_android.apk
+            path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/apk/release/app-release.apk
+            compression-level: 0
+
+        - name: Upload .aab artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: MTL_Solar_android.aab
+            path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/bundle/release/app-release.aab
+            compression-level: 0
