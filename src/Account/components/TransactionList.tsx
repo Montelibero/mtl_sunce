@@ -1,7 +1,7 @@
 import BigNumber from "big.js"
 import React from "react"
 import { useTranslation } from "react-i18next"
-import { Asset, FeeBumpTransaction, Horizon, Networks, Operation, Transaction, TransactionBuilder } from "stellar-sdk"
+import { Asset, Networks, Operation, Transaction } from "stellar-sdk"
 import HumanTime from "react-human-time"
 import Collapse from "@material-ui/core/Collapse"
 import List from "@material-ui/core/List"
@@ -20,6 +20,7 @@ import { Account } from "~App/contexts/accounts"
 import { SettingsContext } from "~App/contexts/settings"
 import * as routes from "~App/routes"
 import { useIsMobile, useRouter } from "~Generic/hooks/userinterface"
+import { DecodedTransactionResponse } from "~Generic/hooks/_caches"
 import { getPaymentSummary, PaymentSummary } from "~Generic/lib/paymentSummary"
 import { breakpoints } from "~App/theme"
 import { ActionButton } from "~Generic/components/DialogActions"
@@ -400,26 +401,17 @@ interface TransactionListItemProps {
   icon?: React.ReactElement<any>
   onOpenTransaction?: (transactionHash: string) => void
   style?: React.CSSProperties
-  testnet: boolean
-  transactionEnvelopeXdr: string
+  transaction: Transaction
 }
 
 export const TransactionListItem = React.memo(function TransactionListItem(props: TransactionListItemProps) {
   const { hideMemos } = React.useContext(SettingsContext)
   const isSmallScreen = useIsMobile()
 
-  const { onOpenTransaction } = props
-  // TODO: take decoded tx from props
-  const restoredTransaction = React.useMemo(
-    () => TransactionBuilder.fromXDR(props.transactionEnvelopeXdr, props.testnet ? Networks.TESTNET : Networks.PUBLIC),
-    [props.testnet, props.transactionEnvelopeXdr]
-  )
-
-  const transaction =
-    restoredTransaction instanceof FeeBumpTransaction ? restoredTransaction.innerTransaction : restoredTransaction
+  const { transaction, onOpenTransaction } = props
 
   const paymentSummary = getPaymentSummary(props.accountPublicKey, transaction)
-  const onOpen = onOpenTransaction ? () => onOpenTransaction(restoredTransaction.hash().toString("hex")) : undefined
+  const onOpen = onOpenTransaction ? () => onOpenTransaction(transaction.hash().toString("hex")) : undefined
 
   return (
     <ListItem button={Boolean(onOpen) as any} className={props.className || ""} onClick={onOpen} style={props.style}>
@@ -493,9 +485,8 @@ interface TransactionListProps {
   loadingMoreTransactions?: boolean
   olderTransactionsAvailable?: boolean
   onFetchMoreTransactions: () => void
-  testnet: boolean
   title: React.ReactNode
-  transactions: Horizon.TransactionResponse[]
+  transactions: DecodedTransactionResponse[]
 }
 
 function TransactionList(props: TransactionListProps) {
@@ -512,19 +503,14 @@ function TransactionList(props: TransactionListProps) {
       return null
     }
 
-    const network = props.account.testnet ? Networks.TESTNET : Networks.PUBLIC
     const txResponse = props.transactions.find(recentTx => recentTx.hash === openedTxHash)
 
     // TODO: use decoded transaction from cache once we have it
-    let tx = txResponse ? TransactionBuilder.fromXDR(txResponse.envelope_xdr, network) : null
-
-    if (tx instanceof FeeBumpTransaction) {
-      tx = tx.innerTransaction
-    }
+    const tx = txResponse ? txResponse.decodedTx : null
 
     // tslint:disable-next-line prefer-object-spread
     return tx && txResponse ? Object.assign(tx, { created_at: txResponse.created_at }) : tx
-  }, [openedTxHash, props.account.testnet, props.transactions])
+  }, [openedTxHash, props.transactions])
 
   const openTransaction = React.useCallback(
     (transactionHash: string) => {
@@ -560,15 +546,14 @@ function TransactionList(props: TransactionListProps) {
                 className={classes.listItem}
                 createdAt={transaction.created_at}
                 onOpenTransaction={openTransaction}
-                testnet={props.account.testnet}
-                transactionEnvelopeXdr={transaction.envelope_xdr}
+                transaction={transaction.decodedTx}
               />
             </InlineErrorBoundary>
           </EntryAnimation>
         ))}
       </>
     ),
-    [props.transactions, props.account.publicKey, props.account.testnet, classes.listItem, openTransaction]
+    [props.transactions, props.account.publicKey, classes.listItem, openTransaction]
   )
 
   if (props.transactions.length === 0 && !props.olderTransactionsAvailable) {

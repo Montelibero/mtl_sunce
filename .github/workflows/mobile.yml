@@ -1,0 +1,108 @@
+name: Build mobile wallet
+
+on:
+  workflow_dispatch: # Only manually triggered for this build.
+
+jobs:
+  build-ios:
+      runs-on: macos-latest
+      environment: Signing keys
+      steps:
+        - uses: actions/checkout@v4
+
+        - name: setup node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+
+        - name: Install project
+          run: |
+            npm install
+            npm run prebuild:electron
+
+        - name: Install project platform (iOS)
+          run: |
+            cd cordova
+            npm install
+            npm run install:ios
+            npm run prebuild:ios
+
+        - name: Build artifacts
+          run: |
+            cd cordova
+            npm run build:ios
+
+        - name: Upload artifacts
+          uses: actions/upload-artifact@v4
+          with:
+            name: MTL_Solar_ios.app
+            path: ${{ github.workspace }}/cordova/platforms/ios/build/emulator/Montelibero Solar.app
+            compression-level: 0
+
+  build-android:
+      runs-on: macos-latest
+      environment: Signing keys
+      steps:
+        - uses: actions/checkout@v4
+
+        - name: setup node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+
+        - name: setup java
+          uses: actions/setup-java@v4
+          with:
+             java-version: '11'
+             distribution: 'temurin'
+
+        - name: Install Android SDK
+          uses: android-actions/setup-android@v3
+          with:
+            cmdline-tools-version: 8512546
+            packages: ''
+
+        - name: Install Android SDK packages
+          run: sdkmanager "build-tools;30.0.3"
+
+        - name: Install project
+          run: |
+            npm install
+            npm run prebuild:electron
+
+        - name: Install project platform (Android)
+          run: |
+            cd cordova
+            npm install
+            npm run install:android
+            npm run prebuild:android
+
+        - name: Build artifacts
+          env:
+            KEYSTORE_LOCATION: ${{ github.workspace }}/android.keystore
+            ENCRYPTED_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+            KEYSTORE_GPG_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_GPG_PASS }}
+            KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+            SIGNINGKEY_ALIAS: android
+            SIGNINGKEY_PASSWORD: ${{ secrets.ANDROID_SIGNINGKEY_PASS }}
+          run: | # decrypting keystore from secrets to a file is safe because the resulting file is encrypted as well
+            ENCRYPTED_KEYSTORE_LOCATION="$KEYSTORE_LOCATION".asc
+            echo "$ENCRYPTED_KEYSTORE" > "$ENCRYPTED_KEYSTORE_LOCATION"
+            gpg -d --passphrase "$KEYSTORE_GPG_PASSWORD" --batch "$ENCRYPTED_KEYSTORE_LOCATION" > "$KEYSTORE_LOCATION"
+            cd cordova
+            PACKAGE_TYPE=bundle npm run build:android:signed:auto
+            PACKAGE_TYPE=apk npm run build:android:signed:auto
+
+        - name: Upload .apk artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: MTL_Solar_android.apk
+            path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/apk/release/app-release.apk
+            compression-level: 0
+
+        - name: Upload .aab artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: MTL_Solar_android.aab
+            path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/bundle/release/app-release.aab
+            compression-level: 0

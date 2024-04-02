@@ -168,10 +168,10 @@ function AccountList(props: AccountListProps) {
 
   return (
     <CardList addInvisibleCard={accounts.length % 2 === 0}>
-      <AddAccountCard onClick={props.testnet ? props.onCreateTestnetAccount : props.onCreatePubnetAccount} />
       {accounts.map(account => (
         <AccountCard key={account.id} account={account} pendingSignatureRequests={pendingSignatureRequests} />
       ))}
+      <AddAccountCard onClick={props.testnet ? props.onCreateTestnetAccount : props.onCreatePubnetAccount} />
     </CardList>
   )
 }

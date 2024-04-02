@@ -74,7 +74,12 @@ You can now select a device from the dropdown in the upper-left corner and run t
 Follow the setup of the development builds but instead of `npm run dev:android/ios` use:
 
 ```
+# Android
+npm run prebuild:android
 npm run build:android
+
+# iOS
+npm run prebuild:ios
 npm run build:ios
 ```
 
@@ -91,10 +96,11 @@ KEYSTORE_LOCATION=/location/of/my.keystore
 SIGNINGKEY_ALIAS=AliasOfMyKey
 ```
 
-Run the following npm script to start the build process of the signed apk.
+Specify PACKAGE_TYPE (apk, bundle) and run the following npm script to start the build process of the signed apk.
 
 ```
-npm run build:android:signed
+npm run prebuild:android
+PACKAGE_TYPE=apk npm run build:android:signed:manual
 ```
 
 Enter the passwords for keystore and key when prompted. The location of the generated .apk file will appear in the output log once the build process succeeds.

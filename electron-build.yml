@@ -1,6 +1,6 @@
 # Don't change the appId! See <https://www.electron.build/configuration/nsis#guid-vs-application-name>
-appId: io.solarwallet.app
-productName: Montelibero Solar Wallet
+appId: org.montelibero.solar
+productName: MTL Solar Wallet
 copyright: Copyright © 2024 Montelibero SW-Team
 artifactName: Montelibero-Solar-Wallet-${version}-${os}-${arch}.${ext}
 
@@ -27,7 +27,7 @@ snap:
     - github
 
 releaseInfo:
-  releaseName: Montelibero Solar Wallet
+  releaseName: MTL Solar Wallet
 
 win:
   # Electron builder bug: Without this line the icon gets corrupted on Windows

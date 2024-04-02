@@ -17,7 +17,6 @@ interface SignatureRequestListItemProps {
   onOpenTransaction?: (tx: Transaction, signatureRequest: MultisigTransactionResponse) => void
   signatureRequest: MultisigTransactionResponse
   style?: React.CSSProperties
-  testnet: boolean
 }
 
 function SignatureRequestListItem(props: SignatureRequestListItemProps) {
@@ -26,8 +25,6 @@ function SignatureRequestListItem(props: SignatureRequestListItemProps) {
   const tx = React.useMemo(() => new TransactionStellarUri(signatureRequest.req).getTransaction(), [
     signatureRequest.req
   ])
-
-  const envelopeXdr = React.useMemo(() => tx.toEnvelope().toXDR("base64"), [tx])
 
   const openTransaction = React.useCallback(
     onOpenTransaction ? () => onOpenTransaction(tx, signatureRequest) : () => undefined,
@@ -42,8 +39,7 @@ function SignatureRequestListItem(props: SignatureRequestListItemProps) {
       icon={props.icon}
       onOpenTransaction={openTransaction}
       style={props.style}
-      testnet={props.testnet}
-      transactionEnvelopeXdr={envelopeXdr}
+      transaction={tx}
     />
   )
 }
@@ -104,7 +100,6 @@ export const SignatureRequestList = React.memo(function SignatureRequestList(pro
               style={{
                 minHeight: 72
               }}
-              testnet={props.account.testnet}
             />
           </InlineErrorBoundary>
         ))}

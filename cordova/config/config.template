@@ -1,13 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="org.montelibero.solar" version="$PACKAGE_VERSION" android-versionCode="$ANDROID_VERSIONCODE" ios-CFBundleVersion="$IOS_BUNDLE_VERSION" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <name>Solar</name>
+    <name short="MTL Solar">Montelibero Solar</name>
     <description>
-        Wallet for the Stellar payment network by SatoshiPay.
+        Wallet for the Stellar payment network by Montelibero.
     </description>
-    <author email="hello@solarwallet.io" href="https://solarwallet.io/">
-        SatoshiPay Ltd
+    <author email="solar@montelibero.org" href="https://solar.montelibero.org/">
+        Montelibero Solar Team
     </author>
-    <license>GPL-3.0</license>
     <content src="$HTML_ENTRYPOINT" />
     <access origin="*" />
     <allow-navigation href="*" />
@@ -115,7 +114,7 @@
     <engine name="ios" spec="^6.1.1" />
 
     <preference name="AndroidLaunchMode" value="singleTask"/>
-    <preference name="AppendUserAgent" value="SatoshiPaySolar/$PACKAGE_VERSION" />
+    <preference name="AppendUserAgent" value="MTLSolar/$PACKAGE_VERSION" />
     <preference name="AutoHideSplashScreen" value="$AUTO_HIDE" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="HideKeyboardFormAccessoryBar" value="false" />

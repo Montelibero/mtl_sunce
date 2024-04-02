@@ -41,10 +41,9 @@ be required until we have a signed release available.
 
 ### Linux
 
-For Linux, we decided to use the new AppImage installer format. This is included in a lot of
-Linux distributions, including Ubuntu.
+For Linux, we support the portable AppImage format that works across most Linux distributions, including Ubuntu.
 
-Download the latest linux-x86_64.AppImage from the [releases](https://github.com/CityChainFoundation/city-hub/releases) page.
+Download the latest linux-x86_64.AppImage from the [releases](https://github.com/Montelibero/mtl_solar/releases) page.
 
 Open a terminal, navigate to the download folder and make the .AppImage an executeable with
 the following command:
@@ -53,7 +52,7 @@ the following command:
 $ chmod a+x Montelibero-Solar-Wallet.*.AppImage
 ```
 
-Then you can simply run the installer:
+Then you can simply run the program:
 
 ```
 $ ./Montelibero-Solar-Wallet.*.AppImage
@@ -167,6 +166,24 @@ Note: Application signing has only been tested on a Mac OS development machine s
 #### Android/iOS
 
 See [Cordova build readme](./cordova/README.md).
+
+## Symbolic links for Windows
+
+The repository uses Linux-compatible symbolic links for the root `shared` folder that has types for TypeScript.
+
+You must first manually delete the existing files that are Linux symbolic links.
+
+For Windows, these files must be removed and the following command can be used:
+
+```sh
+cd electron\src
+mklink /D shared ..\..\shared
+
+cd src
+mklink /D shared ..\shared
+```
+
+This will fix the `IPC` module errors.
 
 ## License
 

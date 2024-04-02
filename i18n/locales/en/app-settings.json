@@ -65,8 +65,8 @@
       "text": {
         "primary": "Show dust transactions",
         "secondary": {
-          "hidden": "Transactions smaller than 0.001 XLM are hidden in transaction list",
-          "shown": "Transactions smaller than 0.001 XLM are shown in transaction list"
+          "hidden": "Transactions smaller than 0.01 XLM are hidden in transaction list",
+          "shown": "Transactions smaller than 0.01 XLM are shown in transaction list"
         }
       }
     },
@@ -81,7 +81,7 @@
     }
   },
   "trusted-services": {
-    "info": "Trusted Services are web services that are allowed to interact with Solar wallet by requesting account data or proposing transactions. You can add a new service once it tries to interact with Solar.",
+    "info": "Trusted Services are web services that are allowed to interact with MTL Solar wallet by requesting account data or proposing transactions. You can add a new service once it tries to interact with Solar.",
     "service-selection": {
       "action": {
         "cancel": "Cancel",

@@ -1,8 +1,8 @@
 {
-  "name": "io.solarwallet",
+  "name": "org.montelibero.solar",
   "version": "0.0.0",
   "private": true,
-  "displayName": "Solar",
+  "displayName": "MTL Solar",
   "cordova": {
     "platforms": [
       "android",
@@ -65,9 +65,10 @@
     "remove:ios": "cordova platform rm ios",
     "prebuild:android": "rm -rf ../dist/ && NODE_ENV=production PLATFORM=android ../node_modules/.bin/parcel build ../src/index.prod-android.njk --out-dir ../dist --public-url=./ --detailed-report --no-source-maps --no-cache && ./scripts/create-config-from-template.sh prod android",
     "prebuild:ios": "rm -rf ../dist/ && NODE_ENV=production PLATFORM=ios ../node_modules/.bin/parcel build ../src/index.prod-ios.njk --out-dir ../dist --public-url=./ --detailed-report --no-source-maps --no-cache && ./scripts/create-config-from-template.sh prod ios",
-    "build:android": "npm run prebuild:android && dotenv -- cordova build android",
-    "build:android:signed": "npm run prebuild:android && source ./scripts/signing-env-android.sh && dotenv -- cordova build android --release -- --keystore=$KEYSTORE_LOCATION --storePassword=$KEYSTORE_PASSWORD --alias=$SIGNINGKEY_ALIAS --password=$SIGNINGKEY_PASSWORD --packageType=apk",
-    "build:ios": "npm run prebuild:ios && cordova build ios --buildConfig=build.ios.json",
+    "build:android": "dotenv -- cordova build android",
+    "build:android:signed:manual": "source ./scripts/signing-env-android.sh && dotenv -- cordova build android --release -- --keystore=$KEYSTORE_LOCATION --storePassword=$KEYSTORE_PASSWORD --alias=$SIGNINGKEY_ALIAS --password=$SIGNINGKEY_PASSWORD --packageType=$PACKAGE_TYPE",
+    "build:android:signed:auto": "cordova build android --release -- --keystore=$KEYSTORE_LOCATION --storePassword=$KEYSTORE_PASSWORD --alias=$SIGNINGKEY_ALIAS --password=$SIGNINGKEY_PASSWORD --packageType=$PACKAGE_TYPE",
+    "build:ios": "cordova build ios --buildConfig=build.ios.json",
     "dev:android": "run-p dev:bundle:android dev:cordova:android",
     "dev:ios": "run-p dev:bundle:ios dev:cordova:ios",
     "dev:bundle:android": "PLATFORM=android NODE_ENV=development ../node_modules/.bin/parcel serve ../src/index.dev.njk -p 1234 --out-dir ../dist",

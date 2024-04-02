@@ -21,7 +21,7 @@ export function createMainWindow() {
     height: 600,
     minWidth: 400,
     minHeight: 300,
-    title: "Solar Wallet",
+    title: "MTL Solar Wallet",
     icon: nativeImage.createFromPath(path.join(__dirname, "../build/icon.png")),
     backgroundColor: "#EBBE2C",
     titleBarStyle: process.platform === "darwin" ? "hidden" : "default",

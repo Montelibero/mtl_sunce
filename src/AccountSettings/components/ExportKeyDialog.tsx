@@ -51,7 +51,6 @@ function PromptToReveal(props: PromptToRevealProps) {
       <form noValidate onSubmit={props.onReveal}>
         {props.requiresPassword ? (
           <PasswordField
-            autoFocus={process.env.PLATFORM !== "ios"}
             fullWidth
             error={props.passwordError !== null}
             label={
