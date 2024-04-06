@@ -5,8 +5,8 @@
   "displayName": "MTL Solar",
   "cordova": {
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-secure-storage": {},
@@ -24,13 +24,13 @@
       "@red-mobile/cordova-plugin-barcodescanner": {
         "ANDROIDX_LEGACY_SUPPORT_V4_VERSION": "1.0.0"
       },
-      "cordova-plugin-fingerprint-aio": {
-        "FACEID_USAGE_DESCRIPTION": "Login now...."
-      },
       "cordova-plugin-network-information": {},
       "cordova-plugin-proguard": {},
       "@moodlehq/cordova-plugin-local-notification": {
         "ANDROID_SUPPORT_V4_VERSION": "26.+"
+      },
+      "cordova-plugin-fingerprint-aio": {
+        "FACEID_USAGE_DESCRIPTION": " "
       }
     }
   },
@@ -43,15 +43,14 @@
   },
   "devDependencies": {
     "@moodlehq/cordova-plugin-local-notification": "^0.9.0-moodle.12",
-    "@red-mobile/cordova-plugin-barcodescanner": "^9.1.0",
     "compare-func": "^2.0.0",
     "cordova-android": "^12.0.1",
     "cordova-fetch": "^4.0.0",
-    "cordova-ios": "^6.1.1",
+    "cordova-ios": "^7.1.0",
     "cordova-plugin-badge": "^0.8.9",
     "cordova-plugin-customurlscheme": "github:bytelabsco/Custom-URL-scheme",
     "cordova-plugin-device": "^2.1.0",
-    "cordova-plugin-fingerprint-aio": "^5.0.1",
+    "cordova-plugin-fingerprint-aio": "^6.0.0",
     "cordova-plugin-network-information": "^3.0.0",
     "cordova-plugin-proguard": "^2.2.0",
     "cordova-plugin-secure-storage": "github:satoshipay/cordova-plugin-secure-storage",
@@ -69,7 +68,7 @@
     "build:android": "dotenv -- cordova build android",
     "build:android:signed:manual": "source ./scripts/signing-env-android.sh && dotenv -- cordova build android --release -- --keystore=$KEYSTORE_LOCATION --storePassword=$KEYSTORE_PASSWORD --alias=$SIGNINGKEY_ALIAS --password=$SIGNINGKEY_PASSWORD --packageType=$PACKAGE_TYPE",
     "build:android:signed:auto": "cordova build android --release -- --keystore=$KEYSTORE_LOCATION --storePassword=$KEYSTORE_PASSWORD --alias=$SIGNINGKEY_ALIAS --password=$SIGNINGKEY_PASSWORD --packageType=$PACKAGE_TYPE",
-    "build:ios": "cordova build ios --buildConfig=build.ios.json",
+    "build:ios": "cordova build ios --device --release --buildConfig=build.ios.json",
     "dev:android": "run-p dev:bundle:android dev:cordova:android",
     "dev:ios": "run-p dev:bundle:ios dev:cordova:ios",
     "dev:bundle:android": "PLATFORM=android NODE_ENV=development ../node_modules/.bin/parcel serve ../src/index.dev.njk -p 1234 --out-dir ../dist",
