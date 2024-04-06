@@ -28,24 +28,27 @@
         "FACEID_USAGE_DESCRIPTION": "Login now...."
       },
       "cordova-plugin-network-information": {},
-      "cordova-plugin-proguard": {}
+      "cordova-plugin-proguard": {},
+      "@moodlehq/cordova-plugin-local-notification": {
+        "ANDROID_SUPPORT_V4_VERSION": "26.+"
+      }
     }
   },
   "dependencies": {
     "cordova": "^12.0.0",
     "cordova-clipboard": "^1.2.1",
-    "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-dialogs": "^2.0.1",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-safariviewcontroller": "^2.0.0"
   },
   "devDependencies": {
-    "@moodlehq/cordova-plugin-local-notification": "^0.9.0-moodle.11",
+    "@moodlehq/cordova-plugin-local-notification": "^0.9.0-moodle.12",
     "@red-mobile/cordova-plugin-barcodescanner": "^9.1.0",
     "compare-func": "^2.0.0",
     "cordova-android": "^12.0.1",
     "cordova-fetch": "^4.0.0",
     "cordova-ios": "^6.1.1",
+    "cordova-plugin-badge": "^0.8.9",
     "cordova-plugin-customurlscheme": "github:bytelabsco/Custom-URL-scheme",
     "cordova-plugin-device": "^2.1.0",
     "cordova-plugin-fingerprint-aio": "^5.0.1",
