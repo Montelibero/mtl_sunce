@@ -1,44 +1,9 @@
-name: Build mobile wallet
+name: Build Android artifacts
 
 on:
   workflow_dispatch: # Only manually triggered for this build.
 
 jobs:
-  build-ios:
-      runs-on: macos-latest
-      environment: Signing keys
-      steps:
-        - uses: actions/checkout@v4
-
-        - name: setup node
-          uses: actions/setup-node@v4
-          with:
-            node-version: 20
-
-        - name: Install project
-          run: |
-            npm install
-            npm run prebuild:electron
-
-        - name: Install project platform (iOS)
-          run: |
-            cd cordova
-            npm install
-            npm run install:ios
-            npm run prebuild:ios
-
-        - name: Build artifacts
-          run: |
-            cd cordova
-            npm run build:ios
-
-        - name: Upload artifacts
-          uses: actions/upload-artifact@v4
-          with:
-            name: MTL_Solar_ios.app
-            path: ${{ github.workspace }}/cordova/platforms/ios/build/emulator/Montelibero Solar.app
-            compression-level: 0
-
   build-android:
       runs-on: macos-latest
       environment: Signing keys
