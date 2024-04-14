@@ -1,11 +1,11 @@
 {
   "ios": {
-    "debug": {
-      "buildFlag": ["-allowProvisioningUpdates"]
-    },
     "release": {
-      "buildFlag": ["-allowProvisioningUpdates"],
-      "developmentTeam": "YP676N38BS"
+      "codeSignIdentity": "Apple Distribution",
+      "provisioningProfile": "match_AppStore_org.montelibero.solar",
+      "developmentTeam": "5V5EUT3ZXJ",
+      "automaticProvisioning": false,
+      "packageType": "app-store"
     }
   }
 }
