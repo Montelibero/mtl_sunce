@@ -41,6 +41,8 @@ jobs:
             npm install
             npm run install:android
             npm run prebuild:android
+            echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> "$GITHUB_ENV"
+            echo "BUILD_VERSION=$BUILD_VERSION" >> "$GITHUB_ENV"
 
         - name: Build artifacts
           env:
@@ -58,16 +60,24 @@ jobs:
             PACKAGE_TYPE=bundle npm run build:android:signed:auto
             PACKAGE_TYPE=apk npm run build:android:signed:auto
 
+        - name: Rename artifacts
+          env:
+            APK_LOCATION: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/apk/release
+            AAB_LOCATION: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/bundle/release
+          run: |
+            mv $APK_LOCATION/*.apk $APK_LOCATION/MTL-Solar-$PACKAGE_VERSION.$BUILD_VERSION-android.apk
+            mv $AAB_LOCATION/*.apk $AAB_LOCATION/MTL-Solar-$PACKAGE_VERSION.$BUILD_VERSION-android.apk
+
         - name: Upload .apk artifact
           uses: actions/upload-artifact@v4
           with:
             name: MTL_Solar_android.apk
-            path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/apk/release/app-release.apk
+            path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/apk/release/*.apk
             compression-level: 0
 
         - name: Upload .aab artifact
           uses: actions/upload-artifact@v4
           with:
             name: MTL_Solar_android.aab
-            path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/bundle/release/app-release.aab
+            path: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/bundle/release/*.aab
             compression-level: 0
