@@ -13,7 +13,7 @@ on:
 
 jobs:
   build-android:
-      runs-on: macos-latest
+      runs-on: ubuntu-latest
       environment: Signing keys
       steps:
         - uses: actions/checkout@v4
@@ -61,6 +61,7 @@ jobs:
             SIGNINGKEY_ALIAS: android
             SIGNINGKEY_PASSWORD: ${{ secrets.ANDROID_SIGNINGKEY_PASS }}
           run: | # decrypting keystore from secrets to a file is safe because the resulting file is encrypted as well
+            echo "Build Android artifacts, version $PACKAGE_VERSION.$BUILD_VERSION"
             ENCRYPTED_KEYSTORE_LOCATION="$KEYSTORE_LOCATION".asc
             echo "$ENCRYPTED_KEYSTORE" > "$ENCRYPTED_KEYSTORE_LOCATION"
             gpg -d --passphrase "$KEYSTORE_GPG_PASSWORD" --batch "$ENCRYPTED_KEYSTORE_LOCATION" > "$KEYSTORE_LOCATION"
@@ -74,7 +75,7 @@ jobs:
             AAB_LOCATION: ${{ github.workspace }}/cordova/platforms/android/app/build/outputs/bundle/release
           run: |
             mv $APK_LOCATION/*.apk $APK_LOCATION/MTL-Solar-$PACKAGE_VERSION.$BUILD_VERSION-android.apk
-            mv $AAB_LOCATION/*.apk $AAB_LOCATION/MTL-Solar-$PACKAGE_VERSION.$BUILD_VERSION-android.apk
+            mv $AAB_LOCATION/*.aab $AAB_LOCATION/MTL-Solar-$PACKAGE_VERSION.$BUILD_VERSION-android.aab
 
         - name: Upload .apk artifact
           uses: actions/upload-artifact@v4
