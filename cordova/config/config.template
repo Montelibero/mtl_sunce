@@ -54,6 +54,26 @@
         <resource-file src="res/icon/android/notification/icon.png" target="app/src/main/res/mipmap-hdpi/notif_icon.png" />
     </platform>
     <platform name="ios">
+        <privacy-manifest>
+            <key>NSPrivacyTracking</key>
+            <false/>
+            <key>NSPrivacyCollectedDataTypes</key>
+            <array/>
+            <key>NSPrivacyAccessedAPITypes</key>
+            <array>
+                <dict>
+                    <key>NSPrivacyAccessedAPIType</key>
+                    <string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+                    <key>NSPrivacyAccessedAPITypeReasons</key>
+                    <array>
+                        <string>CA92.1</string>
+                    </array>
+                </dict>
+            </array>
+            <key>NSPrivacyTrackingDomains</key>
+            <array/>
+        </privacy-manifest>
+
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
 
