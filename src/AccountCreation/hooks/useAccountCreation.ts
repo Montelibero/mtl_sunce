@@ -8,7 +8,7 @@ import { AccountCreation, AccountCreationErrors } from "../types/types"
 
 function isAccountAlreadyImported(privateKey: string, accounts: Account[], testnet: boolean) {
   const publicKey = Keypair.fromSecret(privateKey).publicKey()
-  return accounts.some(account => account.publicKey === publicKey && account.testnet === testnet)
+  return accounts.some(account => account.publicKey === publicKey && account.testnet === testnet && !account.cosignerOf)
 }
 
 function isValidSecretKey(privateKey: string) {
