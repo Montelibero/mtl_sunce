@@ -6,9 +6,21 @@ import { Account, AccountsContext } from "~App/contexts/accounts"
 import { CustomError } from "~Generic/lib/errors"
 import { AccountCreation, AccountCreationErrors } from "../types/types"
 
-function isAccountAlreadyImported(privateKey: string, accounts: Account[], testnet: boolean) {
-  const publicKey = Keypair.fromSecret(privateKey).publicKey()
-  return accounts.some(account => account.publicKey === publicKey && account.testnet === testnet && !account.cosignerOf)
+function isAccountAlreadyImported(creatingAccount: AccountCreation, accounts: Account[], testnet: boolean) {
+  const publicKey = Keypair.fromSecret(creatingAccount.secretKey!).publicKey()
+  const simpleDuplicate =
+    !creatingAccount.cosigner &&
+    accounts.some(account => account.publicKey === publicKey && account.testnet === testnet && !account.cosignerOf)
+  const cosignerDuplicate =
+    creatingAccount.cosigner &&
+    accounts.some(
+      account =>
+        account.publicKey === publicKey &&
+        account.testnet === testnet &&
+        account.cosignerOf === creatingAccount.cosignerOf
+    )
+  const cosigningMyself = creatingAccount.cosigner && publicKey === creatingAccount.cosignerOf
+  return simpleDuplicate || cosigningMyself || cosignerDuplicate
 }
 
 function isValidSecretKey(privateKey: string) {
@@ -49,10 +61,7 @@ function validateAccountCreation(t: TFunction, accounts: Account[], accountCreat
 
   if (accountCreation.import && !isValidSecretKey(accountCreation.secretKey!)) {
     errors.secretKey = t("create-account.validation.invalid-key")
-  } else if (
-    accountCreation.import &&
-    isAccountAlreadyImported(accountCreation.secretKey!, accounts, accountCreation.testnet)
-  ) {
+  } else if (accountCreation.import && isAccountAlreadyImported(accountCreation, accounts, accountCreation.testnet)) {
     errors.secretKey = t("create-account.validation.same-account")
   }
 
