@@ -21,8 +21,10 @@ import { InteractiveSignatureRequestList } from "./SignatureRequestList"
 import TransactionList from "./TransactionList"
 import { isDustTransaction } from "~Generic/lib/transaction"
 
-const excludeClaimableFilter = (tx: DecodedTransactionResponse) =>
-  !tx.decodedTx.operations.every(o => o.type === "createClaimableBalance" || o.type === "claimClaimableBalance")
+const excludeClaimableFilter = (account: Account, tx: DecodedTransactionResponse) =>
+  !tx.decodedTx.operations.every(
+    o => o.type === "createClaimableBalance" || (o.type === "claimClaimableBalance" && o.source !== account.publicKey)
+  )
 
 const excludeDustFilter = (account: Account, tx: DecodedTransactionResponse) =>
   !isDustTransaction(tx.decodedTx, account)
@@ -82,7 +84,10 @@ function AccountTransactions(props: { account: Account }) {
   const txsFilter = React.useCallback(
     (txs: DecodedTransactionResponse[]) =>
       txs.filter(tx => {
-        return (showClaimableBalanceTxs || excludeClaimableFilter(tx)) && (showDust || excludeDustFilter(account, tx))
+        return (
+          (showClaimableBalanceTxs || excludeClaimableFilter(account, tx)) &&
+          (showDust || excludeDustFilter(account, tx))
+        )
       }),
     []
   )
