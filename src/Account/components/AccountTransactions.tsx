@@ -22,7 +22,7 @@ import TransactionList from "./TransactionList"
 import { isDustTransaction } from "~Generic/lib/transaction"
 
 const excludeClaimableFilter = (tx: DecodedTransactionResponse) =>
-  !tx.decodedTx.operations.every(o => o.type === "createClaimableBalance")
+  !tx.decodedTx.operations.every(o => o.type === "createClaimableBalance" || o.type === "claimClaimableBalance")
 
 const excludeDustFilter = (account: Account, tx: DecodedTransactionResponse) =>
   !isDustTransaction(tx.decodedTx, account)
