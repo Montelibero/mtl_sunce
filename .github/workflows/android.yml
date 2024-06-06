@@ -45,13 +45,12 @@ jobs:
 
         - name: Install project platform (Android)
           run: |
+            echo "PACKAGE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+            echo "BUILD_VERSION="$(($(TZ=UTC date +%s)-1710000000))"" >> $GITHUB_ENV
             cd cordova
             npm install
-            npm run install:android
-            npm run prebuild:android
-            echo "Build Android artifacts, version $PACKAGE_VERSION.$BUILD_VERSION"
-            echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> "$GITHUB_ENV"
-            echo "BUILD_VERSION=$BUILD_VERSION" >> "$GITHUB_ENV"
+            PACKAGE_VERSION=$PACKAGE_VERSION npm run install:android
+            BUILD_VERSION=$BUILD_VERSION npm run prebuild:android
 
         - name: Build artifacts
           env:
