@@ -1,7 +1,7 @@
 {
   "name": "org.montelibero.solar",
   "displayName": "MTL Solar",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "Wallet for the Stellar payment network by Montelibero.",
   "license": "MIT",
   "private": true,
@@ -79,7 +79,7 @@
     "@storybook/react": "^7.6.8",
     "@storybook/react-webpack5": "^7.6.8",
     "@types/big.js": "^4.0.5",
-    "@types/cordova": "0.0.34",
+    "@types/cordova": "^11.0.3",
     "@types/debug": "^4.1.5",
     "@types/history": "^4.7.3",
     "@types/isomorphic-fetch": "0.0.34",
