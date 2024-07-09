@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - arm
   workflow_dispatch:
 
 jobs:
@@ -29,8 +30,10 @@ jobs:
         fail-fast: false
 
         matrix:
-          os: [ windows-latest, ubuntu-latest, macos-latest ]
+          os: [ windows-latest, windows-latest, ubuntu-latest, macos-latest ]
           include:
+            - os: windows-latest
+              script: "build:winarm"
             - os: windows-latest
               script: "build:win"
             - os: ubuntu-latest
@@ -57,8 +60,14 @@ jobs:
             sudo apt install snapd
             sudo snap install --classic snapcraft
 
+        - name: Tooling (WinARM)
+          if: matrix.script == 'build:winarm'
+          run: |
+            set npm_config_arch=arm64
+            npm install -g win-node-env
+
         - name: Tooling (Win)
-          if: matrix.os == 'windows-latest'
+          if: matrix.script == 'build:win'
           run: |
             npm install -g win-node-env
 
