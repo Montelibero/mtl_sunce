@@ -55,8 +55,16 @@ jobs:
           with:
             node-version: 20
 
+        - name: Setup (WinARM)
+          if: matrix.os == 'windows-latest' && matrix.architecture == 'arm64'
+          run: |
+            set npm_config_arch=arm64
+            npm ci
+
         - name: Setup
-          run: npm ci
+          if: matrix.os !== 'windows-latest' && matrix.architecture !== 'arm64'
+          run: |
+            npm ci
 
         - name: Tooling (Linux)
           if: matrix.os == 'ubuntu-latest'
@@ -65,14 +73,8 @@ jobs:
             sudo apt install snapd
             sudo snap install --classic snapcraft
 
-        - name: Tooling (WinARM)
-          if: matrix.os == 'windows-latest' && matrix.architecture == 'arm64'
-          run: |
-            set npm_config_arch=arm64
-            npm install -g win-node-env
-
         - name: Tooling (Win)
-          if: matrix.os == 'windows-latest' && matrix.architecture == 'x64'
+          if: matrix.os == 'windows-latest'
           run: |
             npm install -g win-node-env
 
