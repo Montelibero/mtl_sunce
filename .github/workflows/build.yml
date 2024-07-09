@@ -30,15 +30,20 @@ jobs:
         fail-fast: false
 
         matrix:
-          os: [ windows-latest, windows-latest, ubuntu-latest, macos-latest ]
+          os: [ windows-latest, ubuntu-latest, macos-latest ]
+          architecture: [ x64, arm64 ]
           include:
             - os: windows-latest
+              architecture: arm64
               script: "build:winarm"
             - os: windows-latest
+              architecture: x64
               script: "build:win"
             - os: ubuntu-latest
+              architecture: x64
               script: "build:linux"
             - os: macos-latest
+              architecture: x64
               script: "build:mac"
 
       runs-on: ${{ matrix.os }}
@@ -61,13 +66,13 @@ jobs:
             sudo snap install --classic snapcraft
 
         - name: Tooling (WinARM)
-          if: matrix.script == 'build:winarm'
+          if: matrix.os == 'windows-latest' && matrix.architecture == 'arm64'
           run: |
             set npm_config_arch=arm64
             npm install -g win-node-env
 
         - name: Tooling (Win)
-          if: matrix.script == 'build:win'
+          if: matrix.os == 'windows-latest' && matrix.architecture == 'x64'
           run: |
             npm install -g win-node-env
 
