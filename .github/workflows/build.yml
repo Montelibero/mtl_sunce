@@ -62,7 +62,7 @@ jobs:
             npm ci
 
         - name: Setup
-          if: matrix.os !== 'windows-latest' && matrix.architecture !== 'arm64'
+          if: matrix.os != 'windows-latest' && matrix.architecture != 'arm64'
           run: |
             npm ci
 
