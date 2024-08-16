@@ -108,6 +108,7 @@ initKeyStore()
 initSettings()
 
 function initKeyStore() {
+  // TODO: Change this before release!
   const keys = localStorage.getItem("solar:keys")
   const initialKeys = keys ? JSON.parse(keys) : defaultTestingKeys
 

@@ -1,4 +1,4 @@
-<h1 align="center">MTL Solar Wallet</h1>
+<h1 align="center">Sunce Wallet</h1>
 
 <p align="center">
   <a href="https://github.com/Montelibero/mtl_solar/releases/latest">
@@ -49,13 +49,13 @@ Open a terminal, navigate to the download folder and make the .AppImage an execu
 the following command:
 
 ```
-$ chmod a+x Montelibero-Solar-Wallet.*.AppImage
+$ chmod a+x Sunce-Wallet.*.AppImage
 ```
 
 Then you can simply run the program:
 
 ```
-$ ./Montelibero-Solar-Wallet.*.AppImage
+$ ./Sunce-Wallet.*.AppImage
 ```
 
 ### Mac

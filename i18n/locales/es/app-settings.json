@@ -81,7 +81,7 @@
     }
   },
   "trusted-services": {
-    "info": "Trusted Services o servicios de confianza, son servicios en la web a los que se permite interactuar con Solar solicitando datos de cuenta o proponiendo transacciones. Puedes agregar un nuevo servicio una vez que el mismo trata de interactuar con Solar.",
+    "info": "Trusted Services o servicios de confianza, son servicios en la web a los que se permite interactuar con Sunce solicitando datos de cuenta o proponiendo transacciones. Puedes agregar un nuevo servicio una vez que el mismo trata de interactuar con Sunce.",
     "service-selection": {
       "action": {
         "cancel": "Cancelar",
