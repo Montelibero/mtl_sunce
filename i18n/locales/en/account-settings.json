@@ -108,8 +108,8 @@
       "single-signature": "Choose the key that should be the account's single signer."
     },
     "preset-description-extra": {
-      "m-out-of-n": "Go to 'Add Account' > 'Join Account' in the co-signing MTL Solar wallet to create a new co-signer's key.",
-      "one-out-of-n": "Go to 'Add Account' > 'Join Account' in the co-signing MTL Solar wallet to create a new co-signer's key."
+      "m-out-of-n": "Go to 'Add Account' > 'Join Account' in the co-signing Sunce wallet to create a new co-signer's key.",
+      "one-out-of-n": "Go to 'Add Account' > 'Join Account' in the co-signing Sunce wallet to create a new co-signer's key."
     },
     "preset-selector": {
       "options": {

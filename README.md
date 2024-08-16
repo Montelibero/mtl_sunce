@@ -1,4 +1,4 @@
-<h1 align="center">MTL Solar Wallet</h1>
+<h1 align="center">Sunce Wallet</h1>
 
 <p align="center">
   <a href="https://github.com/Montelibero/mtl_solar/releases/latest">
