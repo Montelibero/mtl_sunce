@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - feature-beta5
   workflow_dispatch:
 
 jobs:
