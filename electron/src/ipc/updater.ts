@@ -119,8 +119,8 @@ async function startUpdating(version: string) {
     buttons: ["Restart", "Later"],
     cancelId: 1,
     defaultId: 0,
-    title: "Restart the Solar app",
-    message: "Solar needs to quit and re-open to apply the update."
+    title: "Restart the Sunce app",
+    message: "Sunce needs to quit and re-open to apply the update."
   })
 
   if (response === 0) {
@@ -130,7 +130,7 @@ async function startUpdating(version: string) {
 
 function showUpdateNotification(version: string) {
   const notification = new Notification({
-    title: `New version ${version} of Solar available`,
+    title: `New version ${version} of Sunce available`,
     body: "",
     subtitle: `Click to update.`
   })
