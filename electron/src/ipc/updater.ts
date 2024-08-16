@@ -147,7 +147,7 @@ function showUpdateNotification(version: string) {
 
 function showDownloadingNotification(version: string) {
   const notification = new Notification({
-    title: `Updating Solar…`,
+    title: `Updating Sunce`,
     subtitle: `Download of ${version} in progress.`,
     body: "",
     silent: true
