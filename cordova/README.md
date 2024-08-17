@@ -64,7 +64,7 @@ Follow the steps in [Cordova iOS - Installing the Requirements](https://cordova.
 Open the Project folder in Xcode:
 
 ```
-open ./platforms/ios/Solar.xcworkspace/
+open ./platforms/ios/Sunce Wallet.xcworkspace/
 ```
 
 You can now select a device from the dropdown in the upper-left corner and run the application.
