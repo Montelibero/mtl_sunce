@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@moodlehq/cordova-plugin-local-notification": "^0.9.0-moodle.12",
+    "@red-mobile/cordova-plugin-barcodescanner": "^9.1.0",
     "compare-func": "^2.0.0",
     "cordova-android": "^12.0.1",
     "cordova-fetch": "^4.0.0",

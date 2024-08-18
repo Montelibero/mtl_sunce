@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - feature-sunce
   workflow_dispatch:
 
 jobs:
