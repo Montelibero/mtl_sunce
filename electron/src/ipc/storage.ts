@@ -9,7 +9,7 @@ import { expose } from "./_ipc"
 import { Messages } from "../shared/ipc"
 
 // TODO: Change the app data path to "sunce-wallet" before release.
-const storeDirectoryPath = path.join(app.getPath("appData"), "mtl-solar-wallet")
+const storeDirectoryPath = path.join(app.getPath("appData"), "sunce-wallet")
 
 // Use different key stores for development and production
 const mainStore = new Store({

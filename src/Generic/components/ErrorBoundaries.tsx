@@ -96,12 +96,12 @@ export const MainErrorBoundary = ErrorBoundary<MainErrorBoundaryProps>(function 
               <Typography align="center" color="textPrimary">
                 {t("generic.error.boundary.contact-us")}{" "}
                 <a
-                  href="mailto:solar@montelibero.org"
+                  href="mailto:sunce@montelibero.org"
                   style={{ color: "inherit" }}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  solar@montelibero.org
+                  sunce@montelibero.org
                 </a>
               </Typography>
               <Typography align="center" color="textPrimary">

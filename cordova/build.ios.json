@@ -2,7 +2,7 @@
   "ios": {
     "release": {
       "codeSignIdentity": "Apple Distribution",
-      "provisioningProfile": "match_AppStore_org.montelibero.solar",
+      "provisioningProfile": "match_AppStore_org.montelibero.sunce",
       "developmentTeam": "5V5EUT3ZXJ",
       "automaticProvisioning": false,
       "packageType": "app-store"

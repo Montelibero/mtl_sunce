@@ -9,7 +9,7 @@ import { expose } from "./ipc"
 import { registerKeyStoreCommandHandlers } from "./keystore"
 
 // CHANGING THIS IDENTIFIER WILL BREAK BACKWARDS-COMPATIBILITY!
-const cordovaSecureStorageName = "solar:keystore"
+const cordovaSecureStorageName = "sunce:keystore"
 
 export const storeKeys = {
   keystore: "keys",

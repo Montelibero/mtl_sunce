@@ -19,7 +19,7 @@ files:
 publish:
   - provider: github
     owner: Montelibero
-    repo: mtl_solar
+    repo: mtl_sunce
 
 snap:
   confinement: strict

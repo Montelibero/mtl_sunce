@@ -33,7 +33,7 @@ function getUpdaterOptions() {
   const url = new URL(`/update/${process.platform}/${app.getVersion()}`, updateEndpoint).toString()
 
   const headers = {
-    "user-agent": `SatoshiPaySolar/${app.getVersion()} ${os.platform()}/${os.release()}`,
+    "user-agent": `MonteliberoSunce/${app.getVersion()} ${os.platform()}/${os.release()}`,
     "x-user-staging-id": installationID
   }
 
@@ -80,7 +80,7 @@ async function startUpdatingWithoutInfo() {
   const feedURL = new URL(`/update/${process.platform}/${app.getVersion()}`, updateEndpoint).toString()
 
   const headers = {
-    "user-agent": `SatoshiPaySolar/${app.getVersion()} ${os.platform()}/${os.release()}`,
+    "user-agent": `MonteliberoSunce/${app.getVersion()} ${os.platform()}/${os.release()}`,
     "x-user-staging-id": installationID
   }
 

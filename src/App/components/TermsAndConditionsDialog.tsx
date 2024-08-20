@@ -79,9 +79,9 @@ function TermsAndConditions(props: Props) {
               <CheckboxLabel>
                 <Trans i18nKey="app.terms-and-conditions.checkbox.2.label">
                   I have read, understood and agree to the
-                  <ExternalLink href="https://solar.montelibero.org/terms.html">Terms and Conditions</ExternalLink>{" "}
+                  <ExternalLink href="https://sunce.montelibero.org/terms.html">Terms and Conditions</ExternalLink>
                   &amp;
-                  <ExternalLink href="https://solar.montelibero.org/privacy.html">Privacy policy</ExternalLink> of
+                  <ExternalLink href="https://sunce.montelibero.org/privacy.html">Privacy policy</ExternalLink> of
                   Sunce.
                 </Trans>
               </CheckboxLabel>

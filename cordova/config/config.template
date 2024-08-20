@@ -4,7 +4,7 @@
     <description>
         Wallet for the Stellar payment network by Montelibero.
     </description>
-    <author email="solar@montelibero.org" href="https://solar.montelibero.org/">
+    <author email="sunce@montelibero.org" href="https://sunce.montelibero.org/">
         Montelibero Sunce Team
     </author>
     <content src="$HTML_ENTRYPOINT" />
@@ -93,7 +93,7 @@
 
     <preference name="AndroidXEnabled" value="true" />
     <preference name="AndroidLaunchMode" value="singleTask"/>
-    <preference name="AppendUserAgent" value="MTLSolar/$PACKAGE_VERSION" />
+    <preference name="AppendUserAgent" value="MTLSunce/$PACKAGE_VERSION" />
     <preference name="AutoHideSplashScreen" value="$AUTO_HIDE" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="HideKeyboardFormAccessoryBar" value="false" />
