@@ -4,7 +4,7 @@ import { app } from "electron"
 app.name = "Sunce Wallet"
 
 // Needs to match the value in electron-build.yml
-app.setAppUserModelId("org.montelibero.solar")
+app.setAppUserModelId("org.montelibero.sunce")
 
 // Disabled until we actually ship SEP-7 support
 // app.setAsDefaultProtocolClient("web+stellar")

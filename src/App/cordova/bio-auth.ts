@@ -22,7 +22,7 @@ export async function bioAuthenticate() {
     Fingerprint.show(
       {
         title: "Unlock Sunce",
-        description: device && device.platform === "iOS" ? "Unlock your Sunce wallet" : undefined
+        description: device && device.platform === "iOS" ? "Unlock your Sunce Wallet" : undefined
       },
       resolve,
       reject

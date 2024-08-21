@@ -1,19 +1,19 @@
 <h1 align="center">Sunce Wallet</h1>
 
 <p align="center">
-  <a href="https://github.com/Montelibero/mtl_solar/releases/latest">
-    <img alt="Latest stable release" src="https://badgen.net/github/release/Montelibero/mtl_solar/stable" />
+  <a href="https://github.com/Montelibero/mtl_sunce/releases/latest">
+    <img alt="Latest stable release" src="https://badgen.net/github/release/Montelibero/mtl_sunce/stable" />
   </a>
-  <a href="https://github.com/Montelibero/mtl_solar/releases/latest">
+  <a href="https://github.com/Montelibero/mtl_sunce/releases/latest">
     <img alt="MacOS" src="https://badgen.net/badge/icon/MacOS?icon=apple&label&color=cyan" />
   </a>
-  <a href="https://github.com/Montelibero/mtl_solar/releases/latest">
+  <a href="https://github.com/Montelibero/mtl_sunce/releases/latest">
     <img alt="Windows" src="https://badgen.net/badge/icon/Windows?icon=windows&label&color=cyan" />
   </a>
-  <a href="https://github.com/Montelibero/mtl_solar/releases/latest">
+  <a href="https://github.com/Montelibero/mtl_sunce/releases/latest">
     <img alt="Android" src="https://badgen.net/badge/icon/Android?icon=googleplay&label&color=cyan" />
   </a>
-  <a href="https://github.com/Montelibero/mtl_solar/releases/latest">
+  <a href="https://github.com/Montelibero/mtl_sunce/releases/latest">
     <img alt="iOS" src="https://badgen.net/badge/icon/iOS?icon=apple&label&color=cyan" />
   </a>
 </p>
@@ -26,7 +26,7 @@ Runs on Mac OS, Windows, Linux, Android and iOS.
 
 ## Download
 
-See <https://github.com/Montelibero/mtl_solar/releases>. You will find the binaries there.
+See <https://github.com/Montelibero/mtl_sunce/releases>. You will find the binaries there.
 
 ## Installation
 
@@ -35,7 +35,7 @@ See <https://github.com/Montelibero/mtl_solar/releases>. You will find the binar
 For Windows, we decided to only support 64-bit installations of Windows. If you are running
 a 32-bit installation, please let us know by reporting an issue to survey the market demand.
 
-Simply download the latest win-x64.exe file from the [releases](https://github.com/Montelibero/mtl_solar/releases) page and run
+Simply download the latest win-x64.exe file from the [releases](https://github.com/Montelibero/mtl_sunce/releases) page and run
 the installer. You might need to approve installation of unsigned installer. This will only
 be required until we have a signed release available.
 
@@ -43,19 +43,19 @@ be required until we have a signed release available.
 
 For Linux, we support the portable AppImage format that works across most Linux distributions, including Ubuntu.
 
-Download the latest linux-x86_64.AppImage from the [releases](https://github.com/Montelibero/mtl_solar/releases) page.
+Download the latest linux-x86_64.AppImage from the [releases](https://github.com/Montelibero/mtl_sunce/releases) page.
 
 Open a terminal, navigate to the download folder and make the .AppImage an executeable with
 the following command:
 
 ```
-$ chmod a+x Montelibero-Solar-Wallet.*.AppImage
+$ chmod a+x Sunce-Wallet.*.AppImage
 ```
 
 Then you can simply run the program:
 
 ```
-$ ./Montelibero-Solar-Wallet.*.AppImage
+$ ./Sunce-Wallet.*.AppImage
 ```
 
 ### Mac
@@ -122,7 +122,7 @@ npm run build:linux
 
 #### Building windows binaries on macOS
 
-Starting with macOS Catalina 32-bit executables are not supported. This means that the windows binaries cannot be build natively. One can circumvent this issue by using docker for building the windows binaries. Details are documented [here](https://www.electron.build/multi-platform-build#build-electron-app-using-docker-on-a-local-machine). Since Solar is using Squirrel.Windows the `electronuserland/builder:wine-mono` image should be used.
+Starting with macOS Catalina 32-bit executables are not supported. This means that the windows binaries cannot be build natively. One can circumvent this issue by using docker for building the windows binaries. Details are documented [here](https://www.electron.build/multi-platform-build#build-electron-app-using-docker-on-a-local-machine). Since is using Squirrel.Windows the `electronuserland/builder:wine-mono` image should be used.
 
 To run the docker container use:
 
@@ -135,7 +135,7 @@ docker run --rm -ti \
  -v ${PWD##*/}-node-modules:/project/node_modules \
  -v ~/.cache/electron:/root/.cache/electron \
  -v ~/.cache/electron-builder:/root/.cache/electron-builder \
- -v /Volumes/Certificates/solar:/root/Certs \
+ -v /Volumes/Certificates/sunce:/root/Certs \
  electronuserland/builder:wine-mono bash -c 'npm config set script-shell bash && npm install && npm run build:win:signed'
 ```
 
@@ -143,7 +143,7 @@ docker run --rm -ti \
 
 ### Signed binaries
 
-To sign the binaries, make sure you have the code signing certificates on your local filesystem as a `.p12` file and have the password for them. Make sure not to save the certificates in the Solar directory in order to not accidentally bundling them into the app installer!
+To sign the binaries, make sure you have the code signing certificates on your local filesystem as a `.p12` file and have the password for them. Make sure not to save the certificates in the Sunce directory in order to not accidentally bundling them into the app installer!
 
 You can create a `signing-mac.env` and a `signing-win.env` file, pointing `electron-builder` to the right certificate to use for each target platform:
 

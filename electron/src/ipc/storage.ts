@@ -8,7 +8,8 @@ import { Keypair, Networks, Transaction } from "stellar-sdk"
 import { expose } from "./_ipc"
 import { Messages } from "../shared/ipc"
 
-const storeDirectoryPath = path.join(app.getPath("appData"), "mtl-solar-wallet")
+// TODO: Change the app data path to "sunce-wallet" before release.
+const storeDirectoryPath = path.join(app.getPath("appData"), "sunce-wallet")
 
 // Use different key stores for development and production
 const mainStore = new Store({

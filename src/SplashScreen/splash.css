@@ -37,9 +37,10 @@
 #splash > img {
   flex-grow: 1;
   flex-shrink: 0;
-  width: 40vw;
+  /*width: 40vw;*/
+  /*height: 40vw;*/
   max-width: 40vw;
-  max-height: 25vh;
+  max-height: 40vh;
   animation: fade-in 0.5s linear;
 }
 
@@ -48,7 +49,7 @@
 }
 
 #splash .splash-caption img {
-  height: 4vh;
+  height: 6vh;
   margin: 20px 0 0;
 }
 

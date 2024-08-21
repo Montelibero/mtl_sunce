@@ -17,7 +17,7 @@
        under the License.
  */
 
-package org.montelibero.solar;
+package org.montelibero.sunce;
 
 import android.graphics.Color;
 import android.os.Build;

@@ -108,11 +108,12 @@ initKeyStore()
 initSettings()
 
 function initKeyStore() {
-  const keys = localStorage.getItem("solar:keys")
+  // TODO: Change this before release!
+  const keys = localStorage.getItem("sunce:keys")
   const initialKeys = keys ? JSON.parse(keys) : defaultTestingKeys
 
   function saveKeys(keysData: KeysData<PublicKeyData>) {
-    localStorage.setItem("solar:keys", JSON.stringify(keysData))
+    localStorage.setItem("sunce:keys", JSON.stringify(keysData))
   }
   // Create a key store with a high number of iterations to make it harder to brute-force, default is only 10000.
   const keyStore = createStore<PrivateKeyData, PublicKeyData>(saveKeys, initialKeys, { iterations: 250000 })

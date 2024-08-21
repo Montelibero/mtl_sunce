@@ -81,7 +81,7 @@
     }
   },
   "trusted-services": {
-    "info": "Trusted Services are web services that are allowed to interact with Sunce wallet by requesting account data or proposing transactions. You can add a new service once it tries to interact with Solar.",
+    "info": "Trusted Services are web services that are allowed to interact with Sunce wallet by requesting account data or proposing transactions. You can add a new service once it tries to interact with Sunce.",
     "service-selection": {
       "action": {
         "cancel": "Cancel",

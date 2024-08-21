@@ -14,7 +14,7 @@ interface UpdateInfo {
   url: string
 }
 
-const updateEndpoint = !isDev ? "https://update.solarwallet.io/" : process.env.UPDATE_ENDPOINT
+const updateEndpoint = !isDev ? "https://update.sunce.monteliber.org/" : process.env.UPDATE_ENDPOINT
 
 // tslint:disable-next-line: no-console
 checkForUpdates().catch(console.error)
@@ -33,7 +33,7 @@ function getUpdaterOptions() {
   const url = new URL(`/update/${process.platform}/${app.getVersion()}`, updateEndpoint).toString()
 
   const headers = {
-    "user-agent": `SatoshiPaySolar/${app.getVersion()} ${os.platform()}/${os.release()}`,
+    "user-agent": `MonteliberoSunce/${app.getVersion()} ${os.platform()}/${os.release()}`,
     "x-user-staging-id": installationID
   }
 
@@ -80,7 +80,7 @@ async function startUpdatingWithoutInfo() {
   const feedURL = new URL(`/update/${process.platform}/${app.getVersion()}`, updateEndpoint).toString()
 
   const headers = {
-    "user-agent": `SatoshiPaySolar/${app.getVersion()} ${os.platform()}/${os.release()}`,
+    "user-agent": `MonteliberoSunce/${app.getVersion()} ${os.platform()}/${os.release()}`,
     "x-user-staging-id": installationID
   }
 
