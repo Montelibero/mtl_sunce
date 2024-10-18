@@ -35,12 +35,10 @@
 }
 
 #splash > img {
-  flex-grow: 1;
+  flex-grow: 0;
   flex-shrink: 0;
-  /*width: 40vw;*/
-  /*height: 40vw;*/
-  max-width: 40vw;
-  max-height: 40vh;
+  width: 50vmin;
+  height: 50vmin;
   animation: fade-in 0.5s linear;
 }
 
