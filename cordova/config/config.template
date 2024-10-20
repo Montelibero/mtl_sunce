@@ -84,6 +84,8 @@
         <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
             <string>The app needs access to the camera, to be able to read QR codes.</string>
         </edit-config>
+
+        <preference name="deployment-target" value="12.0" />
     </platform>
     <plugin name="cordova-plugin-dialogs" spec="~2.0.1" />
     <plugin name="cordova-plugin-network-information" spec="~2.0.1" />
