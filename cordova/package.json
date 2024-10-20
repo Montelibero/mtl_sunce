@@ -47,7 +47,7 @@
     "compare-func": "^2.0.0",
     "cordova-android": "^12.0.1",
     "cordova-fetch": "^4.0.0",
-    "cordova-ios": "^7.1.0",
+    "cordova-ios": "^7.1.1",
     "cordova-plugin-badge": "^0.8.9",
     "cordova-plugin-customurlscheme": "github:bytelabsco/Custom-URL-scheme",
     "cordova-plugin-device": "^2.1.0",
