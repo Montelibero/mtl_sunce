@@ -1,9 +1,10 @@
 {
   "ios": {
     "release": {
+      "deploymentTarget": "12.0",
       "codeSignIdentity": "Apple Distribution",
       "provisioningProfile": "match_AppStore_org.montelibero.sunce",
-      "developmentTeam": "5V5EUT3ZXJ",
+      "developmentTeam": "D9Q4C3NXEE",
       "automaticProvisioning": false,
       "packageType": "app-store"
     }
