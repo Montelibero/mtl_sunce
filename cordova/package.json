@@ -5,8 +5,8 @@
   "displayName": "Sunce Wallet",
   "cordova": {
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-secure-storage": {},
@@ -51,7 +51,7 @@
     "cordova-plugin-badge": "^0.8.9",
     "cordova-plugin-customurlscheme": "github:bytelabsco/Custom-URL-scheme",
     "cordova-plugin-device": "^2.1.0",
-    "cordova-plugin-fingerprint-aio": "^5.0.3",
+    "cordova-plugin-fingerprint-aio": "^6.0.0",
     "cordova-plugin-network-information": "^3.0.0",
     "cordova-plugin-proguard": "^2.2.0",
     "cordova-plugin-secure-storage": "github:satoshipay/cordova-plugin-secure-storage",
@@ -61,7 +61,7 @@
   },
   "scripts": {
     "install:android": "rm -rf ./plugins && ./scripts/create-config-from-template.sh prod android && cordova platform add android",
-    "install:ios": "rm -rf ./plugins && ./scripts/create-config-from-template.sh prod ios && cordova platform add ios",
+    "install:ios": "rm -rf ./plugins && ./scripts/create-config-from-template.sh prod ios && cordova platform add ios && node ./hooks/after_platform_add/set_ios_deployment_target.js",
     "remove:android": "cordova platform rm android",
     "remove:ios": "cordova platform rm ios",
     "prebuild:android": "rm -rf ../dist/ && NODE_ENV=production PLATFORM=android ../node_modules/.bin/parcel build ../src/index.prod-android.njk --out-dir ../dist --public-url=./ --detailed-report --no-source-maps --no-cache && ./scripts/create-config-from-template.sh prod android",
