@@ -18,7 +18,7 @@ jobs:
         - name: setup java
           uses: actions/setup-java@v4
           with:
-             java-version: '11'
+             java-version: '17'
              distribution: 'temurin'
 
         - name: Install Android SDK
@@ -28,7 +28,7 @@ jobs:
             packages: ''
 
         - name: Install Android SDK packages
-          run: sdkmanager "build-tools;30.0.3"
+          run: sdkmanager "build-tools;34.0.0"
 
         - name: Install project
           run: |
