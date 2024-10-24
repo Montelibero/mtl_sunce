@@ -1,3 +1,4 @@
+import i18next from "../../App/i18n"
 import { parseStellarUri } from "@stellarguard/stellar-uri"
 import { CustomError } from "~Generic/lib/errors"
 
@@ -13,7 +14,7 @@ export async function verifyTransactionRequest(request: string, options: Verific
     if (parsedURI.isTestNetwork && options.allowUnsafeTestnetURIs) {
       // ignore
     } else {
-      throw CustomError("StellarUriVerificationError", "Stellar URI's signature could not be verified.")
+      throw CustomError("StellarUriVerificationError", i18next.t("stellar-uri-verification-error"))
     }
   }
 

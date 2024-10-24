@@ -4,6 +4,7 @@ import { CustomError } from "~Generic/lib/errors"
 import { subscribeToDeepLinkURLs } from "~Platform/protocol-handler"
 import { verifyTransactionRequest } from "~Transaction/lib/stellar-uri"
 import { trackError } from "./notifications"
+import { useTranslation } from "react-i18next"
 
 const allowUnsafeTestnetURIs = Boolean(process.env.ALLOW_UNSAFE_TESTNET_URIS)
 
@@ -25,6 +26,8 @@ const TransactionRequestContext = React.createContext<ContextType>(initialValues
 
 export function TransactionRequestProvider(props: Props) {
   const [uri, setURI] = React.useState<StellarUri | null>(null)
+
+  const { t } = useTranslation()
 
   const clearURI = React.useCallback(() => setURI(null), [])
 
@@ -56,8 +59,9 @@ export function TransactionRequestProvider(props: Props) {
           trackError(
             CustomError(
               "UnexpectedStellarUriTypeError",
-              `Incoming uri ${incomingURI} does not match any expected type.`,
-              { incomingURI }
+              t("unexpected-stellar-uri-type-error", `Incoming uri ${incomingURI} does not match any expected type.`, {
+                incomingURI
+              })
             )
           )
           break
