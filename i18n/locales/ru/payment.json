@@ -1,5 +1,6 @@
 {
   "actions": {
+    "dismiss": "Отменить",
     "submit": "Отправить сейчас"
   },
   "memo-metadata": {

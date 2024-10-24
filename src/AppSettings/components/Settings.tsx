@@ -10,6 +10,7 @@ import FingerprintIcon from "@material-ui/icons/Fingerprint"
 import BlurOffIcon from "@material-ui/icons/BlurOff"
 import ReportOffIcon from "@material-ui/icons/ReportOff"
 import GroupIcon from "@material-ui/icons/Group"
+import ProtocolHandlerIcon from "@material-ui/icons/AddCircleOutline"
 import LanguageIcon from "@material-ui/icons/Language"
 import MessageIcon from "@material-ui/icons/Message"
 import TestnetIcon from "@material-ui/icons/MoneyOff"
@@ -245,6 +246,30 @@ export const TrustedServicesSetting = React.memo(function TrustedServicesSetting
       onClick={props.onClick}
       primaryText={t("app-settings.settings.trusted-services.text.primary")}
       secondaryText={t("app-settings.settings.trusted-services.text.secondary")}
+    />
+  )
+})
+
+interface ProtocolHandlerSettingProps {
+  onClick: () => void
+  isDefaultHandler: boolean
+}
+
+export const ProtocolHandlerSetting = React.memo(function ProtocolHandlerSetting(props: ProtocolHandlerSettingProps) {
+  const classes = useSettingsStyles(props)
+  const { t } = useTranslation()
+
+  return (
+    <AppSettingsItem
+      disabled={props.isDefaultHandler}
+      icon={<ProtocolHandlerIcon className={classes.icon} />}
+      onClick={props.onClick}
+      primaryText={t("app-settings.settings.protocol-handler.text.primary")}
+      secondaryText={
+        props.isDefaultHandler
+          ? t("app-settings.settings.protocol-handler.text.secondary.default")
+          : t("app-settings.settings.protocol-handler.text.secondary.non-default")
+      }
     />
   )
 })

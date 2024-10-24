@@ -7,6 +7,7 @@ import Generic from "./locales/ru/generic.json"
 import Operations from "./locales/ru/operations.json"
 import Payment from "./locales/ru/payment.json"
 import Trading from "./locales/ru/trading.json"
+import TransactionRequest from "./locales/ru/transaction-request.json"
 import TransferService from "./locales/ru/transfer-service.json"
 
 const translations = {
@@ -19,6 +20,7 @@ const translations = {
   operations: Operations,
   payment: Payment,
   trading: Trading,
+  "transaction-request": TransactionRequest,
   "transfer-service": TransferService
 } as const
 
