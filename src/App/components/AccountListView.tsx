@@ -139,9 +139,7 @@ function AllAccountsPage() {
             onCreateTestnetAccount={() => router.history.push(routes.newAccount(true))}
           />
           <AppNotificationPermission />
-          {process.env.PLATFORM === "linux" || process.env.PLATFORM === "darwin" || process.env.PLATFORM === "win32" ? (
-            <ProtocolHandlerPermission />
-          ) : null}
+          <ProtocolHandlerPermission />
         </VerticalLayout>
       </DialogBody>
       <TermsAndConditions
