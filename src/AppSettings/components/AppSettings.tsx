@@ -8,6 +8,7 @@ import * as routes from "~App/routes"
 import { useIsMobile, useRouter } from "~Generic/hooks/userinterface"
 import { matchesRoute } from "~Generic/lib/routes"
 import Carousel from "~Layout/components/Carousel"
+import { isDefaultProtocolClient, setAsDefaultProtocolClient } from "~platform/protocol-handler"
 import ManageTrustedServicesDialog from "./ManageTrustedServicesDialog"
 import {
   BiometricLockSetting,
@@ -17,7 +18,8 @@ import {
   ShowClaimableBalanceSetting,
   ShowDustSetting,
   TestnetSetting,
-  TrustedServicesSetting
+  TrustedServicesSetting,
+  ProtocolHandlerSetting
 } from "./Settings"
 
 const SettingsDialogs = React.memo(function SettingsDialogs() {
@@ -31,6 +33,8 @@ function AppSettings() {
   const isSmallScreen = useIsMobile()
   const router = useRouter()
   const { i18n } = useTranslation()
+
+  const [isDefaultHandler, setIsDefaultHandler] = React.useState<boolean>(false)
 
   const showSettingsOverview = matchesRoute(router.location.pathname, routes.settings(), true)
 
@@ -53,6 +57,12 @@ function AppSettings() {
     },
     [i18n, settings]
   )
+
+  isDefaultProtocolClient().then(setIsDefaultHandler)
+
+  const setDefaultClient = React.useCallback(() => {
+    setAsDefaultProtocolClient().then(success => setIsDefaultHandler(success))
+  }, [setIsDefaultHandler])
 
   return (
     <Carousel current={showSettingsOverview ? 0 : 1}>
@@ -79,6 +89,7 @@ function AppSettings() {
           onToggle={settings.toggleShowClaimableBalanceTxs}
           value={settings.showClaimableBalanceTxs}
         />
+        <ProtocolHandlerSetting isDefaultHandler={isDefaultHandler} onClick={setDefaultClient} />
         <TrustedServicesSetting onClick={navigateToTrustedServices} />
       </List>
       <SettingsDialogs />
