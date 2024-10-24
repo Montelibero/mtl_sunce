@@ -7,4 +7,4 @@ app.name = "Sunce Wallet"
 app.setAppUserModelId("org.montelibero.sunce")
 
 // Disabled until we actually ship SEP-7 support
-// app.setAsDefaultProtocolClient("web+stellar")
+app.setAsDefaultProtocolClient("web+stellar")
