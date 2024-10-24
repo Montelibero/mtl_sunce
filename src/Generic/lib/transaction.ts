@@ -245,5 +245,5 @@ export function isDustTransaction(tx: Transaction, account: Account) {
   if (paymentSummary.every(payment => payment.publicKeys.every(pubkey => pubkey === account.publicKey))) return false
 
   // native payment with dust amount
-  return paymentSummary[0].asset.getCode() === "XLM" && paymentSummary[0].balanceChange.abs() <= DUST_THRESHOLD
+  return paymentSummary[0].asset.getCode() === "XLM" && paymentSummary[0].balanceChange.abs().lte(DUST_THRESHOLD)
 }
