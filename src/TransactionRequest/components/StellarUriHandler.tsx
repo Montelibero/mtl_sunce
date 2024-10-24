@@ -23,7 +23,7 @@ function StellarUriHandler() {
     clearURI()
 
     // Clear location href, since it might contain secret search params
-    window.history.pushState({}, "Solar Wallet", window.location.href.replace(window.location.search, ""))
+    window.history.pushState({}, "Sunce Wallet", window.location.href.replace(window.location.search, ""))
   }, [clearURI, uri])
 
   if (!renderedURI) {
