@@ -20,9 +20,7 @@ expose(Messages.IsDifferentHandlerInstalled, () => {
 })
 
 expose(Messages.SetAsDefaultProtocolClient, () => {
-  // Disabled until we actually ship SEP-7 support
-  // return app.setAsDefaultProtocolClient("web+stellar")
-  return false
+  return app.setAsDefaultProtocolClient("web+stellar")
 })
 
 export function subscribe(subscribeCallback: (...args: any[]) => void) {
