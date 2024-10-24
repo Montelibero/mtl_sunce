@@ -64,6 +64,11 @@ let differentHandler = true
 callHandlers[Messages.IsDifferentHandlerInstalled] = () => differentHandler
 callHandlers[Messages.IsDefaultProtocolClient] = () => isDefault
 callHandlers[Messages.SetAsDefaultProtocolClient] = () => {
+  window.navigator.registerProtocolHandler(
+    "web+stellar",
+    `${window.location.origin}/?uri=%s`,
+    "Stellar request handler"
+  )
   isDefault = true
   differentHandler = false
   return true
@@ -198,12 +203,6 @@ function initSettings() {
 }
 
 function subscribeToDeepLinkURLs(callback: (url: string) => void) {
-  window.navigator.registerProtocolHandler(
-    "web+stellar",
-    `${window.location.origin}/?uri=%s`,
-    "Stellar request handler"
-  )
-
   // check if a stellar uri has been passed already
   const uri = new URLSearchParams(window.location.search).get("uri")
   if (uri) {
