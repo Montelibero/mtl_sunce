@@ -59,6 +59,21 @@ callHandlers[Messages.ShowNotification] = (localNotification: LocalNotification)
   })
 }
 
+let isDefault = false
+let differentHandler = true
+callHandlers[Messages.IsDifferentHandlerInstalled] = () => differentHandler
+callHandlers[Messages.IsDefaultProtocolClient] = () => isDefault
+callHandlers[Messages.SetAsDefaultProtocolClient] = () => {
+  window.navigator.registerProtocolHandler(
+    "web+stellar",
+    `${window.location.origin}/?uri=%s`,
+    "Stellar request handler"
+  )
+  isDefault = true
+  differentHandler = false
+  return true
+}
+
 const defaultTestingKeys: KeysData<PublicKeyData> = {
   "1": {
     metadata: {
@@ -147,17 +162,20 @@ function initKeyStore() {
   callHandlers[Messages.SignTransaction] = signTransaction
 }
 
+const defaultSettings: Platform.SettingsData = {
+  agreedToTermsAt: "2019-01-17T07:34:05.688Z",
+  biometricLock: false,
+  multisignature: true,
+  testnet: true,
+  trustedServices: [],
+  hideMemos: false,
+  showDust: false,
+  showClaimableBalanceTxs: false
+}
+
 function initSettings() {
-  let settings: Platform.SettingsData = {
-    agreedToTermsAt: "2019-01-17T07:34:05.688Z",
-    biometricLock: false,
-    multisignature: true,
-    testnet: true,
-    trustedServices: [],
-    hideMemos: false,
-    showDust: false,
-    showClaimableBalanceTxs: false
-  }
+  const storedSettings = localStorage.getItem("sunce:settings")
+  let settings = storedSettings ? JSON.parse(storedSettings) : defaultSettings
 
   callHandlers[Messages.BioAuthAvailable] = () => ({ available: false, enrolled: false })
 
@@ -167,6 +185,8 @@ function initSettings() {
       ...settings,
       ...updatedSettings
     }
+
+    localStorage.setItem("sunce:settings", JSON.stringify(settings))
   }
 
   callHandlers[Messages.ReadIgnoredSignatureRequestHashes] = () => {
@@ -183,12 +203,6 @@ function initSettings() {
 }
 
 function subscribeToDeepLinkURLs(callback: (url: string) => void) {
-  window.navigator.registerProtocolHandler(
-    "web+stellar",
-    `${window.location.origin}/?uri=%s`,
-    "Stellar request handler"
-  )
-
   // check if a stellar uri has been passed already
   const uri = new URLSearchParams(window.location.search).get("uri")
   if (uri) {
