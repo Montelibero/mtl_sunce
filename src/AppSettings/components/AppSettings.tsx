@@ -8,7 +8,7 @@ import * as routes from "~App/routes"
 import { useIsMobile, useRouter } from "~Generic/hooks/userinterface"
 import { matchesRoute } from "~Generic/lib/routes"
 import Carousel from "~Layout/components/Carousel"
-import { isDefaultProtocolClient, setAsDefaultProtocolClient } from "~platform/protocol-handler"
+import { isDefaultProtocolClient, setAsDefaultProtocolClient } from "~Platform/protocol-handler"
 import ManageTrustedServicesDialog from "./ManageTrustedServicesDialog"
 import {
   BiometricLockSetting,
