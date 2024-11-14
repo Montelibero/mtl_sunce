@@ -13,7 +13,7 @@ import {
   isDefaultProtocolClient,
   isDifferentHandlerInstalled,
   setAsDefaultProtocolClient
-} from "~platform/protocol-handler"
+} from "~Platform/protocol-handler"
 
 function isNotificationDismissed() {
   return localStorage.getItem("protocol-handler-notification-dismissed") !== null
