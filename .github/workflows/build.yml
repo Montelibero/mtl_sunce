@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - fix-ubuntu-build
   workflow_dispatch:
 
 jobs:
