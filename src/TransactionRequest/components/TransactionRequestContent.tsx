@@ -102,7 +102,10 @@ function TransactionRequestContent(props: TransactionRequestContentProps) {
         }
       }
 
-      const newTx = props.txStellarUri.replace(filledReplacements).getTransaction()
+      const newTx =
+        Object.keys(filledReplacements).length > 0
+          ? props.txStellarUri.replace(filledReplacements).getTransaction()
+          : props.txStellarUri.getTransaction()
       sendTransaction(newTx)
     } catch (error) {
       trackError(error)
