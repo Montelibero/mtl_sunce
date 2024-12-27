@@ -36,7 +36,7 @@ function SavedAddressDetailsDialog(props: SavedAddressDetailsDialogProps) {
 
   const handleFormSubmission = () => {
     const values = form.getValues()
-    if (!values.address || !values.label) return
+    if (!values.address) return
     props.onSave(values.address, values.label)
   }
 
@@ -72,8 +72,7 @@ function SavedAddressDetailsDialog(props: SavedAddressDetailsDialogProps) {
           inputRef={form.register({
             validate: {
               length: value =>
-                value.length <= 28 || t<string>("account.saved-address-details.validation.label-too-long"),
-              labelRequired: value => value.length > 0 || t<string>("account.saved-address-details.validation.no-label")
+                value.length <= 28 || t<string>("account.saved-address-details.validation.label-too-long")
             }
           })}
           onChange={event => {
