@@ -7,26 +7,22 @@ import DialogBody from "~Layout/components/DialogBody"
 import { ActionButton, DialogActionsBox } from "~Generic/components/DialogActions"
 import { HorizontalLayout } from "~Layout/components/Box"
 import { TextField } from "@material-ui/core"
+import useSavedAddresses from "~Generic/hooks/useSavedAddresses"
 
 function ContactListExportDialog() {
   const theme = useTheme()
 
-  const storageKey = `sunce:favorites:mainnet`
+  const { savedAddresses, write } = useSavedAddresses(false)
 
-  const [rawContents, setRawContents] = React.useState(() => {
-    return JSON.stringify(JSON.parse(localStorage.getItem(storageKey) || "[]"), null, 2)
-  })
+  const [rawContents, setRawContents] = React.useState(() => JSON.stringify(savedAddresses, null, 2))
 
   const [error, setError] = React.useState<string>()
 
   const handleSaveChanges = React.useCallback(() => {
     setError("")
     try {
-      const json = JSON.parse(rawContents)
-      console.log(json)
-      localStorage.setItem(storageKey, JSON.stringify(json))
+      write(JSON.parse(rawContents))
     } catch (e) {
-      console.log("!!!")
       setError("Cannot parse JSON")
     }
   }, [rawContents])

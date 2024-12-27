@@ -12,10 +12,7 @@ import { ListItem, ListItemText } from "@material-ui/core"
 import ContactDetailsDialog from "./ContactDetailsDialog"
 import { PublicKey } from "~Generic/components/PublicKey"
 import { useIsMobile } from "~Generic/hooks/userinterface"
-
-type SavedAddresses = {
-  [address: string]: { label: string }
-}
+import useSavedAddresses, { SavedAddresses } from "~Generic/hooks/useSavedAddresses"
 
 interface SavedAddressesProps {
   addresses: SavedAddresses
@@ -59,13 +56,9 @@ interface ContactListDialogProps {
 function ContactListDialog(props: ContactListDialogProps) {
   const { t } = useTranslation()
 
-  const storageKey = `sunce:favorites:${props.testnet ? "testnet" : "mainnet"}`
-
   const [editingAddress, setEditingAddress] = useState<{ label: string; address: string } | null>(null)
 
-  const [contactList, setContactList] = useState<SavedAddresses>(() => {
-    return JSON.parse(localStorage.getItem(storageKey) || "{}")
-  })
+  const { savedAddresses, add, remove } = useSavedAddresses(props.testnet)
 
   const openAddAddressDialog = () => {
     setEditingAddress({ address: "", label: "" })
@@ -76,28 +69,17 @@ function ContactListDialog(props: ContactListDialogProps) {
   }
 
   const openAddressDetails = (address: string) => {
-    const entry = contactList[address]
+    const entry = savedAddresses[address]
     setEditingAddress({ address, label: entry?.label || "" })
   }
 
   const handleSaveAddress = (address: string, label: string) => {
-    setContactList((contactList: SavedAddresses) => {
-      const newList = {
-        ...contactList,
-        [address]: { label }
-      }
-      localStorage.setItem(storageKey, JSON.stringify(newList))
-      return newList
-    })
+    add(address, label)
     closeAddAddressDialog()
   }
 
   const handleRemoveAddress = (address: string) => {
-    setContactList((contactList: SavedAddresses) => {
-      const { [address]: _, ...newList } = contactList
-      localStorage.setItem(storageKey, newList.toString())
-      return newList
-    })
+    remove(address)
     closeAddAddressDialog()
   }
 
@@ -115,7 +97,7 @@ function ContactListDialog(props: ContactListDialogProps) {
             &nbsp;&nbsp;{t("account.contact-list.button.add.label")}
           </ButtonListItem>
         )}
-        <SavedAddresses addresses={contactList} onClick={handleAddressClick} testnet={props.testnet} />
+        <SavedAddresses addresses={savedAddresses} onClick={handleAddressClick} testnet={props.testnet} />
       </List>
       <Dialog
         fullScreen
