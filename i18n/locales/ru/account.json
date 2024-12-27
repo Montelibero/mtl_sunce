@@ -138,6 +138,38 @@
       }
     }
   },
+  "contact-list": {
+    "title": "Сохраненные адреса",
+    "button": {
+      "add": {
+        "label": "Добавить адрес"
+      }
+    }
+  },
+  "contact-details": {
+    "address": {
+      "label": "Адрес",
+      "placeholder": "Адрес"
+    },
+    "label": {
+      "label": "Метка",
+      "placeholder": "Метка"
+    },
+    "validation": {
+      "no-address": "Введите адрес",
+      "no-label": "Введите метку",
+      "label-too-long": "Метка слишком длинная. Максимум 28 символов",
+      "invalid-address": "Адрес некорректен"
+    },
+    "button": {
+      "add": {
+        "label": "Сохранить"
+      },
+      "remove": {
+        "label": "Удалить"
+      }
+    }
+  },
   "context-menu": {
     "account-settings": {
       "label": "Настройки аккаунта"
@@ -156,6 +188,9 @@
     },
     "withdraw": {
       "label": "Вывести средства"
+    },
+    "contact-list": {
+      "label": "Сохранённые адреса"
     }
   },
   "cosigner": {

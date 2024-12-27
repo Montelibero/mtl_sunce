@@ -8,6 +8,7 @@ import InputAdornment from "@material-ui/core/InputAdornment"
 import TextField from "@material-ui/core/TextField"
 import CloseIcon from "@material-ui/icons/Close"
 import SendIcon from "@material-ui/icons/Send"
+import AccountBoxIcon from "@material-ui/icons/AccountBox"
 import { Account } from "~App/contexts/accounts"
 import { AccountRecord, useWellKnownAccounts } from "~Generic/hooks/stellar-ecosystem"
 import { useFederationLookup } from "~Generic/hooks/stellar"
@@ -24,6 +25,10 @@ import { formatBalance } from "~Generic/lib/balances"
 import { HorizontalLayout } from "~Layout/components/Box"
 import Portal from "~Generic/components/Portal"
 import { FormBigNumber, isValidAmount, replaceCommaWithDot } from "~Generic/lib/form"
+import ContactListDialog from "~Assets/components/ContactListDialog"
+import { Dialog } from "@material-ui/core"
+import { FullscreenDialogTransition } from "~App/theme"
+import ViewLoading from "~Generic/components/ViewLoading"
 
 export interface PaymentParams {
   amount?: string
@@ -188,13 +193,29 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
     [setValue]
   )
 
+  const [showContacts, setShowContacts] = React.useState<boolean>(false)
+
+  const handleOnContactSelect = React.useCallback(
+    (address: string) => {
+      form.setValue("destination", address)
+      form.triggerValidation("destination")
+      setShowContacts(false)
+    },
+    [form]
+  )
+
+  const handleContractListClick = React.useCallback(() => {
+    setShowContacts(true)
+  }, [])
+
   const qrReaderAdornment = React.useMemo(
     () => (
       <InputAdornment disableTypography position="end">
         <QRReader onScan={handleQRScan} />
+        <AccountBoxIcon onClick={handleContractListClick} style={{ cursor: "pointer" }} />
       </InputAdornment>
     ),
-    [handleQRScan]
+    [handleQRScan, handleContractListClick]
   )
 
   const destinationInput = React.useMemo(
@@ -369,14 +390,31 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
   )
 
   return (
-    <form id={formID} noValidate onSubmit={form.handleSubmit(handleFormSubmission)}>
-      {destinationInput}
-      <HorizontalLayout justifyContent="space-between" alignItems="center" margin="0 -24px" wrap="wrap">
-        {priceInput}
-        {memoInput}
-      </HorizontalLayout>
-      <Portal target={props.actionsRef.element}>{dialogActions}</Portal>
-    </form>
+    <>
+      <form id={formID} noValidate onSubmit={form.handleSubmit(handleFormSubmission)}>
+        {destinationInput}
+        <HorizontalLayout justifyContent="space-between" alignItems="center" margin="0 -24px" wrap="wrap">
+          {priceInput}
+          {memoInput}
+        </HorizontalLayout>
+        <Portal target={props.actionsRef.element}>{dialogActions}</Portal>
+      </form>
+      <Dialog
+        open={showContacts}
+        fullScreen
+        onClose={() => setShowContacts(false)}
+        TransitionComponent={FullscreenDialogTransition}
+      >
+        <React.Suspense fallback={<ViewLoading />}>
+          <ContactListDialog
+            testnet={props.testnet}
+            readonly={true}
+            onClose={() => setShowContacts(false)}
+            onSelect={handleOnContactSelect}
+          />
+        </React.Suspense>
+      </Dialog>
+    </>
   )
 })
 

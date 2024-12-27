@@ -10,6 +10,7 @@ import CallMadeIcon from "@material-ui/icons/CallMade"
 import CallReceivedIcon from "@material-ui/icons/CallReceived"
 import ListIcon from "@material-ui/icons/List"
 import MoneyIcon from "@material-ui/icons/AttachMoney"
+import ContactsIcon from "@material-ui/icons/Contacts"
 import SettingsIcon from "@material-ui/icons/Settings"
 import SwapHorizIcon from "@material-ui/icons/SwapHoriz"
 import { Account } from "~App/contexts/accounts"
@@ -64,6 +65,7 @@ interface MenuProps {
   onAccountTransactions?: () => void
   onDeposit?: () => void
   onManageAssets?: () => void
+  onContactList?: () => void
   onPurchaseLumens?: () => void
   onTrade?: () => void
   onWithdraw?: () => void
@@ -108,6 +110,12 @@ function LiveAccountContextMenuItems(
         icon={<MoneyIcon />}
         label={t("account.context-menu.assets-and-balances.label")}
         onClick={closeAndCall(props.onManageAssets)}
+      />
+      <AccountContextMenuItem
+        disabled={!activated || !props.onContactList}
+        icon={<ContactsIcon />}
+        label={t("account.context-menu.contact-list.label")}
+        onClick={closeAndCall(props.onContactList)}
       />
     </>
   )

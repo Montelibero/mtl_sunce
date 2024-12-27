@@ -138,6 +138,38 @@
       }
     }
   },
+  "contact-list": {
+    "title": "Direcciónes Favoritos",
+    "button": {
+      "add": {
+        "label": "Add destino"
+      }
+    }
+  },
+  "contact-details": {
+    "address": {
+      "label": "Dirección",
+      "placeholder": "Dirección"
+    },
+    "label": {
+      "label": "Etiqueta",
+      "placeholder": "Etiqueta"
+    },
+    "validation": {
+      "no-address": "Falta la dirección",
+      "no-label": "Falta etiqueta",
+      "label-too-long": "La etiqueta es demasiado larga. Considere 28 caracteres como máximo",
+      "invalid-address": "La dirección no es válida"
+    },
+    "button": {
+      "add": {
+        "label": "Guardar"
+      },
+      "remove": {
+        "label": "Remover"
+      }
+    }
+  },
   "context-menu": {
     "account-settings": {
       "label": "Ajustes de la cuenta"
@@ -156,6 +188,9 @@
     },
     "withdraw": {
       "label": "Retirar"
+    },
+    "contact-list": {
+      "label": "Direcciónes Favoritos"
     }
   },
   "purchase-lumens": {

@@ -138,6 +138,38 @@
       }
     }
   },
+  "contact-list": {
+    "title": "Destinazioni Preferite",
+    "button": {
+      "add": {
+        "label": "Aggiungi Indirizzo"
+      }
+    }
+  },
+  "contact-details": {
+    "address": {
+      "label": "Indirizzo",
+      "placeholder": "Indirizzo"
+    },
+    "label": {
+      "label": "Etichetta",
+      "placeholder": "Etichetta"
+    },
+    "validation": {
+      "no-address": "Manca l'indirizzo",
+      "no-label": "Manca l'etichetta",
+      "label-too-long": "L'etichetta è troppo lunga. Considerate un massimo di 28 caratteri",
+      "invalid-address": "L'indirizzo non è valido"
+    },
+    "button": {
+      "add": {
+        "label": "Salvare"
+      },
+      "remove": {
+        "label": "Rimuovere"
+      }
+    }
+  },
   "context-menu": {
     "account-settings": {
       "label": "Impostazioni dell 'account"
@@ -156,6 +188,9 @@
     },
     "withdraw": {
       "label": "Ritira"
+    },
+    "contact-list": {
+      "label": "Destinazioni Preferite"
     }
   },
   "purchase-lumens": {

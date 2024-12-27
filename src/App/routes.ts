@@ -5,6 +5,7 @@ export const account = (accountID: string) => `/account/${accountID}`
 export const accountSettings = (accountID: string) => `/account/${accountID}/settings`
 export const assetDetails = (accountID: string, assetID: string) => `/account/${accountID}/balances/${assetID}`
 export const balanceDetails = (accountID: string) => `/account/${accountID}/balances`
+export const contactList = (accountID: string) => `/account/${accountID}/contacts`
 export const changeAccountPassword = (accountID: string) => `/account/${accountID}/settings/password`
 export const createAccount = (testnet: boolean) => `/account/create/${testnet ? "testnet" : "mainnet"}`
 export const createPayment = (accountID: string) => `/account/${accountID}/send`
