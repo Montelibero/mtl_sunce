@@ -36,7 +36,6 @@ function ContactDetailsDialog(props: ContactDetailsDialogProps) {
 
   const handleFormSubmission = () => {
     const values = form.getValues()
-    console.log({ values })
     if (!values.address || !values.label) return
     props.onSave(values.address, values.label)
   }
