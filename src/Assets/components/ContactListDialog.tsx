@@ -64,7 +64,7 @@ function ContactListDialog(props: ContactListDialogProps) {
   const [editingAddress, setEditingAddress] = useState<{ label: string; address: string } | null>(null)
 
   const [contactList, setContactList] = useState<SavedAddresses>(() => {
-    return JSON.parse(localStorage.getItem(storageKey) || "[]")
+    return JSON.parse(localStorage.getItem(storageKey) || "{}")
   })
 
   const openAddAddressDialog = () => {
