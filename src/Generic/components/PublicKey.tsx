@@ -5,6 +5,7 @@ import { AccountsContext } from "~App/contexts/accounts"
 import { useFederationLookup } from "../hooks/stellar"
 import { useClipboard } from "../hooks/userinterface"
 import { isPublicKey } from "../lib/stellar-address"
+import useSavedAddresses from "~Generic/hooks/useSavedAddresses"
 
 type Variant = "full" | "short" | "shorter"
 
@@ -49,6 +50,14 @@ export const PublicKey = React.memo(function PublicKey(props: PublicKeyProps) {
     account => account.publicKey === props.publicKey && account.testnet === props.testnet
   )
 
+  const { savedAddresses } = useSavedAddresses(props.testnet)
+
+  const matchingSavedAccount = savedAddresses[props.publicKey]?.label
+    ? { name: savedAddresses[props.publicKey].label }
+    : null
+
+  const matchedKnownAccount = matchingLocalAccount || matchingSavedAccount
+
   const style: React.CSSProperties = {
     display: "inline",
     fontSize: "inherit",
@@ -61,13 +70,13 @@ export const PublicKey = React.memo(function PublicKey(props: PublicKeyProps) {
 
   if (props.publicKey.length !== 56) {
     return <>{props.publicKey}</>
-  } else if (!props.showRaw && matchingLocalAccount) {
+  } else if (!props.showRaw && matchedKnownAccount) {
     // Note: We don't check for mainnet/testnet here...
     return (
       <Typography component="span" style={style}>
         {variant === "full"
-          ? matchingLocalAccount.name
-          : shortenName(matchingLocalAccount.name, digits.leading + digits.trailing + 6)}
+          ? matchedKnownAccount.name
+          : shortenName(matchedKnownAccount.name, digits.leading + digits.trailing + 6)}
       </Typography>
     )
   } else {

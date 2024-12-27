@@ -14,13 +14,13 @@ import useSavedAddresses, { SavedAddresses } from "~Generic/hooks/useSavedAddres
 import DialogBody from "~Layout/components/DialogBody"
 import SavedAddressesDetailsDialog from "./SavedAddressesDetailsDialog"
 
-interface SavedAddressesProps {
+interface SavedAddressesListProps {
   addresses: SavedAddresses
   onClick: (address: string) => void
   testnet: boolean
 }
 
-const SavedAddresses = React.memo(function SavedAddresses(props: SavedAddressesProps) {
+const SavedAddressesList = React.memo(function SavedAddressesList(props: SavedAddressesListProps) {
   const isSmallScreen = useIsMobile()
 
   return (
@@ -36,7 +36,12 @@ const SavedAddresses = React.memo(function SavedAddresses(props: SavedAddressesP
             <ListItemText
               primary={props.addresses[address].label}
               secondary={
-                <PublicKey publicKey={address} testnet={props.testnet} variant={isSmallScreen ? "short" : "full"} />
+                <PublicKey
+                  publicKey={address}
+                  testnet={props.testnet}
+                  showRaw={true}
+                  variant={isSmallScreen ? "short" : "full"}
+                />
               }
             />
           </ListItem>
@@ -97,7 +102,7 @@ function SavedAddressesDialog(props: SavedAddressesDialogProps) {
             &nbsp;&nbsp;{t("account.saved-addresses.button.add.label")}
           </ButtonListItem>
         )}
-        <SavedAddresses addresses={savedAddresses} onClick={handleAddressClick} testnet={props.testnet} />
+        <SavedAddressesList addresses={savedAddresses} onClick={handleAddressClick} testnet={props.testnet} />
       </List>
       <Dialog
         fullScreen
