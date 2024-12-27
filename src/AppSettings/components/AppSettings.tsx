@@ -19,13 +19,19 @@ import {
   ShowDustSetting,
   TestnetSetting,
   TrustedServicesSetting,
-  ProtocolHandlerSetting
+  ProtocolHandlerSetting,
+  ContactListExportSetting
 } from "./Settings"
+import ContactListExportDialog from "./ContactListExportDialog"
 
 const SettingsDialogs = React.memo(function SettingsDialogs() {
   const router = useRouter()
   const showManageTrustedServices = matchesRoute(router.location.pathname, routes.manageTrustedServices())
+  const showContactListExport = matchesRoute(router.location.pathname, routes.contactListExport())
 
+  if (showContactListExport) {
+    return <ContactListExportDialog />
+  }
   return showManageTrustedServices ? <ManageTrustedServicesDialog /> : <></>
 })
 
@@ -47,6 +53,10 @@ function AppSettings() {
 
   const hasTestnetAccount = accounts.some(account => account.testnet)
   const navigateToTrustedServices = React.useCallback(() => router.history.push(routes.manageTrustedServices()), [
+    router.history
+  ])
+
+  const navigateToContactListExport = React.useCallback(() => router.history.push(routes.contactListExport()), [
     router.history
   ])
 
@@ -91,6 +101,7 @@ function AppSettings() {
         />
         <ProtocolHandlerSetting isDefaultHandler={isDefaultHandler} onClick={setDefaultClient} />
         <TrustedServicesSetting onClick={navigateToTrustedServices} />
+        <ContactListExportSetting onClick={navigateToContactListExport} />
       </List>
       <SettingsDialogs />
     </Carousel>

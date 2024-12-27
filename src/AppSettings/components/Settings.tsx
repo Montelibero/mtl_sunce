@@ -14,6 +14,7 @@ import ProtocolHandlerIcon from "@material-ui/icons/AddCircleOutline"
 import LanguageIcon from "@material-ui/icons/Language"
 import MessageIcon from "@material-ui/icons/Message"
 import TestnetIcon from "@material-ui/icons/MoneyOff"
+import ImportContacts from "@material-ui/icons/ImportContacts"
 import TrustIcon from "@material-ui/icons/VerifiedUser"
 import { availableLanguages, languageNames } from "../../../i18n"
 import AppSettingsItem from "./AppSettingsItem"
@@ -246,6 +247,30 @@ export const TrustedServicesSetting = React.memo(function TrustedServicesSetting
       onClick={props.onClick}
       primaryText={t("app-settings.settings.trusted-services.text.primary")}
       secondaryText={t("app-settings.settings.trusted-services.text.secondary")}
+    />
+  )
+})
+
+interface ContactListExportSettingProps {
+  onClick: () => void
+}
+
+export const ContactListExportSetting = React.memo(function ContactListExportSetting(
+  props: ContactListExportSettingProps
+) {
+  const classes = useSettingsStyles(props)
+  const { t } = useTranslation()
+  return (
+    <AppSettingsItem
+      actions={
+        <ListItemIcon className={classes.caret}>
+          <ArrowRightIcon className={classes.caret} />
+        </ListItemIcon>
+      }
+      icon={<ImportContacts className={classes.icon} />}
+      onClick={props.onClick}
+      primaryText={t("app-settings.settings.contact-list-export.text.primary")}
+      secondaryText={t("app-settings.settings.contact-list-export.text.secondary")}
     />
   )
 })

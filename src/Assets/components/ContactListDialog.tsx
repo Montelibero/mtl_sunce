@@ -13,13 +13,12 @@ import ContactDetailsDialog from "./ContactDetailsDialog"
 import { PublicKey } from "~Generic/components/PublicKey"
 import { useIsMobile } from "~Generic/hooks/userinterface"
 
-interface SavedAddress {
-  address: string
-  label: string
+type SavedAddresses = {
+  [address: string]: { label: string }
 }
 
 interface SavedAddressesProps {
-  addresses: SavedAddress[]
+  addresses: SavedAddresses
   onClick: (address: string) => void
   testnet: boolean
 }
@@ -29,7 +28,7 @@ const SavedAddresses = React.memo(function SavedAddresses(props: SavedAddressesP
 
   return (
     <>
-      {props.addresses.map(({ address, label }) => {
+      {Object.keys(props.addresses).map(address => {
         return (
           <ListItem
             button={Boolean(props.onClick) as any}
@@ -38,7 +37,7 @@ const SavedAddresses = React.memo(function SavedAddresses(props: SavedAddressesP
             }}
           >
             <ListItemText
-              primary={label}
+              primary={props.addresses[address].label}
               secondary={
                 <PublicKey publicKey={address} testnet={props.testnet} variant={isSmallScreen ? "short" : "full"} />
               }
@@ -62,9 +61,9 @@ function ContactListDialog(props: ContactListDialogProps) {
 
   const storageKey = `sunce:favorites:${props.testnet ? "testnet" : "mainnet"}`
 
-  const [editingAddress, setEditingAddress] = useState<SavedAddress | null>(null)
+  const [editingAddress, setEditingAddress] = useState<{ label: string; address: string } | null>(null)
 
-  const [contactList, setContactList] = useState<SavedAddress[]>(() => {
+  const [contactList, setContactList] = useState<SavedAddresses>(() => {
     return JSON.parse(localStorage.getItem(storageKey) || "[]")
   })
 
@@ -77,13 +76,16 @@ function ContactListDialog(props: ContactListDialogProps) {
   }
 
   const openAddressDetails = (address: string) => {
-    const entry = contactList.find(c => c.address === address)
+    const entry = contactList[address]
     setEditingAddress({ address, label: entry?.label || "" })
   }
 
   const handleSaveAddress = (address: string, label: string) => {
-    setContactList((contactList: SavedAddress[]) => {
-      const newList = [...contactList.filter(c => c.address !== address), { address, label }]
+    setContactList((contactList: SavedAddresses) => {
+      const newList = {
+        ...contactList,
+        [address]: { label }
+      }
       localStorage.setItem(storageKey, JSON.stringify(newList))
       return newList
     })
@@ -91,8 +93,8 @@ function ContactListDialog(props: ContactListDialogProps) {
   }
 
   const handleRemoveAddress = (address: string) => {
-    setContactList((contactList: SavedAddress[]) => {
-      const newList = contactList.filter(c => c.address !== address)
+    setContactList((contactList: SavedAddresses) => {
+      const { [address]: _, ...newList } = contactList
       localStorage.setItem(storageKey, newList.toString())
       return newList
     })

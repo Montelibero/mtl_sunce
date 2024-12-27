@@ -18,6 +18,7 @@ export const manageAccountAssets = (accountID: string) => `/account/${accountID}
 export const manageAccountSigners = (accountID: string) => `/account/${accountID}/settings/signers`
 export const manageAccountSignersDetails = (accountID: string) => `/account/${accountID}/settings/signers/details`
 export const manageTrustedServices = () => "/settings/trusted-services"
+export const contactListExport = () => "/settings/contacts"
 export const newAccount = (testnet: boolean) => `/account/new/${testnet ? "testnet" : "mainnet"}`
 export const purchaseLumens = (accountID: string) => `/account/${accountID}/purchase`
 export const receivePayment = (accountID: string) => `/account/${accountID}/receive`
