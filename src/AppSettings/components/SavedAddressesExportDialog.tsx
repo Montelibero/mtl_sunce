@@ -9,7 +9,7 @@ import { HorizontalLayout } from "~Layout/components/Box"
 import { TextField } from "@material-ui/core"
 import useSavedAddresses from "~Generic/hooks/useSavedAddresses"
 
-function ContactListExportDialog() {
+function SavedAddressesExportDialog() {
   const theme = useTheme()
 
   const { savedAddresses, write } = useSavedAddresses(false)
@@ -31,7 +31,7 @@ function ContactListExportDialog() {
     <DialogBody>
       <DialogContent style={{ flexGrow: 0, padding: 0 }}>
         <DialogContentText align="justify" style={{ marginTop: 8 }}>
-          Contact List
+          Saved Addresses
         </DialogContentText>
 
         <TextField
@@ -76,4 +76,4 @@ function ContactListExportDialog() {
   )
 }
 
-export default React.memo(ContactListExportDialog)
+export default React.memo(SavedAddressesExportDialog)

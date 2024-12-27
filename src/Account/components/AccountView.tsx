@@ -32,7 +32,7 @@ import { InlineErrorBoundary, HideOnError } from "~Generic/components/ErrorBound
 const modules = {
   AssetDetailsDialog: import("../../Assets/components/AssetDetailsDialog"),
   BalanceDetailsDialog: import("../../Assets/components/BalanceDetailsDialog"),
-  ContactListDialog: import("../../Assets/components/ContactListDialog"),
+  SavedAddressesDialog: import("../../Assets/components/SavedAddressesDialog"),
   LumenPurchaseDialog: import("../../LumenPurchase/components/LumenPurchaseDialog"),
   TradeAssetDialog: import("../../Trading/components/TradingDialog"),
   TransferDialog: import("../../TransferService/components/ConnectedTransferDialog")
@@ -59,8 +59,8 @@ const BalanceDetailsDialog = withFallback(
   React.lazy(() => modules.BalanceDetailsDialog),
   <ViewLoading />
 )
-const ContactListDialog = withFallback(
-  React.lazy(() => modules.ContactListDialog),
+const SavedAddressesDialog = withFallback(
+  React.lazy(() => modules.SavedAddressesDialog),
   <ViewLoading />
 )
 const LumenPurchaseDialog = withFallback(
@@ -138,7 +138,7 @@ const AccountPageContent = React.memo(function AccountPageContent(props: Account
     !matchesRoute(router.location.pathname, routes.manageAccountAssets("*"))
   const showAssetTrading = matchesRoute(router.location.pathname, routes.tradeAsset("*"))
   const showBalanceDetails = matchesRoute(router.location.pathname, routes.balanceDetails("*"))
-  const showContactList = matchesRoute(router.location.pathname, routes.contactList("*"))
+  const showSavedAddresses = matchesRoute(router.location.pathname, routes.savedAddresses("*"))
   const showCreatePayment = matchesRoute(router.location.pathname, routes.createPayment("*"))
   const showDeposit = matchesRoute(router.location.pathname, routes.depositAsset("*"))
   const showLumenPurchase = matchesRoute(router.location.pathname, routes.purchaseLumens("*"))
@@ -176,7 +176,7 @@ const AccountPageContent = React.memo(function AccountPageContent(props: Account
       addAssets: accountID ? () => router.history.push(routes.manageAccountAssets(accountID)) : undefined,
       deposit: accountID ? () => router.history.push(routes.depositAsset(accountID)) : undefined,
       balanceDetails: accountID ? () => router.history.push(routes.balanceDetails(accountID)) : undefined,
-      contactList: accountID ? () => router.history.push(routes.contactList(accountID)) : undefined,
+      savedAddresses: accountID ? () => router.history.push(routes.savedAddresses(accountID)) : undefined,
       createPayment: accountID ? () => router.history.push(routes.createPayment(accountID)) : undefined,
       purchaseLumens: accountID ? () => router.history.push(routes.purchaseLumens(accountID)) : undefined,
       receivePayment: accountID ? () => router.history.push(routes.receivePayment(accountID)) : undefined,
@@ -294,7 +294,7 @@ const AccountPageContent = React.memo(function AccountPageContent(props: Account
         onClose={handleBackNavigation}
         onDeposit={navigateTo.deposit}
         onManageAssets={navigateTo.balanceDetails}
-        onContactList={navigateTo.contactList}
+        onSavedAddresses={navigateTo.savedAddresses}
         onPurchaseLumens={navigateTo.purchaseLumens}
         onRename={performRenaming}
         onTrade={navigateTo.tradeAssets}
@@ -404,13 +404,13 @@ const AccountPageContent = React.memo(function AccountPageContent(props: Account
             </React.Suspense>
           </Dialog>
           <Dialog
-            open={showContactList}
+            open={showSavedAddresses}
             fullScreen
             onClose={closeDialog}
             TransitionComponent={FullscreenDialogTransition}
           >
             <React.Suspense fallback={<ViewLoading />}>
-              <ContactListDialog account={props.account} testnet={props.testnet} onClose={closeDialog} />
+              <SavedAddressesDialog account={props.account} testnet={props.testnet} onClose={closeDialog} />
             </React.Suspense>
           </Dialog>
           <Dialog

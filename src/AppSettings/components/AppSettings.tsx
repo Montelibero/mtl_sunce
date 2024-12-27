@@ -1,7 +1,6 @@
+import List from "@material-ui/core/List"
 import React from "react"
 import { useTranslation } from "react-i18next"
-import List from "@material-ui/core/List"
-import { availableLanguages } from "../../../i18n/index"
 import { AccountsContext } from "~App/contexts/accounts"
 import { SettingsContext } from "~App/contexts/settings"
 import * as routes from "~App/routes"
@@ -9,28 +8,29 @@ import { useIsMobile, useRouter } from "~Generic/hooks/userinterface"
 import { matchesRoute } from "~Generic/lib/routes"
 import Carousel from "~Layout/components/Carousel"
 import { isDefaultProtocolClient, setAsDefaultProtocolClient } from "~Platform/protocol-handler"
+import { availableLanguages } from "../../../i18n/index"
 import ManageTrustedServicesDialog from "./ManageTrustedServicesDialog"
+import SavedAddressesExportDialog from "./SavedAddressesExportDialog"
 import {
   BiometricLockSetting,
   HideMemoSetting,
   LanguageSetting,
   MultiSigSetting,
+  ProtocolHandlerSetting,
+  SavedAddressesExportSetting,
   ShowClaimableBalanceSetting,
   ShowDustSetting,
   TestnetSetting,
-  TrustedServicesSetting,
-  ProtocolHandlerSetting,
-  ContactListExportSetting
+  TrustedServicesSetting
 } from "./Settings"
-import ContactListExportDialog from "./ContactListExportDialog"
 
 const SettingsDialogs = React.memo(function SettingsDialogs() {
   const router = useRouter()
   const showManageTrustedServices = matchesRoute(router.location.pathname, routes.manageTrustedServices())
-  const showContactListExport = matchesRoute(router.location.pathname, routes.contactListExport())
+  const showSavedAddressesExport = matchesRoute(router.location.pathname, routes.savedAddressesExport())
 
-  if (showContactListExport) {
-    return <ContactListExportDialog />
+  if (showSavedAddressesExport) {
+    return <SavedAddressesExportDialog />
   }
   return showManageTrustedServices ? <ManageTrustedServicesDialog /> : <></>
 })
@@ -56,7 +56,7 @@ function AppSettings() {
     router.history
   ])
 
-  const navigateToContactListExport = React.useCallback(() => router.history.push(routes.contactListExport()), [
+  const navigateToSavedAddressesExport = React.useCallback(() => router.history.push(routes.savedAddressesExport()), [
     router.history
   ])
 
@@ -101,7 +101,7 @@ function AppSettings() {
         />
         <ProtocolHandlerSetting isDefaultHandler={isDefaultHandler} onClick={setDefaultClient} />
         <TrustedServicesSetting onClick={navigateToTrustedServices} />
-        <ContactListExportSetting onClick={navigateToContactListExport} />
+        <SavedAddressesExportSetting onClick={navigateToSavedAddressesExport} />
       </List>
       <SettingsDialogs />
     </Carousel>

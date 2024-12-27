@@ -251,12 +251,12 @@ export const TrustedServicesSetting = React.memo(function TrustedServicesSetting
   )
 })
 
-interface ContactListExportSettingProps {
+interface SavedAddressesExportSettingProps {
   onClick: () => void
 }
 
-export const ContactListExportSetting = React.memo(function ContactListExportSetting(
-  props: ContactListExportSettingProps
+export const SavedAddressesExportSetting = React.memo(function SavedAddressesExportSetting(
+  props: SavedAddressesExportSettingProps
 ) {
   const classes = useSettingsStyles(props)
   const { t } = useTranslation()
@@ -269,8 +269,8 @@ export const ContactListExportSetting = React.memo(function ContactListExportSet
       }
       icon={<ImportContacts className={classes.icon} />}
       onClick={props.onClick}
-      primaryText={t("app-settings.settings.contact-list-export.text.primary")}
-      secondaryText={t("app-settings.settings.contact-list-export.text.secondary")}
+      primaryText={t("app-settings.settings.saved-addresses-export.text.primary")}
+      secondaryText={t("app-settings.settings.saved-addresses-export.text.secondary")}
     />
   )
 })

@@ -65,7 +65,7 @@ interface MenuProps {
   onAccountTransactions?: () => void
   onDeposit?: () => void
   onManageAssets?: () => void
-  onContactList?: () => void
+  onSavedAddresses?: () => void
   onPurchaseLumens?: () => void
   onTrade?: () => void
   onWithdraw?: () => void
@@ -112,10 +112,10 @@ function LiveAccountContextMenuItems(
         onClick={closeAndCall(props.onManageAssets)}
       />
       <AccountContextMenuItem
-        disabled={!activated || !props.onContactList}
+        disabled={!activated || !props.onSavedAddresses}
         icon={<ContactsIcon />}
-        label={t("account.context-menu.contact-list.label")}
-        onClick={closeAndCall(props.onContactList)}
+        label={t("account.context-menu.saved-addresses.label")}
+        onClick={closeAndCall(props.onSavedAddresses)}
       />
     </>
   )

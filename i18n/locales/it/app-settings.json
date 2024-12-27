@@ -61,7 +61,7 @@
         "secondary": "Rimuovi servizi attendibili"
       }
     },
-    "contact-list-export": {
+    "saved-addresses-export": {
       "text": {
         "primary": "Importazione/esportazione di indirizzi salvati",
         "secondary": "Accesso rapido a tutti gli indirizzi salvati in formato JSON"

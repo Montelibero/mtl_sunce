@@ -138,7 +138,7 @@
       }
     }
   },
-  "contact-list": {
+  "saved-addresses": {
     "title": "Destinazioni Preferite",
     "button": {
       "add": {
@@ -146,7 +146,7 @@
       }
     }
   },
-  "contact-details": {
+  "saved-address-details": {
     "address": {
       "label": "Indirizzo",
       "placeholder": "Indirizzo"
@@ -189,7 +189,7 @@
     "withdraw": {
       "label": "Ritira"
     },
-    "contact-list": {
+    "saved-addresses": {
       "label": "Destinazioni Preferite"
     }
   },

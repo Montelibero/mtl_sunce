@@ -61,7 +61,7 @@
         "secondary": "Удаление доверенных сервисов"
       }
     },
-    "contact-list-export": {
+    "saved-addresses-export": {
       "text": {
         "primary": "Импорт/Экспорт сохраненных адресов",
         "secondary": "Быстрый доступ к всем сохранённым адресам в JSON-формате"

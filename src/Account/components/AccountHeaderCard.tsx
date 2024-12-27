@@ -50,7 +50,7 @@ interface Props {
   onClose: () => void
   onDeposit?: () => void
   onManageAssets?: () => void
-  onContactList?: () => void
+  onSavedAddresses?: () => void
   onPurchaseLumens?: () => void
   onRename: (newName: string) => void
   onTrade?: () => void
@@ -85,7 +85,7 @@ function AccountHeaderCard(props: Props) {
             onDeposit={props.onDeposit}
             onManageAssets={props.onManageAssets}
             onPurchaseLumens={props.onPurchaseLumens}
-            onContactList={props.onContactList}
+            onSavedAddresses={props.onSavedAddresses}
             onTrade={props.onTrade}
             onWithdraw={props.onWithdraw}
             settings={settings}

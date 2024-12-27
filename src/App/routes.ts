@@ -5,7 +5,7 @@ export const account = (accountID: string) => `/account/${accountID}`
 export const accountSettings = (accountID: string) => `/account/${accountID}/settings`
 export const assetDetails = (accountID: string, assetID: string) => `/account/${accountID}/balances/${assetID}`
 export const balanceDetails = (accountID: string) => `/account/${accountID}/balances`
-export const contactList = (accountID: string) => `/account/${accountID}/contacts`
+export const savedAddresses = (accountID: string) => `/account/${accountID}/saved-addresses`
 export const changeAccountPassword = (accountID: string) => `/account/${accountID}/settings/password`
 export const createAccount = (testnet: boolean) => `/account/create/${testnet ? "testnet" : "mainnet"}`
 export const createPayment = (accountID: string) => `/account/${accountID}/send`
@@ -18,7 +18,7 @@ export const manageAccountAssets = (accountID: string) => `/account/${accountID}
 export const manageAccountSigners = (accountID: string) => `/account/${accountID}/settings/signers`
 export const manageAccountSignersDetails = (accountID: string) => `/account/${accountID}/settings/signers/details`
 export const manageTrustedServices = () => "/settings/trusted-services"
-export const contactListExport = () => "/settings/contacts"
+export const savedAddressesExport = () => "/settings/saved-addresses"
 export const newAccount = (testnet: boolean) => `/account/new/${testnet ? "testnet" : "mainnet"}`
 export const purchaseLumens = (accountID: string) => `/account/${accountID}/purchase`
 export const receivePayment = (accountID: string) => `/account/${accountID}/receive`

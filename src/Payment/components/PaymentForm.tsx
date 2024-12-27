@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next"
 import { Asset, Memo, MemoType, Server, Transaction } from "stellar-sdk"
 import { Account } from "~App/contexts/accounts"
 import { FullscreenDialogTransition } from "~App/theme"
-import ContactListDialog from "~Assets/components/ContactListDialog"
+import SavedAddressesDialog from "~Assets/components/SavedAddressesDialog"
 import AssetSelector from "~Generic/components/AssetSelector"
 import { ActionButton, DialogActionsBox } from "~Generic/components/DialogActions"
 import { PriceInput, QRReader } from "~Generic/components/FormFields"
@@ -193,19 +193,19 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
     [setValue]
   )
 
-  const [showContacts, setShowContacts] = React.useState<boolean>(false)
+  const [showSavedAddresses, setShowSavedAddresses] = React.useState<boolean>(false)
 
-  const handleOnContactSelect = React.useCallback(
+  const handleOnSavedAddressClick = React.useCallback(
     (address: string) => {
       form.setValue("destination", address)
       form.triggerValidation("destination")
-      setShowContacts(false)
+      setShowSavedAddresses(false)
     },
     [form]
   )
 
   const handleContractListClick = React.useCallback(() => {
-    setShowContacts(true)
+    setShowSavedAddresses(true)
   }, [])
 
   const qrReaderAdornment = React.useMemo(
@@ -400,17 +400,17 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
         <Portal target={props.actionsRef.element}>{dialogActions}</Portal>
       </form>
       <Dialog
-        open={showContacts}
+        open={showSavedAddresses}
         fullScreen
-        onClose={() => setShowContacts(false)}
+        onClose={() => setShowSavedAddresses(false)}
         TransitionComponent={FullscreenDialogTransition}
       >
         <React.Suspense fallback={<ViewLoading />}>
-          <ContactListDialog
+          <SavedAddressesDialog
             testnet={props.testnet}
             readonly={true}
-            onClose={() => setShowContacts(false)}
-            onSelect={handleOnContactSelect}
+            onClose={() => setShowSavedAddresses(false)}
+            onSelect={handleOnSavedAddressClick}
           />
         </React.Suspense>
       </Dialog>

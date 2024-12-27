@@ -9,7 +9,7 @@ import { nanoid } from "nanoid"
 import { isMuxedAddress, isPublicKey, isStellarAddress } from "~Generic/lib/stellar-address"
 import { ActionButton, DialogActionsBox } from "~Generic/components/DialogActions"
 
-interface ContactDetailsDialogProps {
+interface SavedAddressDetailsDialogProps {
   address?: string
   label?: string
   onClose: () => void
@@ -17,15 +17,15 @@ interface ContactDetailsDialogProps {
   onRemove: (address: string) => void
 }
 
-export interface ContactDetailsValues {
+export interface SavedAddressValues {
   address: string
   label: string
 }
 
-function ContactDetailsDialog(props: ContactDetailsDialogProps) {
+function SavedAddressDetailsDialog(props: SavedAddressDetailsDialogProps) {
   const { t } = useTranslation()
 
-  const form = useForm<ContactDetailsValues>({
+  const form = useForm<SavedAddressValues>({
     defaultValues: {
       address: props.address || "",
       label: props.label || ""
@@ -50,35 +50,36 @@ function ContactDetailsDialog(props: ContactDetailsDialogProps) {
             style: { textOverflow: "ellipsis" }
           }}
           inputRef={form.register({
-            required: t<string>("account.contact-details.validation.no-address"),
+            required: t<string>("account.saved-address-details.validation.no-address"),
             validate: value =>
               isPublicKey(value) ||
               isMuxedAddress(value) ||
               isStellarAddress(value) ||
-              t<string>("account.contact-details.validation.invalid-address")
+              t<string>("account.saved-address-details.validation.invalid-address")
           })}
-          label={form.errors.address ? form.errors.address.message : t("account.contact-details.address.label")}
+          label={form.errors.address ? form.errors.address.message : t("account.saved-address-details.address.label")}
           margin="normal"
           name="address"
           onChange={event => form.setValue("address", event.target.value.trim())}
-          placeholder={t("account.contact-details.address.placeholder")}
+          placeholder={t("account.saved-address-details.address.placeholder")}
         />
         <TextField
           error={Boolean(form.errors.label)}
           fullWidth
-          label={form.errors.label ? form.errors.label.message : t("account.contact-details.label.label")}
+          label={form.errors.label ? form.errors.label.message : t("account.saved-address-details.label.label")}
           margin="normal"
           name="label"
           inputRef={form.register({
             validate: {
-              length: value => value.length <= 28 || t<string>("account.contact-details.validation.label-too-long"),
-              labelRequired: value => value.length > 0 || t<string>("account.contact-details.validation.no-label")
+              length: value =>
+                value.length <= 28 || t<string>("account.saved-address-details.validation.label-too-long"),
+              labelRequired: value => value.length > 0 || t<string>("account.saved-address-details.validation.no-label")
             }
           })}
           onChange={event => {
             form.setValue("label", event.target.value)
           }}
-          placeholder={t("account.contact-details.label.label")}
+          placeholder={t("account.saved-address-details.label.label")}
         />
         <DialogActionsBox desktopStyle={{ marginTop: 64 }}>
           {props.address && (
@@ -88,12 +89,12 @@ function ContactDetailsDialog(props: ContactDetailsDialogProps) {
               style={{ maxWidth: "none" }}
               type="secondary"
             >
-              {t("account.contact-details.button.remove.label")}
+              {t("account.saved-address-details.button.remove.label")}
             </ActionButton>
           )}
 
           <ActionButton form={formID} onClick={() => undefined} type="submit">
-            {t("account.contact-details.button.add.label")}
+            {t("account.saved-address-details.button.add.label")}
           </ActionButton>
         </DialogActionsBox>
       </form>
@@ -101,4 +102,4 @@ function ContactDetailsDialog(props: ContactDetailsDialogProps) {
   )
 }
 
-export default React.memo(ContactDetailsDialog)
+export default React.memo(SavedAddressDetailsDialog)

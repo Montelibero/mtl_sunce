@@ -70,7 +70,7 @@
         "secondary": "Remove Trusted Services"
       }
     },
-    "contact-list-export": {
+    "saved-addresses-export": {
       "text": {
         "primary": "Import/Export Saved Addresses",
         "secondary": "Quick access to all the saved addresses in JSON-format"

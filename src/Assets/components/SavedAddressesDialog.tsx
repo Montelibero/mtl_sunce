@@ -1,18 +1,18 @@
-import React, { useState } from "react"
-import { useTranslation } from "react-i18next"
+import { ListItem, ListItemText } from "@material-ui/core"
 import Dialog from "@material-ui/core/Dialog"
 import List from "@material-ui/core/List"
 import AddIcon from "@material-ui/icons/Add"
+import React, { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { FullscreenDialogTransition } from "~App/theme"
 import ButtonListItem from "~Generic/components/ButtonListItem"
 import MainTitle from "~Generic/components/MainTitle"
-import ViewLoading from "~Generic/components/ViewLoading"
-import DialogBody from "~Layout/components/DialogBody"
-import { ListItem, ListItemText } from "@material-ui/core"
-import ContactDetailsDialog from "./ContactDetailsDialog"
 import { PublicKey } from "~Generic/components/PublicKey"
+import ViewLoading from "~Generic/components/ViewLoading"
 import { useIsMobile } from "~Generic/hooks/userinterface"
 import useSavedAddresses, { SavedAddresses } from "~Generic/hooks/useSavedAddresses"
+import DialogBody from "~Layout/components/DialogBody"
+import SavedAddressesDetailsDialog from "./SavedAddressesDetailsDialog"
 
 interface SavedAddressesProps {
   addresses: SavedAddresses
@@ -46,14 +46,14 @@ const SavedAddresses = React.memo(function SavedAddresses(props: SavedAddressesP
   )
 })
 
-interface ContactListDialogProps {
+interface SavedAddressesDialogProps {
   testnet: boolean
   readonly?: boolean
   onSelect?: (address: string) => void
   onClose: () => void
 }
 
-function ContactListDialog(props: ContactListDialogProps) {
+function SavedAddressesDialog(props: SavedAddressesDialogProps) {
   const { t } = useTranslation()
 
   const [editingAddress, setEditingAddress] = useState<{ label: string; address: string } | null>(null)
@@ -89,12 +89,12 @@ function ContactListDialog(props: ContactListDialogProps) {
   }
 
   return (
-    <DialogBody excessWidth={12} top={<MainTitle onBack={props.onClose} title={t("account.contact-list.title")} />}>
+    <DialogBody excessWidth={12} top={<MainTitle onBack={props.onClose} title={t("account.saved-addresses.title")} />}>
       <List style={{ margin: "0 -8px" }}>
         {!props.readonly && (
           <ButtonListItem gutterBottom onClick={openAddAddressDialog}>
             <AddIcon />
-            &nbsp;&nbsp;{t("account.contact-list.button.add.label")}
+            &nbsp;&nbsp;{t("account.saved-addresses.button.add.label")}
           </ButtonListItem>
         )}
         <SavedAddresses addresses={savedAddresses} onClick={handleAddressClick} testnet={props.testnet} />
@@ -106,7 +106,7 @@ function ContactListDialog(props: ContactListDialogProps) {
         TransitionComponent={FullscreenDialogTransition}
       >
         <React.Suspense fallback={<ViewLoading />}>
-          <ContactDetailsDialog
+          <SavedAddressesDetailsDialog
             address={editingAddress?.address}
             label={editingAddress?.label}
             onSave={handleSaveAddress}
@@ -119,4 +119,4 @@ function ContactListDialog(props: ContactListDialogProps) {
   )
 }
 
-export default React.memo(ContactListDialog)
+export default React.memo(SavedAddressesDialog)
