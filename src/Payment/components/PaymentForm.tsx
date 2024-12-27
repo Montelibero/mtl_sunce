@@ -1,29 +1,34 @@
+import { Dialog } from "@material-ui/core"
+import InputAdornment from "@material-ui/core/InputAdornment"
+import TextField from "@material-ui/core/TextField"
+import AccountBoxIcon from "@material-ui/icons/AccountBox"
+import CloseIcon from "@material-ui/icons/Close"
+import SendIcon from "@material-ui/icons/Send"
 import BigNumber from "big.js"
 import { nanoid } from "nanoid"
 import React from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Asset, Memo, MemoType, Server, Transaction } from "stellar-sdk"
-import InputAdornment from "@material-ui/core/InputAdornment"
-import TextField from "@material-ui/core/TextField"
-import CloseIcon from "@material-ui/icons/Close"
-import SendIcon from "@material-ui/icons/Send"
 import { Account } from "~App/contexts/accounts"
-import { AccountRecord, useWellKnownAccounts } from "~Generic/hooks/stellar-ecosystem"
+import { FullscreenDialogTransition } from "~App/theme"
+import SavedAddressesDialog from "~Assets/components/SavedAddressesDialog"
+import AssetSelector from "~Generic/components/AssetSelector"
+import { ActionButton, DialogActionsBox } from "~Generic/components/DialogActions"
+import { PriceInput, QRReader } from "~Generic/components/FormFields"
+import Portal from "~Generic/components/Portal"
+import ViewLoading from "~Generic/components/ViewLoading"
 import { useFederationLookup } from "~Generic/hooks/stellar"
-import { useIsMobile, RefStateObject } from "~Generic/hooks/userinterface"
+import { AccountRecord, useWellKnownAccounts } from "~Generic/hooks/stellar-ecosystem"
+import { RefStateObject, useIsMobile } from "~Generic/hooks/userinterface"
 import { AccountData } from "~Generic/lib/account"
+import { formatBalance } from "~Generic/lib/balances"
 import { CustomError } from "~Generic/lib/errors"
+import { FormBigNumber, isValidAmount, replaceCommaWithDot } from "~Generic/lib/form"
 import { findMatchingBalanceLine, getAccountMinimumBalance, getSpendableBalance } from "~Generic/lib/stellar"
 import { isMuxedAddress, isPublicKey, isStellarAddress } from "~Generic/lib/stellar-address"
 import { createPaymentOperation, createTransaction, multisigMinimumFee } from "~Generic/lib/transaction"
-import { ActionButton, DialogActionsBox } from "~Generic/components/DialogActions"
-import AssetSelector from "~Generic/components/AssetSelector"
-import { PriceInput, QRReader } from "~Generic/components/FormFields"
-import { formatBalance } from "~Generic/lib/balances"
 import { HorizontalLayout } from "~Layout/components/Box"
-import Portal from "~Generic/components/Portal"
-import { FormBigNumber, isValidAmount, replaceCommaWithDot } from "~Generic/lib/form"
 
 export interface PaymentParams {
   amount?: string
@@ -188,13 +193,29 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
     [setValue]
   )
 
+  const [showSavedAddresses, setShowSavedAddresses] = React.useState<boolean>(false)
+
+  const handleOnSavedAddressClick = React.useCallback(
+    (address: string) => {
+      form.setValue("destination", address)
+      form.triggerValidation("destination")
+      setShowSavedAddresses(false)
+    },
+    [form]
+  )
+
+  const handleContractListClick = React.useCallback(() => {
+    setShowSavedAddresses(true)
+  }, [])
+
   const qrReaderAdornment = React.useMemo(
     () => (
       <InputAdornment disableTypography position="end">
         <QRReader onScan={handleQRScan} />
+        <AccountBoxIcon onClick={handleContractListClick} style={{ cursor: "pointer" }} />
       </InputAdornment>
     ),
-    [handleQRScan]
+    [handleQRScan, handleContractListClick]
   )
 
   const destinationInput = React.useMemo(
@@ -369,14 +390,31 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
   )
 
   return (
-    <form id={formID} noValidate onSubmit={form.handleSubmit(handleFormSubmission)}>
-      {destinationInput}
-      <HorizontalLayout justifyContent="space-between" alignItems="center" margin="0 -24px" wrap="wrap">
-        {priceInput}
-        {memoInput}
-      </HorizontalLayout>
-      <Portal target={props.actionsRef.element}>{dialogActions}</Portal>
-    </form>
+    <>
+      <form id={formID} noValidate onSubmit={form.handleSubmit(handleFormSubmission)}>
+        {destinationInput}
+        <HorizontalLayout justifyContent="space-between" alignItems="center" margin="0 -24px" wrap="wrap">
+          {priceInput}
+          {memoInput}
+        </HorizontalLayout>
+        <Portal target={props.actionsRef.element}>{dialogActions}</Portal>
+      </form>
+      <Dialog
+        open={showSavedAddresses}
+        fullScreen
+        onClose={() => setShowSavedAddresses(false)}
+        TransitionComponent={FullscreenDialogTransition}
+      >
+        <React.Suspense fallback={<ViewLoading />}>
+          <SavedAddressesDialog
+            testnet={props.testnet}
+            readonly={true}
+            onClose={() => setShowSavedAddresses(false)}
+            onSelect={handleOnSavedAddressClick}
+          />
+        </React.Suspense>
+      </Dialog>
+    </>
   )
 })
 

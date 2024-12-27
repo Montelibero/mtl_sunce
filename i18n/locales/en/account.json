@@ -138,6 +138,38 @@
       }
     }
   },
+  "saved-addresses": {
+    "title": "Saved Addresses",
+    "button": {
+      "add": {
+        "label": "Add Address"
+      }
+    }
+  },
+  "saved-address-details": {
+    "address": {
+      "label": "Address",
+      "placeholder": "Address"
+    },
+    "label": {
+      "label": "Label",
+      "placeholder": "Label"
+    },
+    "validation": {
+      "no-address": "Address is missing",
+      "no-label": "Label is missing",
+      "label-too-long": "Label is too long. Consider 28 characters max",
+      "invalid-address": "Address is invalid"
+    },
+    "button": {
+      "add": {
+        "label": "Save"
+      },
+      "remove": {
+        "label": "Remove"
+      }
+    }
+  },
   "context-menu": {
     "account-settings": {
       "label": "Account Settings"
@@ -156,6 +188,9 @@
     },
     "withdraw": {
       "label": "Withdraw"
+    },
+    "saved-addresses": {
+      "label": "Saved Addresses"
     }
   },
   "cosigner": {
