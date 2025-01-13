@@ -70,6 +70,12 @@
         "secondary": "Remove Trusted Services"
       }
     },
+    "saved-addresses-export": {
+      "text": {
+        "primary": "Import/Export Saved Addresses",
+        "secondary": "Quick access to all the saved addresses in JSON-format"
+      }
+    },
     "dust": {
       "text": {
         "primary": "Show dust transactions",

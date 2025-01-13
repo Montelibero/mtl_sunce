@@ -61,6 +61,12 @@
         "secondary": "Remover Trusted Services"
       }
     },
+    "saved-addresses-export": {
+      "text": {
+        "primary": "Importar/exportar direcciones guardadas",
+        "secondary": "Acceso rápido a todas las direcciones guardadas en formato JSON"
+      }
+    },
     "dust": {
       "text": {
         "primary": "Mostrar transacciones de polvo",
