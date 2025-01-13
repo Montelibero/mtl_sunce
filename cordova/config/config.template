@@ -104,7 +104,9 @@
     <preference name="resizeOnFullScreen" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashScreenDelay" value="$SPLASH_SCREEN_DELAY" />
+    <preference name="FadeSplashScreen" value="false" />
     <preference name="SwiftVersion" value="5.0" />
     <preference name="scheme" value="app" />
     <preference name="hostname" value="localhost" />
+    <preference name="BackgroundColor" value="0xffd6a400" />
 </widget>
