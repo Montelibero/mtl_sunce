@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField"
 import AccountBoxIcon from "@material-ui/icons/AccountBox"
 import CloseIcon from "@material-ui/icons/Close"
 import SendIcon from "@material-ui/icons/Send"
-import { parseStellarUri, PayStellarUri } from "@stellarguard/stellar-uri"
+import { parseStellarUri, isStellarUri, PayStellarUri, StellarUriType } from "@stellarguard/stellar-uri"
 import BigNumber from "big.js"
 import { nanoid } from "nanoid"
 import React from "react"
@@ -174,25 +174,39 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
     props.onSubmit({ memoType, ...form.getValues() }, spendableBalance, matchingWellknownAccount)
   }
 
+  const handlePaymentLink = React.useCallback((uri: PayStellarUri) => {
+    setValue("destination", uri.destination)
+
+    if (uri.amount) {
+      setValue("amount", uri.amount)
+    }
+
+    if (uri.assetCode && uri.assetIssuer) {
+      setValue("asset", new Asset(uri.assetCode, uri.assetIssuer))
+      // TODO: check if we have trust line to the asset
+    }
+
+    if (uri.memo) {
+      setMemoType(uri.memoType || "text")
+      setValue("memoValue", uri.memo)
+    }
+  }, [])
+
   const handleQRScan = React.useCallback(
     (scanResult: string) => {
+      // handle SEP-07 Pay uri
+      if (isStellarUri(scanResult)) {
+        const stellarUri = parseStellarUri(scanResult)
+        if (stellarUri.operation === StellarUriType.Pay) {
+          handlePaymentLink(stellarUri as PayStellarUri)
+        }
+        return
+      }
+
       const [destination, query] = scanResult.split("?")
-      const url = new URL(scanResult)
-      const isPaymentUri = url.protocol === "web+stellar:" && url.pathname === "pay"
-      if (isPaymentUri) {
-        const uri = parseStellarUri(scanResult) as PayStellarUri
 
-        setValue("destination", uri.destination)
-        if (uri.memo) {
-          setMemoType(uri.memoType || "text")
-          setValue("memoValue", uri.memo)
-        }
-
-        setValue("amount", uri.amount)
-        if (uri.assetCode && uri.assetIssuer) {
-          setValue("asset", new Asset(uri.assetCode, uri.assetIssuer))
-        }
-      } else {
+      // handle plain address or Kraken-style uri (<destination>?dt=<memoid>)
+      if (isStellarAddress(destination)) {
         setValue("destination", destination)
 
         if (!query) {
