@@ -26,7 +26,12 @@ import { AccountData } from "~Generic/lib/account"
 import { formatBalance } from "~Generic/lib/balances"
 import { CustomError } from "~Generic/lib/errors"
 import { FormBigNumber, isValidAmount, replaceCommaWithDot } from "~Generic/lib/form"
-import { findMatchingBalanceLine, getAccountMinimumBalance, getSpendableBalance } from "~Generic/lib/stellar"
+import {
+  balancelineToAsset,
+  findMatchingBalanceLine,
+  getAccountMinimumBalance,
+  getSpendableBalance
+} from "~Generic/lib/stellar"
 import { isMuxedAddress, isPublicKey, isStellarAddress } from "~Generic/lib/stellar-address"
 import { createPaymentOperation, createTransaction, multisigMinimumFee } from "~Generic/lib/transaction"
 import { HorizontalLayout } from "~Layout/components/Box"
@@ -183,7 +188,6 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
 
     if (uri.assetCode && uri.assetIssuer) {
       setValue("asset", new Asset(uri.assetCode, uri.assetIssuer))
-      // TODO: check if we have trust line to the asset
     }
 
     if (uri.memo) {
@@ -200,6 +204,7 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
         if (stellarUri.operation === StellarUriType.Pay) {
           handlePaymentLink(stellarUri as PayStellarUri)
         }
+        form.triggerValidation()
         return
       }
 
@@ -222,7 +227,7 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
         }
       }
     },
-    [setValue]
+    [setValue, form]
   )
 
   const [showSavedAddresses, setShowSavedAddresses] = React.useState<boolean>(false)
