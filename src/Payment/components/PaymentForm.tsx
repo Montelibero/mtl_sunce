@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField"
 import AccountBoxIcon from "@material-ui/icons/AccountBox"
 import CloseIcon from "@material-ui/icons/Close"
 import SendIcon from "@material-ui/icons/Send"
+import { parseStellarUri, PayStellarUri } from "@stellarguard/stellar-uri"
 import BigNumber from "big.js"
 import { nanoid } from "nanoid"
 import React from "react"
@@ -176,18 +177,35 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
   const handleQRScan = React.useCallback(
     (scanResult: string) => {
       const [destination, query] = scanResult.split("?")
-      setValue("destination", destination)
+      const url = new URL(scanResult)
+      const isPaymentUri = url.protocol === "web+stellar:" && url.pathname === "pay"
+      if (isPaymentUri) {
+        const uri = parseStellarUri(scanResult) as PayStellarUri
 
-      if (!query) {
-        return
-      }
+        setValue("destination", uri.destination)
+        if (uri.memo) {
+          setMemoType(uri.memoType || "text")
+          setValue("memoValue", uri.memo)
+        }
 
-      const searchParams = new URLSearchParams(query)
-      const memoValue = searchParams.get("dt")
+        setValue("amount", uri.amount)
+        if (uri.assetCode && uri.assetIssuer) {
+          setValue("asset", new Asset(uri.assetCode, uri.assetIssuer))
+        }
+      } else {
+        setValue("destination", destination)
 
-      if (memoValue) {
-        setMemoType("id")
-        setValue("memoValue", memoValue)
+        if (!query) {
+          return
+        }
+
+        const searchParams = new URLSearchParams(query)
+        const memoValue = searchParams.get("dt")
+
+        if (memoValue) {
+          setMemoType("id")
+          setValue("memoValue", memoValue)
+        }
       }
     },
     [setValue]
