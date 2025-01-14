@@ -1,7 +1,7 @@
 {
   "name": "org.montelibero.sunce",
   "displayName": "Sunce Wallet",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Wallet for the Stellar payment network by Montelibero.",
   "license": "MIT",
   "private": true,
