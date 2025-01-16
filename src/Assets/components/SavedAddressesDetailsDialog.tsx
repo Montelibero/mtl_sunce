@@ -72,7 +72,8 @@ function SavedAddressDetailsDialog(props: SavedAddressDetailsDialogProps) {
           inputRef={form.register({
             validate: {
               length: value =>
-                value.length <= 28 || t<string>("account.saved-address-details.validation.label-too-long")
+                value.length <= 1024 ||
+                t<string>("account.saved-address-details.validation.label-too-long", { max: 1024 })
             }
           })}
           onChange={event => {
