@@ -1,4 +1,4 @@
-import { Dialog } from "@material-ui/core"
+import { ButtonBase, Dialog } from "@material-ui/core"
 import InputAdornment from "@material-ui/core/InputAdornment"
 import TextField from "@material-ui/core/TextField"
 import AccountBoxIcon from "@material-ui/icons/AccountBox"
@@ -270,6 +270,21 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
     [form, formValues.asset, preselectedParams, props.accountData.balances, props.testnet]
   )
 
+  const maxSendButton = React.useMemo(
+    () => (
+      <ButtonBase
+        onClick={() => {
+          form.setValue("amount", spendableBalance.toString())
+          form.triggerValidation("amount")
+        }}
+        style={{ fontSize: "inherit", fontWeight: "inherit", textAlign: "inherit" }}
+      >
+        {t("payment.inputs.price.placeholder")} {formatBalance(spendableBalance.toString())}
+      </ButtonBase>
+    ),
+    [form, spendableBalance, t]
+  )
+
   const priceInput = React.useMemo(
     () => (
       <PriceInput
@@ -294,9 +309,8 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
         label={form.errors.amount ? form.errors.amount.message : t("payment.inputs.price.label")}
         margin="normal"
         name="amount"
-        placeholder={t("payment.inputs.price.placeholder", `Max. ${formatBalance(spendableBalance.toString())}`, {
-          amount: formatBalance(spendableBalance.toString())
-        })}
+        placeholder={t("payment.inputs.price.label")}
+        helperText={form.getValues()["asset"] ? maxSendButton : null}
         style={{
           flexGrow: isSmallScreen ? 1 : undefined,
           marginLeft: 24,
@@ -393,7 +407,7 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
     <>
       <form id={formID} noValidate onSubmit={form.handleSubmit(handleFormSubmission)}>
         {destinationInput}
-        <HorizontalLayout justifyContent="space-between" alignItems="center" margin="0 -24px" wrap="wrap">
+        <HorizontalLayout justifyContent="space-between" alignItems="top" margin="0 -24px" wrap="wrap">
           {priceInput}
           {memoInput}
         </HorizontalLayout>
