@@ -408,7 +408,7 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
         <React.Suspense fallback={<ViewLoading />}>
           <SavedAddressesDialog
             testnet={props.testnet}
-            readonly={true}
+            readonly={false}
             onClose={() => setShowSavedAddresses(false)}
             onSelect={handleOnSavedAddressClick}
           />
