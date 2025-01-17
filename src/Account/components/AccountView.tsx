@@ -28,11 +28,11 @@ import { useClipboard, useIsMobile, useRouter } from "~Generic/hooks/userinterfa
 import { getLastArgumentFromURL } from "~Generic/lib/url"
 import { matchesRoute } from "~Generic/lib/routes"
 import { InlineErrorBoundary, HideOnError } from "~Generic/components/ErrorBoundaries"
+import { DialogsContext } from "~App/contexts/dialogs"
 
 const modules = {
   AssetDetailsDialog: import("../../Assets/components/AssetDetailsDialog"),
   BalanceDetailsDialog: import("../../Assets/components/BalanceDetailsDialog"),
-  SavedAddressesDialog: import("../../Assets/components/SavedAddressesDialog"),
   LumenPurchaseDialog: import("../../LumenPurchase/components/LumenPurchaseDialog"),
   TradeAssetDialog: import("../../Trading/components/TradingDialog"),
   TransferDialog: import("../../TransferService/components/ConnectedTransferDialog")
@@ -57,10 +57,6 @@ const AssetDetailsDialog = withFallback(
 )
 const BalanceDetailsDialog = withFallback(
   React.lazy(() => modules.BalanceDetailsDialog),
-  <ViewLoading />
-)
-const SavedAddressesDialog = withFallback(
-  React.lazy(() => modules.SavedAddressesDialog),
   <ViewLoading />
 )
 const LumenPurchaseDialog = withFallback(
@@ -124,6 +120,8 @@ const AccountPageContent = React.memo(function AccountPageContent(props: Account
   const [accountToBackup, setAccountToBackup] = React.useState<Account | null>(null)
   const [noPasswordDialogOpen, setNoPasswordDialogOpen] = React.useState(false)
 
+  const { openSavedAddresses } = React.useContext(DialogsContext)
+
   const showAccountCreation =
     matchesRoute(router.location.pathname, routes.createAccount(props.testnet), false) ||
     matchesRoute(router.location.pathname, routes.importAccount(props.testnet), false) ||
@@ -138,7 +136,6 @@ const AccountPageContent = React.memo(function AccountPageContent(props: Account
     !matchesRoute(router.location.pathname, routes.manageAccountAssets("*"))
   const showAssetTrading = matchesRoute(router.location.pathname, routes.tradeAsset("*"))
   const showBalanceDetails = matchesRoute(router.location.pathname, routes.balanceDetails("*"))
-  const showSavedAddresses = matchesRoute(router.location.pathname, routes.savedAddresses("*"))
   const showCreatePayment = matchesRoute(router.location.pathname, routes.createPayment("*"))
   const showDeposit = matchesRoute(router.location.pathname, routes.depositAsset("*"))
   const showLumenPurchase = matchesRoute(router.location.pathname, routes.purchaseLumens("*"))
@@ -176,7 +173,7 @@ const AccountPageContent = React.memo(function AccountPageContent(props: Account
       addAssets: accountID ? () => router.history.push(routes.manageAccountAssets(accountID)) : undefined,
       deposit: accountID ? () => router.history.push(routes.depositAsset(accountID)) : undefined,
       balanceDetails: accountID ? () => router.history.push(routes.balanceDetails(accountID)) : undefined,
-      savedAddresses: accountID ? () => router.history.push(routes.savedAddresses(accountID)) : undefined,
+      savedAddresses: accountID ? () => openSavedAddresses({}) : undefined,
       createPayment: accountID ? () => router.history.push(routes.createPayment(accountID)) : undefined,
       purchaseLumens: accountID ? () => router.history.push(routes.purchaseLumens(accountID)) : undefined,
       receivePayment: accountID ? () => router.history.push(routes.receivePayment(accountID)) : undefined,
@@ -184,7 +181,7 @@ const AccountPageContent = React.memo(function AccountPageContent(props: Account
       transactions: accountID ? () => router.history.push(routes.account(accountID)) : undefined,
       withdraw: accountID ? () => router.history.push(routes.withdrawAsset(accountID)) : undefined
     }
-  }, [router.history, props.account])
+  }, [openSavedAddresses, router.history, props.account])
 
   const closeAssetDetails = React.useCallback(() => {
     // We might need to go back to either "balance details" or "add assets"
@@ -401,16 +398,6 @@ const AccountPageContent = React.memo(function AccountPageContent(props: Account
           >
             <React.Suspense fallback={<ViewLoading />}>
               <BalanceDetailsDialog account={props.account} onClose={closeDialog} />
-            </React.Suspense>
-          </Dialog>
-          <Dialog
-            open={showSavedAddresses}
-            fullScreen
-            onClose={closeDialog}
-            TransitionComponent={FullscreenDialogTransition}
-          >
-            <React.Suspense fallback={<ViewLoading />}>
-              <SavedAddressesDialog account={props.account} testnet={props.testnet} onClose={closeDialog} />
             </React.Suspense>
           </Dialog>
           <Dialog

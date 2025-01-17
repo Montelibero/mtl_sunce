@@ -1,4 +1,3 @@
-import { Dialog } from "@material-ui/core"
 import InputAdornment from "@material-ui/core/InputAdornment"
 import TextField from "@material-ui/core/TextField"
 import AccountBoxIcon from "@material-ui/icons/AccountBox"
@@ -11,13 +10,11 @@ import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Asset, Memo, MemoType, Server, Transaction } from "stellar-sdk"
 import { Account } from "~App/contexts/accounts"
-import { FullscreenDialogTransition } from "~App/theme"
-import SavedAddressesDialog from "~Assets/components/SavedAddressesDialog"
+import { DialogsContext } from "~App/contexts/dialogs"
 import AssetSelector from "~Generic/components/AssetSelector"
 import { ActionButton, DialogActionsBox } from "~Generic/components/DialogActions"
 import { PriceInput, QRReader } from "~Generic/components/FormFields"
 import Portal from "~Generic/components/Portal"
-import ViewLoading from "~Generic/components/ViewLoading"
 import { useFederationLookup } from "~Generic/hooks/stellar"
 import { AccountRecord, useWellKnownAccounts } from "~Generic/hooks/stellar-ecosystem"
 import { RefStateObject, useIsMobile } from "~Generic/hooks/userinterface"
@@ -193,19 +190,21 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
     [setValue]
   )
 
-  const [showSavedAddresses, setShowSavedAddresses] = React.useState<boolean>(false)
+  const { openSavedAddresses } = React.useContext(DialogsContext)
 
   const handleOnSavedAddressClick = React.useCallback(
     (address: string) => {
       form.setValue("destination", address)
       form.triggerValidation("destination")
-      setShowSavedAddresses(false)
+      openSavedAddresses(null)
     },
     [form]
   )
 
   const handleContractListClick = React.useCallback(() => {
-    setShowSavedAddresses(true)
+    openSavedAddresses({
+      onSelect: handleOnSavedAddressClick
+    })
   }, [])
 
   const qrReaderAdornment = React.useMemo(
@@ -399,21 +398,6 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
         </HorizontalLayout>
         <Portal target={props.actionsRef.element}>{dialogActions}</Portal>
       </form>
-      <Dialog
-        open={showSavedAddresses}
-        fullScreen
-        onClose={() => setShowSavedAddresses(false)}
-        TransitionComponent={FullscreenDialogTransition}
-      >
-        <React.Suspense fallback={<ViewLoading />}>
-          <SavedAddressesDialog
-            testnet={props.testnet}
-            readonly={true}
-            onClose={() => setShowSavedAddresses(false)}
-            onSelect={handleOnSavedAddressClick}
-          />
-        </React.Suspense>
-      </Dialog>
     </>
   )
 })

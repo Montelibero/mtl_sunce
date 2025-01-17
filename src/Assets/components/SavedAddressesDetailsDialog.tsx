@@ -9,7 +9,7 @@ import { nanoid } from "nanoid"
 import { isMuxedAddress, isPublicKey, isStellarAddress } from "~Generic/lib/stellar-address"
 import { ActionButton, DialogActionsBox } from "~Generic/components/DialogActions"
 
-interface SavedAddressDetailsDialogProps {
+export interface SavedAddressDetailsDialogProps {
   address?: string
   label?: string
   onClose: () => void

@@ -12,6 +12,10 @@ import { formatBalance } from "~Generic/lib/balances"
 import { offerAssetToAsset, stringifyAssetToReadableString, trustlineLimitEqualsUnlimited } from "~Generic/lib/stellar"
 import { CopyableAddress } from "~Generic/components/PublicKey"
 import { SummaryItem, SummaryDetailsField } from "./SummaryItem"
+import { Account, AccountsContext } from "~App/contexts/accounts"
+import PersonAdd from "@material-ui/icons/PersonAdd"
+import { DialogsContext } from "~App/contexts/dialogs"
+import { SavedAddressesContext } from "~App/contexts/savedAddresses"
 
 const isUTF8 = (buffer: Buffer) => !buffer.toString("utf8").match(/[\x00-\x1F]/)
 
@@ -117,9 +121,34 @@ interface OperationProps<Op extends Operation> {
   testnet: boolean
 }
 
+const isLocalAccount = (address: string, testnet: boolean, accounts: Account[]): boolean =>
+  !!accounts.find(account => account.publicKey === address && account.testnet === testnet)
+
+type AddAddressButtonProps = {
+  address: string
+}
+
+const AddAddressButton = React.memo((props: AddAddressButtonProps) => {
+  const { openSavedAddresses } = React.useContext(DialogsContext)
+  return (
+    <PersonAdd
+      style={{ transform: "scale(-0.6, 0.6)", cursor: "pointer" }}
+      onClick={() => openSavedAddresses({ address: props.address })}
+    />
+  )
+})
+
 function PaymentOperation(props: OperationProps<Operation.Payment>) {
   const { amount, asset, destination, source } = props.operation
+  const { accounts } = React.useContext(AccountsContext)
+  const { savedAddresses } = React.useContext(SavedAddressesContext)
   const { t } = useTranslation()
+
+  const canBeAdded = React.useCallback(
+    (address: string) => !isLocalAccount(address, props.testnet, accounts) && !savedAddresses[address],
+    [accounts, props.testnet, savedAddresses]
+  )
+
   return (
     <SummaryItem heading={props.hideHeading ? undefined : t("operations.payment.title")}>
       <SummaryDetailsField
@@ -128,12 +157,22 @@ function PaymentOperation(props: OperationProps<Operation.Payment>) {
       />
       <SummaryDetailsField
         label={t("operations.payment.summary.destination")}
-        value={<CopyableAddress address={destination} testnet={props.testnet} variant="short" />}
+        value={
+          <>
+            <CopyableAddress address={destination} testnet={props.testnet} variant="short" />
+            {canBeAdded(destination) && <AddAddressButton address={destination} />}
+          </>
+        }
       />
       {source ? (
         <SummaryDetailsField
           label={t("operations.payment.summary.source")}
-          value={<CopyableAddress address={source} testnet={props.testnet} variant="short" />}
+          value={
+            <>
+              <CopyableAddress address={source} testnet={props.testnet} variant="short" />
+              {canBeAdded(source) && <AddAddressButton address={source} />}
+            </>
+          }
         />
       ) : null}
     </SummaryItem>

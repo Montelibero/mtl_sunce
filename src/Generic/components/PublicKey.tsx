@@ -5,7 +5,7 @@ import { AccountsContext } from "~App/contexts/accounts"
 import { useFederationLookup } from "../hooks/stellar"
 import { useClipboard } from "../hooks/userinterface"
 import { isPublicKey } from "../lib/stellar-address"
-import useSavedAddresses from "~Generic/hooks/useSavedAddresses"
+import { SavedAddressesContext } from "~App/contexts/savedAddresses"
 
 type Variant = "full" | "short" | "shorter"
 
@@ -50,7 +50,7 @@ export const PublicKey = React.memo(function PublicKey(props: PublicKeyProps) {
     account => account.publicKey === props.publicKey && account.testnet === props.testnet
   )
 
-  const { savedAddresses } = useSavedAddresses(props.testnet)
+  const { savedAddresses } = React.useContext(SavedAddressesContext)
 
   const matchingSavedAccount = savedAddresses[props.publicKey]?.label
     ? { name: savedAddresses[props.publicKey].label }
