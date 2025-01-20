@@ -140,6 +140,15 @@
   },
   "saved-addresses": {
     "title": "Saved Addresses",
+    "search-field": {
+      "placeholder": "Search name or address…"
+    },
+    "item": {
+      "no-result": {
+        "primary": "No matching record",
+        "secondary": "No name or address matches your search"
+      }
+    },
     "button": {
       "add": {
         "label": "Add Address"
