@@ -158,7 +158,7 @@
     "validation": {
       "no-address": "Manca l'indirizzo",
       "no-label": "Manca l'etichetta",
-      "label-too-long": "L'etichetta è troppo lunga. Considerate un massimo di 28 caratteri",
+      "label-too-long": "L'etichetta è troppo lunga. Considerate un massimo di {{max}} caratteri",
       "invalid-address": "L'indirizzo non è valido"
     },
     "button": {

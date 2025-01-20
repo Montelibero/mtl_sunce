@@ -74,9 +74,7 @@ export const PublicKey = React.memo(function PublicKey(props: PublicKeyProps) {
     // Note: We don't check for mainnet/testnet here...
     return (
       <Typography component="span" style={style}>
-        {variant === "full"
-          ? matchedKnownAccount.name
-          : shortenName(matchedKnownAccount.name, digits.leading + digits.trailing + 6)}
+        {matchedKnownAccount.name}
       </Typography>
     )
   } else {
