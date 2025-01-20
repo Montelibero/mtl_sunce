@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField"
 import AccountBoxIcon from "@material-ui/icons/AccountBox"
 import CloseIcon from "@material-ui/icons/Close"
 import SendIcon from "@material-ui/icons/Send"
+import { parseStellarUri, isStellarUri, PayStellarUri, StellarUriType } from "@stellarguard/stellar-uri"
 import BigNumber from "big.js"
 import { nanoid } from "nanoid"
 import React from "react"
@@ -25,7 +26,12 @@ import { AccountData } from "~Generic/lib/account"
 import { formatBalance } from "~Generic/lib/balances"
 import { CustomError } from "~Generic/lib/errors"
 import { FormBigNumber, isValidAmount, replaceCommaWithDot } from "~Generic/lib/form"
-import { findMatchingBalanceLine, getAccountMinimumBalance, getSpendableBalance } from "~Generic/lib/stellar"
+import {
+  balancelineToAsset,
+  findMatchingBalanceLine,
+  getAccountMinimumBalance,
+  getSpendableBalance
+} from "~Generic/lib/stellar"
 import { isMuxedAddress, isPublicKey, isStellarAddress } from "~Generic/lib/stellar-address"
 import { createPaymentOperation, createTransaction, multisigMinimumFee } from "~Generic/lib/transaction"
 import { HorizontalLayout } from "~Layout/components/Box"
@@ -173,24 +179,55 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
     props.onSubmit({ memoType, ...form.getValues() }, spendableBalance, matchingWellknownAccount)
   }
 
+  const handlePaymentLink = React.useCallback((uri: PayStellarUri) => {
+    setValue("destination", uri.destination)
+
+    if (uri.amount) {
+      setValue("amount", uri.amount)
+    }
+
+    if (uri.assetCode && uri.assetIssuer) {
+      setValue("asset", new Asset(uri.assetCode, uri.assetIssuer))
+    }
+
+    if (uri.memo) {
+      setMemoType(uri.memoType || "text")
+      setValue("memoValue", uri.memo)
+    }
+  }, [])
+
   const handleQRScan = React.useCallback(
     (scanResult: string) => {
-      const [destination, query] = scanResult.split("?")
-      setValue("destination", destination)
-
-      if (!query) {
+      // handle SEP-07 Pay uri
+      if (isStellarUri(scanResult)) {
+        const stellarUri = parseStellarUri(scanResult)
+        if (stellarUri.operation === StellarUriType.Pay) {
+          handlePaymentLink(stellarUri as PayStellarUri)
+        }
+        form.triggerValidation()
         return
       }
 
-      const searchParams = new URLSearchParams(query)
-      const memoValue = searchParams.get("dt")
+      const [destination, query] = scanResult.split("?")
 
-      if (memoValue) {
-        setMemoType("id")
-        setValue("memoValue", memoValue)
+      // handle plain address or Kraken-style uri (<destination>?dt=<memoid>)
+      if (isStellarAddress(destination)) {
+        setValue("destination", destination)
+
+        if (!query) {
+          return
+        }
+
+        const searchParams = new URLSearchParams(query)
+        const memoValue = searchParams.get("dt")
+
+        if (memoValue) {
+          setMemoType("id")
+          setValue("memoValue", memoValue)
+        }
       }
     },
-    [setValue]
+    [setValue, form]
   )
 
   const [showSavedAddresses, setShowSavedAddresses] = React.useState<boolean>(false)
