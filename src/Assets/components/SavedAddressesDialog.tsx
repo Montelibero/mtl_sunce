@@ -23,9 +23,17 @@ interface SavedAddressesListProps {
 const SavedAddressesList = React.memo(function SavedAddressesList(props: SavedAddressesListProps) {
   const isSmallScreen = useIsMobile()
 
+  const sortedList = React.useMemo(
+    () =>
+      Object.keys(props.addresses)
+        .map(address => ({ address, label: props.addresses[address].label }))
+        .sort((a, b) => a.label.localeCompare(b.label)),
+    [props.addresses]
+  )
+
   return (
     <>
-      {Object.keys(props.addresses).map(address => {
+      {sortedList.map(({ address, label }) => {
         return (
           <ListItem
             button={Boolean(props.onClick) as any}
@@ -34,7 +42,7 @@ const SavedAddressesList = React.memo(function SavedAddressesList(props: SavedAd
             }}
           >
             <ListItemText
-              primary={props.addresses[address].label}
+              primary={label}
               secondary={
                 <PublicKey
                   publicKey={address}
