@@ -1,9 +1,10 @@
+import ButtonBase from "@material-ui/core/ButtonBase"
 import InputAdornment from "@material-ui/core/InputAdornment"
 import TextField from "@material-ui/core/TextField"
 import AccountBoxIcon from "@material-ui/icons/AccountBox"
 import CloseIcon from "@material-ui/icons/Close"
 import SendIcon from "@material-ui/icons/Send"
-import { parseStellarUri, isStellarUri, PayStellarUri, StellarUriType } from "@stellarguard/stellar-uri"
+import { isStellarUri, parseStellarUri, PayStellarUri, StellarUriType } from "@stellarguard/stellar-uri"
 import BigNumber from "big.js"
 import { nanoid } from "nanoid"
 import React from "react"
@@ -23,12 +24,7 @@ import { AccountData } from "~Generic/lib/account"
 import { formatBalance } from "~Generic/lib/balances"
 import { CustomError } from "~Generic/lib/errors"
 import { FormBigNumber, isValidAmount, replaceCommaWithDot } from "~Generic/lib/form"
-import {
-  balancelineToAsset,
-  findMatchingBalanceLine,
-  getAccountMinimumBalance,
-  getSpendableBalance
-} from "~Generic/lib/stellar"
+import { findMatchingBalanceLine, getAccountMinimumBalance, getSpendableBalance } from "~Generic/lib/stellar"
 import { isMuxedAddress, isPublicKey, isStellarAddress } from "~Generic/lib/stellar-address"
 import { createPaymentOperation, createTransaction, multisigMinimumFee } from "~Generic/lib/transaction"
 import { HorizontalLayout } from "~Layout/components/Box"
