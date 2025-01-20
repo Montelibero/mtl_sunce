@@ -7,12 +7,12 @@ import DialogBody from "~Layout/components/DialogBody"
 import { ActionButton, DialogActionsBox } from "~Generic/components/DialogActions"
 import { HorizontalLayout } from "~Layout/components/Box"
 import { TextField } from "@material-ui/core"
-import useSavedAddresses from "~Generic/hooks/useSavedAddresses"
+import { SavedAddressesContext } from "~App/contexts/savedAddresses"
 
 function SavedAddressesExportDialog() {
   const theme = useTheme()
 
-  const { savedAddresses, write } = useSavedAddresses(false)
+  const { savedAddresses, bulkUpdate } = React.useContext(SavedAddressesContext)
 
   const [rawContents, setRawContents] = React.useState(() => JSON.stringify(savedAddresses, null, 2))
 
@@ -21,7 +21,7 @@ function SavedAddressesExportDialog() {
   const handleSaveChanges = React.useCallback(() => {
     setError("")
     try {
-      write(JSON.parse(rawContents))
+      bulkUpdate(JSON.parse(rawContents))
     } catch (e) {
       setError("Cannot parse JSON")
     }

@@ -10,14 +10,20 @@ import MainTitle from "~Generic/components/MainTitle"
 import { PublicKey } from "~Generic/components/PublicKey"
 import ViewLoading from "~Generic/components/ViewLoading"
 import { useIsMobile } from "~Generic/hooks/userinterface"
-import useSavedAddresses, { SavedAddresses } from "~Generic/hooks/useSavedAddresses"
 import DialogBody from "~Layout/components/DialogBody"
 import SavedAddressesDetailsDialog from "./SavedAddressesDetailsDialog"
+import { SavedAddresses, SavedAddressesContext } from "~App/contexts/savedAddresses"
 
 interface SavedAddressesListProps {
   addresses: SavedAddresses
   onClick: (address: string) => void
-  testnet: boolean
+}
+
+export interface SavedAddressesDialogProps {
+  address?: string
+  readonly?: boolean
+  onSelect?: (address: string) => void
+  onClose: () => void
 }
 
 const SavedAddressesList = React.memo(function SavedAddressesList(props: SavedAddressesListProps) {
@@ -36,6 +42,7 @@ const SavedAddressesList = React.memo(function SavedAddressesList(props: SavedAd
       {sortedList.map(({ address, label }) => {
         return (
           <ListItem
+            key={`saved-${address}`}
             button={Boolean(props.onClick) as any}
             onClick={() => {
               return props.onClick(address)
@@ -46,7 +53,7 @@ const SavedAddressesList = React.memo(function SavedAddressesList(props: SavedAd
               secondary={
                 <PublicKey
                   publicKey={address}
-                  testnet={props.testnet}
+                  testnet={false}
                   showRaw={true}
                   variant={isSmallScreen ? "short" : "full"}
                 />
@@ -59,25 +66,23 @@ const SavedAddressesList = React.memo(function SavedAddressesList(props: SavedAd
   )
 })
 
-interface SavedAddressesDialogProps {
-  testnet: boolean
-  readonly?: boolean
-  onSelect?: (address: string) => void
-  onClose: () => void
-}
-
 function SavedAddressesDialog(props: SavedAddressesDialogProps) {
   const { t } = useTranslation()
 
-  const [editingAddress, setEditingAddress] = useState<{ label: string; address: string } | null>(null)
+  const [editingAddress, setEditingAddress] = useState<{ label: string; address: string } | null>(
+    props.address ? { address: props.address, label: "" } : null
+  )
 
-  const { savedAddresses, add, remove } = useSavedAddresses(props.testnet)
+  const { savedAddresses, add, remove } = React.useContext(SavedAddressesContext)
 
   const openAddAddressDialog = () => {
     setEditingAddress({ address: "", label: "" })
   }
 
   const closeAddAddressDialog = () => {
+    if (props.address) {
+      props.onClose()
+    }
     setEditingAddress(null)
   }
 
@@ -110,7 +115,7 @@ function SavedAddressesDialog(props: SavedAddressesDialogProps) {
             &nbsp;&nbsp;{t("account.saved-addresses.button.add.label")}
           </ButtonListItem>
         )}
-        <SavedAddressesList addresses={savedAddresses} onClick={handleAddressClick} testnet={props.testnet} />
+        <SavedAddressesList addresses={savedAddresses} onClick={handleAddressClick} />
       </List>
       <Dialog
         fullScreen

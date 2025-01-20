@@ -1,10 +1,10 @@
-import { ButtonBase, Dialog } from "@material-ui/core"
+import ButtonBase from "@material-ui/core/ButtonBase"
 import InputAdornment from "@material-ui/core/InputAdornment"
 import TextField from "@material-ui/core/TextField"
 import AccountBoxIcon from "@material-ui/icons/AccountBox"
 import CloseIcon from "@material-ui/icons/Close"
 import SendIcon from "@material-ui/icons/Send"
-import { parseStellarUri, isStellarUri, PayStellarUri, StellarUriType } from "@stellarguard/stellar-uri"
+import { isStellarUri, parseStellarUri, PayStellarUri, StellarUriType } from "@stellarguard/stellar-uri"
 import BigNumber from "big.js"
 import { nanoid } from "nanoid"
 import React from "react"
@@ -12,13 +12,11 @@ import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Asset, Memo, MemoType, Server, Transaction } from "stellar-sdk"
 import { Account } from "~App/contexts/accounts"
-import { FullscreenDialogTransition } from "~App/theme"
-import SavedAddressesDialog from "~Assets/components/SavedAddressesDialog"
+import { DialogsContext } from "~App/contexts/dialogs"
 import AssetSelector from "~Generic/components/AssetSelector"
 import { ActionButton, DialogActionsBox } from "~Generic/components/DialogActions"
 import { PriceInput, QRReader } from "~Generic/components/FormFields"
 import Portal from "~Generic/components/Portal"
-import ViewLoading from "~Generic/components/ViewLoading"
 import { useFederationLookup } from "~Generic/hooks/stellar"
 import { AccountRecord, useWellKnownAccounts } from "~Generic/hooks/stellar-ecosystem"
 import { RefStateObject, useIsMobile } from "~Generic/hooks/userinterface"
@@ -26,12 +24,7 @@ import { AccountData } from "~Generic/lib/account"
 import { formatBalance } from "~Generic/lib/balances"
 import { CustomError } from "~Generic/lib/errors"
 import { FormBigNumber, isValidAmount, replaceCommaWithDot } from "~Generic/lib/form"
-import {
-  balancelineToAsset,
-  findMatchingBalanceLine,
-  getAccountMinimumBalance,
-  getSpendableBalance
-} from "~Generic/lib/stellar"
+import { findMatchingBalanceLine, getAccountMinimumBalance, getSpendableBalance } from "~Generic/lib/stellar"
 import { isMuxedAddress, isPublicKey, isStellarAddress } from "~Generic/lib/stellar-address"
 import { createPaymentOperation, createTransaction, multisigMinimumFee } from "~Generic/lib/transaction"
 import { HorizontalLayout } from "~Layout/components/Box"
@@ -230,19 +223,21 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
     [setValue, form]
   )
 
-  const [showSavedAddresses, setShowSavedAddresses] = React.useState<boolean>(false)
+  const { openSavedAddresses } = React.useContext(DialogsContext)
 
   const handleOnSavedAddressClick = React.useCallback(
     (address: string) => {
       form.setValue("destination", address)
       form.triggerValidation("destination")
-      setShowSavedAddresses(false)
+      openSavedAddresses(null)
     },
     [form]
   )
 
   const handleContractListClick = React.useCallback(() => {
-    setShowSavedAddresses(true)
+    openSavedAddresses({
+      onSelect: handleOnSavedAddressClick
+    })
   }, [])
 
   const qrReaderAdornment = React.useMemo(
@@ -450,21 +445,6 @@ const PaymentForm = React.memo(function PaymentForm(props: PaymentFormProps) {
         </HorizontalLayout>
         <Portal target={props.actionsRef.element}>{dialogActions}</Portal>
       </form>
-      <Dialog
-        open={showSavedAddresses}
-        fullScreen
-        onClose={() => setShowSavedAddresses(false)}
-        TransitionComponent={FullscreenDialogTransition}
-      >
-        <React.Suspense fallback={<ViewLoading />}>
-          <SavedAddressesDialog
-            testnet={props.testnet}
-            readonly={false}
-            onClose={() => setShowSavedAddresses(false)}
-            onSelect={handleOnSavedAddressClick}
-          />
-        </React.Suspense>
-      </Dialog>
     </>
   )
 })
