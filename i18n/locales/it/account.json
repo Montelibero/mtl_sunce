@@ -140,6 +140,15 @@
   },
   "saved-addresses": {
     "title": "Destinazioni Preferite",
+    "search-field": {
+      "placeholder": "Cerca risorse tramite nome o indirizzo…"
+    },
+    "item": {
+      "no-result": {
+        "primary": "Nessun record corrispondente",
+        "secondary": "Nessun nome o indirizzo corrisponde alla ricerca"
+      }
+    },
     "button": {
       "add": {
         "label": "Aggiungi Indirizzo"

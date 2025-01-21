@@ -13,9 +13,11 @@ import { useIsMobile } from "~Generic/hooks/userinterface"
 import DialogBody from "~Layout/components/DialogBody"
 import SavedAddressesDetailsDialog from "./SavedAddressesDetailsDialog"
 import { SavedAddresses, SavedAddressesContext } from "~App/contexts/savedAddresses"
+import { SearchField } from "~Generic/components/FormFields"
 
 interface SavedAddressesListProps {
   addresses: SavedAddresses
+  filterValue?: string
   onClick: (address: string) => void
 }
 
@@ -37,9 +39,22 @@ const SavedAddressesList = React.memo(function SavedAddressesList(props: SavedAd
     [props.addresses]
   )
 
+  const filterSubstr = React.useMemo(() => (props.filterValue || "").toLocaleLowerCase(), [props.filterValue])
+
+  const filteredList = React.useMemo(
+    () =>
+      sortedList.filter(
+        ({ address, label }) =>
+          address.toLowerCase().includes(filterSubstr) || label.toLocaleLowerCase().includes(filterSubstr)
+      ),
+    [sortedList, filterSubstr]
+  )
+
+  const { t } = useTranslation()
+
   return (
     <>
-      {sortedList.map(({ address, label }) => {
+      {filteredList.map(({ address, label }) => {
         return (
           <ListItem
             key={`saved-${address}`}
@@ -62,6 +77,12 @@ const SavedAddressesList = React.memo(function SavedAddressesList(props: SavedAd
           </ListItem>
         )
       })}
+      {filteredList.length === 0 && (
+        <ListItemText
+          primary={t("account.saved-addresses.item.no-result.primary")}
+          secondary={t("account.saved-addresses.item.no-result.secondary")}
+        />
+      )}
     </>
   )
 })
@@ -101,6 +122,11 @@ function SavedAddressesDialog(props: SavedAddressesDialogProps) {
     closeAddAddressDialog()
   }
 
+  const [searchFieldValue, setSearchFieldValue] = React.useState("")
+  const onSearchFieldChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setSearchFieldValue(event.target.value)
+  }, [])
+
   const handleAddressClick = (address: string) => {
     if (props.onSelect) return props.onSelect(address)
     if (!props.readonly) return openAddressDetails(address)
@@ -108,6 +134,12 @@ function SavedAddressesDialog(props: SavedAddressesDialogProps) {
 
   return (
     <DialogBody excessWidth={12} top={<MainTitle onBack={props.onClose} title={t("account.saved-addresses.title")} />}>
+      <SearchField
+        autoFocus
+        onChange={onSearchFieldChange}
+        value={searchFieldValue}
+        placeholder={t("account.saved-addresses.search-field.placeholder")}
+      />
       <List style={{ margin: "0 -8px" }}>
         {!props.readonly && (
           <ButtonListItem gutterBottom onClick={openAddAddressDialog}>
@@ -115,7 +147,7 @@ function SavedAddressesDialog(props: SavedAddressesDialogProps) {
             &nbsp;&nbsp;{t("account.saved-addresses.button.add.label")}
           </ButtonListItem>
         )}
-        <SavedAddressesList addresses={savedAddresses} onClick={handleAddressClick} />
+        <SavedAddressesList addresses={savedAddresses} onClick={handleAddressClick} filterValue={searchFieldValue} />
       </List>
       <Dialog
         fullScreen

@@ -140,6 +140,15 @@
   },
   "saved-addresses": {
     "title": "Direcciónes Favoritos",
+    "search-field": {
+      "placeholder": "Busca activo por nombre o dirección…"
+    },
+    "item": {
+      "no-result": {
+        "primary": "Ningún registro coincidente",
+        "secondary": "Ningún nombre o dirección coincide con su búsqueda"
+      }
+    },
     "button": {
       "add": {
         "label": "Add destino"
