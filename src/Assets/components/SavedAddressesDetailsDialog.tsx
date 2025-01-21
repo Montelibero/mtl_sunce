@@ -9,7 +9,7 @@ import { nanoid } from "nanoid"
 import { isMuxedAddress, isPublicKey, isStellarAddress } from "~Generic/lib/stellar-address"
 import { ActionButton, DialogActionsBox } from "~Generic/components/DialogActions"
 
-interface SavedAddressDetailsDialogProps {
+export interface SavedAddressDetailsDialogProps {
   address?: string
   label?: string
   onClose: () => void
@@ -72,7 +72,8 @@ function SavedAddressDetailsDialog(props: SavedAddressDetailsDialogProps) {
           inputRef={form.register({
             validate: {
               length: value =>
-                value.length <= 28 || t<string>("account.saved-address-details.validation.label-too-long")
+                value.length <= 1024 ||
+                t<string>("account.saved-address-details.validation.label-too-long", { max: 1024 })
             }
           })}
           onChange={event => {

@@ -140,6 +140,15 @@
   },
   "saved-addresses": {
     "title": "Saved Addresses",
+    "search-field": {
+      "placeholder": "Search name or address…"
+    },
+    "item": {
+      "no-result": {
+        "primary": "No matching record",
+        "secondary": "No name or address matches your search"
+      }
+    },
     "button": {
       "add": {
         "label": "Add Address"
@@ -158,7 +167,7 @@
     "validation": {
       "no-address": "Address is missing",
       "no-label": "Label is missing",
-      "label-too-long": "Label is too long. Consider 28 characters max",
+      "label-too-long": "Label is too long. Consider {{max}} characters max",
       "invalid-address": "Address is invalid"
     },
     "button": {
